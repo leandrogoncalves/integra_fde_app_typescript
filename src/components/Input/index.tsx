@@ -1,4 +1,12 @@
-import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import React,
+{
+  useEffect,
+  useRef,
+  useImperativeHandle,
+  forwardRef,
+  useState,
+  useCallback
+} from 'react';
 import { TextInputProps } from 'react-native';
 import { useField } from '@unform/core';
 
@@ -26,6 +34,23 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   const { registerField, defaultValue = '', fieldName, error } = useField(name);
   const inputValueRef = useRef<InputValueReference>({value:defaultValue});
 
+  const [isFocused, SetIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
+
+  const handleInputFocus = useCallback(() => {
+    SetIsFocused(true);
+  },[]);
+
+  const handleInputBlur = useCallback(() => {
+    SetIsFocused(false);
+    //Se tiver valor retorna true senão false
+    setIsFilled(!!inputValueRef.current.value);
+  },[]);
+
+  /**
+   * Registra o butao com a lib unform ao renderizar
+   */
   useEffect(() =>{
     registerField<string>({
       name:fieldName,
@@ -53,13 +78,15 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   }));
 
   return (
-    <Container>
-      <Icon name={icon} size={20} color="#ccc" />
+    <Container isFocused={isFocused}>
+      <Icon name={icon} size={20} color={isFocused || isFilled ? '#000' : "#ccc"} />
       <TextInput
         ref={inputElementRef}
         keyboardAppearance="dark"
         placeholderTextColor="#ccc"
         defaultValue={defaultValue}
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
         onChangeText={(value) => {
           inputValueRef.current.value = value;
         }}
