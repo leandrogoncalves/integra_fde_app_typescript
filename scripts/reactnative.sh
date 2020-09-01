@@ -66,6 +66,7 @@ yarn add @types/styled-components -D
 
 ## Install icons
 yarn add react-native-vector-icons
+yarn add -D @types/react-native-vector-icons
 
 ##install axios http
 yarn add axios
