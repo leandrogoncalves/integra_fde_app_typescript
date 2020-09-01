@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import { Image, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+
+// import AuthContext from '../../context/AuthContext';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -7,7 +9,25 @@ import Button from '../../components/Button';
 import { Container, Title, Footer, FooterText } from './styles';
 import logoImg from '../../assets/logo-fde.png';
 
+interface LoginFormData {
+  usuario:string;
+  senha:string;
+}
+
 const Login: React.FC = () => {
+
+  // const login = useContext(AuthContext);
+
+  // const handleLogin = useCallback(
+  //   async (data:LoginFormData) => {
+  //     Login({
+  //       user: data.usuario,
+  //       pass: data.senha,
+  //     })
+  //   },
+  //   []
+  // );
+
   return (
     <>
       <KeyboardAvoidingView

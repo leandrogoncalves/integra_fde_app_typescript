@@ -85,3 +85,6 @@ adb reverse tcp:9090 tcp:9090
 
 ##configuranco o root import
 yarn add babel-plugin-root-import eslint-import-resolver-babel-plugin-root-import -D
+
+##uso de .env
+yarn add react-native-dotenv@0.2.0

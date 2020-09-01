@@ -2,7 +2,7 @@ import api from '../api';
 
 const authService = {
 
-  async login(usuario:string, senha:string) {
+  async attemptLogin(usuario:string, senha:string) {
 
     let output = {
       status: false,
