@@ -1,7 +1,9 @@
-import React, { useContext, useCallback } from 'react';
-import { Image, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useCallback, useRef } from 'react';
+import { Image, View, ScrollView, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
+import { Form } from '@unform/mobile';
+import { FormHandles } from '@unform/core';
 
-// import AuthContext from '../../context/AuthContext';
+import { useAuth } from '../../hooks/auth';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -15,18 +17,33 @@ interface LoginFormData {
 }
 
 const Login: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+  // formRef.current?.setFieldValue
 
-  // const login = useContext(AuthContext);
+  const passwordInputRef = useRef<TextInput>(null);
 
-  // const handleLogin = useCallback(
-  //   async (data:LoginFormData) => {
-  //     Login({
-  //       user: data.usuario,
-  //       pass: data.senha,
-  //     })
-  //   },
-  //   []
-  // );
+
+  // const { login, user } = useAuth();
+
+  // console.log(user);
+
+
+  const handleLogin = useCallback(
+    async (data:LoginFormData) => {
+
+      console.log(data);
+
+      // await login({
+      //   user: data.login,
+      //   pass: data.senha,
+      // });
+    },
+    []
+  );
+
+  const submitForm = () => {
+    formRef.current?.submitForm();
+  };
 
   return (
     <>
@@ -45,10 +62,31 @@ const Login: React.FC = () => {
               <Title>Login</Title>
             </View>
 
-            <Input name="login" icon="user" placeholder="Usuário" />
-            <Input name="senha" icon="lock" placeholder="Senha" secureTextEntry={true} />
+            <Form ref={formRef} onSubmit={handleLogin} style={{width:'100%'}}>
+              <Input
+                name="login"
+                icon="user"
+                placeholder="Usuário"
+                autoCorrect={false}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={()=>{
+                  passwordInputRef.current?.focus();
+                }}
+              />
+              <Input
+                ref={passwordInputRef}
+                name="senha"
+                icon="lock"
+                placeholder="Senha"
+                secureTextEntry={true}
+                returnKeyType="send"
+                onSubmitEditing={submitForm}
+              />
 
-            <Button onPress={()=>{}}>Entrar</Button>
+              <Button onPress={submitForm}>Entrar</Button>
+            </Form>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>

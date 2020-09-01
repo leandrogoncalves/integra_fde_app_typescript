@@ -88,3 +88,6 @@ yarn add babel-plugin-root-import eslint-import-resolver-babel-plugin-root-impor
 
 ##uso de .env
 yarn add react-native-dotenv@0.2.0
+
+##Lib para trabalhar com formularios
+yarn add @unform/core @unform/mobile
