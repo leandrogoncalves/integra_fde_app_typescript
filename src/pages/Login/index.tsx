@@ -1,7 +1,18 @@
 import React, { useCallback, useRef } from 'react';
-import { Image, View, ScrollView, KeyboardAvoidingView, Platform, TextInput } from 'react-native';
+import {
+  Image,
+  View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  Alert
+} from 'react-native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+
+import * as Yup from 'yup';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -22,21 +33,47 @@ const Login: React.FC = () => {
 
   const passwordInputRef = useRef<TextInput>(null);
 
+  const { login, user } = useAuth();
 
-  // const { login, user } = useAuth();
-
-  // console.log(user);
+  console.log('user', user);
 
 
   const handleLogin = useCallback(
     async (data:LoginFormData) => {
 
       console.log(data);
+      try{
 
-      // await login({
-      //   user: data.login,
-      //   pass: data.senha,
-      // });
+        const schema = Yup.object().shape({
+          login: Yup.string()
+            .required('O campo usuário é obrigatório')
+            .min(4, 'O campo login deve ter no mínimo 3 caracteres'),
+          senha: Yup.string()
+            .min(3, 'O campo senha deve ter no mínimo 3 caracteres')
+        });
+
+        await schema.validate(data,{
+          abortEarly: false
+        });
+
+      await login({
+        usuario: data.login,
+        senha: data.senha,
+      });
+
+      }catch(err){
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+        }
+
+        Alert.alert(
+          'Erro na autenticação',
+          'Ocorreu um erro ao fazer login, verifique seu login e senha'
+        );
+        return false;
+      }
+
     },
     []
   );

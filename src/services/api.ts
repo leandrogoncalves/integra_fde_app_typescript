@@ -1,8 +1,7 @@
 import axios from 'axios';
-import host from '../config/auth';
 
 const api = axios.create({
-  baseURL: host
+  baseURL: 'http://d-integra.fde.sp.gov.br'
 });
 
 export default api;

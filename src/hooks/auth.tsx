@@ -8,12 +8,12 @@ interface AuthState {
 }
 
 interface LoginCredentials {
-  user: string;
-  pass: string;
+  usuario: string;
+  senha: string;
 }
 
 interface AuthContextData {
-  name:string;
+  user:object;
   login(credentials:LoginCredentials): Promise<void>;
   logout(): void;
 }
@@ -50,25 +50,25 @@ const AuthProvider: React.FC = ({children}) => {
   /**
    * Metodo de login
    */
-  const login = useCallback(async ({user, pass}) => {
-    console.log('login');
-    const response = await authService.login(user, pass);
+  const login = useCallback(async ({usuario, senha}) => {
 
-    const {token, usuario} = response.data;
+    const response = await authService.login(usuario, senha);
+
+    const {access_token, user} = response;
 
     await AsyncStorage.multiSet([
-      ['@Integra:token', token],
-      ['@Integra:user', JSON.stringify(usuario)]
+      ['@Integra:token', access_token],
+      ['@Integra:user', JSON.stringify(user)]
     ]);
 
-    setData({token, user: JSON.parse(usuario)});
+    setData({token: access_token, user: user});
 
   },[]);
 
   /**
    * Metodo de logout
    */
-  const Logout = useCallback(async () => {
+  const logout = useCallback(async () => {
     await AsyncStorage.multiRemove([
       '@Integra:token',
       '@Integra:user'
@@ -79,7 +79,7 @@ const AuthProvider: React.FC = ({children}) => {
 
 
   return (
-    <AuthContext.Provider value={{name: 'Leandro', login, Logout}} >
+    <AuthContext.Provider value={{user: data.user, login, logout}} >
       {children}
     </AuthContext.Provider>
   )

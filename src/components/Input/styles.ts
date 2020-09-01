@@ -4,6 +4,7 @@ import { bool } from 'prop-types';
 
 interface ContainerProps {
   isFocused: boolean;
+  isErrored: boolean;
 }
 
 export const Container = styled.View<ContainerProps>`
@@ -18,6 +19,10 @@ export const Container = styled.View<ContainerProps>`
 
   flex-direction: row;
   align-items: center;
+
+  ${(props) => props.isErrored && css`
+    border-color:red;
+  `}
 
   ${(props) => props.isFocused && css`
     border-color:#ccc;
