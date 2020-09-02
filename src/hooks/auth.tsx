@@ -1,4 +1,11 @@
-import React, { createContext, useCallback, useState, useEffect, useContext } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useState,
+  useEffect,
+  useContext
+ } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import authService from '../services/auth/authService';
 
@@ -14,6 +21,7 @@ interface LoginCredentials {
 
 interface AuthContextData {
   user:object;
+  loading: boolean;
   login(credentials:LoginCredentials): Promise<void>;
   logout(): void;
 }
@@ -25,6 +33,7 @@ const AuthProvider: React.FC = ({children}) => {
    * Seta o estado inicial da autenticacao
    */
   const [data, setData] = useState<AuthState>({} as AuthState);
+  const [loading, setLoading] = useState(true);
 
   /**
    * Lança um evento assim que o componente for renderizado
@@ -41,7 +50,7 @@ const AuthProvider: React.FC = ({children}) => {
         // return { token, user: JSON.parse(user)};
       }
 
-      // return {} as AuthState;
+      setLoading(false);
     }
 
     loadStorageData();
@@ -63,23 +72,28 @@ const AuthProvider: React.FC = ({children}) => {
 
     setData({token: access_token, user: user});
 
+
+
   },[]);
 
   /**
    * Metodo de logout
    */
   const logout = useCallback(async () => {
+    // const navigation = useNavigation();
     await AsyncStorage.multiRemove([
       '@Integra:token',
       '@Integra:user'
     ]);
 
     setData({} as AuthState);
+
+    // navigation.navigate('Login');
   },[])
 
 
   return (
-    <AuthContext.Provider value={{user: data.user, login, logout}} >
+    <AuthContext.Provider value={{user: data.user, loading,  login, logout}} >
       {children}
     </AuthContext.Provider>
   )

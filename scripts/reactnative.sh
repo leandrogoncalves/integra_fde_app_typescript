@@ -94,3 +94,6 @@ yarn add @unform/core @unform/mobile
 
 ##Lib para validação de formulários
 yarn add yup
+
+##splash screen
+yarn add react-native-splash-screen
