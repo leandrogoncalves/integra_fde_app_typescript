@@ -17,7 +17,7 @@ const AuthRoutes: React.FC = () => (
       //   backgroundColor: '#7159c1'
       // },
       // headerTitleAlign: 'center',
-      cardStyle: { backgroundColor: '#fff'}
+      // cardStyle: { backgroundColor: '#fff'}
     }}
   >
     <Auth.Screen name="Login" component={Login} />

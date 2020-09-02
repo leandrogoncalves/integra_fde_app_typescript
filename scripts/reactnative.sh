@@ -100,3 +100,6 @@ yarn add react-native-splash-screen
 
 ## Tabs navigation
 yarn add @react-navigation/bottom-tabs
+
+## Material UI
+yarn add react-native-material-ui

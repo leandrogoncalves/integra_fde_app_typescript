@@ -9,15 +9,15 @@ const AppRoutes: React.FC = () => (
   <App.Navigator
     screenOptions={{
       headerShown: false,
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-      headerStyle: {
-        backgroundColor: '#2f4050'
-      },
-      headerTitleAlign: 'center',
-      cardStyle: { backgroundColor: '#fff'}
+      // headerTintColor: '#fff',
+      // headerTitleStyle: {
+      //   fontWeight: 'bold',
+      // },
+      // headerStyle: {
+      //   backgroundColor: '#2f4050'
+      // },
+      // headerTitleAlign: 'center',
+      // cardStyle: { backgroundColor: '#fff'}
     }}
   >
     <App.Screen name="Tabs" component={TabsRoutes} />
