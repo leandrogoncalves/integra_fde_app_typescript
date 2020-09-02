@@ -1,14 +1,14 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from '../pages/Home';
+import TabsRoutes from './tabs.routes';
 
 const App = createStackNavigator();
 
 const AppRoutes: React.FC = () => (
   <App.Navigator
     screenOptions={{
-      // headerShown: false,
+      headerShown: false,
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
@@ -20,7 +20,7 @@ const AppRoutes: React.FC = () => (
       cardStyle: { backgroundColor: '#fff'}
     }}
   >
-    <App.Screen name="Home" component={Home} />
+    <App.Screen name="Tabs" component={TabsRoutes} />
   </App.Navigator>
 );
 

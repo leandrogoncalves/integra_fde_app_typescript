@@ -45,7 +45,7 @@ cd ~ && wget https://github.com/infinitered/reactotron/releases/download/v2.17.1
 sudo dpkg -i reactotron-app_2.17.1_amd64.deb
 reactotron-app_2
 
-yarn add reactotron-react-native
+yarn add reactotron-react-native reactotron-redux reactotron-redux-saga
 
 ## instalação rotas
 yarn add @react-navigation/native
@@ -97,3 +97,6 @@ yarn add yup
 
 ##splash screen
 yarn add react-native-splash-screen
+
+## Tabs navigation
+yarn add @react-navigation/bottom-tabs
