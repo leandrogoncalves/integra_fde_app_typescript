@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import TabsRoutes from './tabs.routes';
-import Produto from '../pages/Produto';
-import HistoricoBusca from '../pages/HistoricoBusca';
+import TabsRoutes from './bottomTabs.routes';
+import Produto from '../pages/Ecommerce/Produto';
+import HistoricoBusca from '../pages/Ecommerce/HistoricoBusca';
 
 const App = createStackNavigator();
 

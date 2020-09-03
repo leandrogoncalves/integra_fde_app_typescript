@@ -3,9 +3,8 @@ interface IColors {
 }
 
 export const Colors:IColors = {
-  marrom: '#550514',
   highlight: {
-    primary: '#550514',
+    primary: '#164e80d1',
     secundary: 'rgb(83, 83, 83)',
   },
   text: {
