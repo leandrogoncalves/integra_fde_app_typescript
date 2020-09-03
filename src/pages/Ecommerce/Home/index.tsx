@@ -139,7 +139,7 @@ const Home: React.FC = () => {
           <ProductContainer>
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -168,7 +168,7 @@ const Home: React.FC = () => {
             <VerticalDivider />
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -202,7 +202,7 @@ const Home: React.FC = () => {
           <ProductContainer>
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -231,7 +231,7 @@ const Home: React.FC = () => {
             <VerticalDivider />
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -282,7 +282,7 @@ const Home: React.FC = () => {
           <ProductContainer>
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -311,7 +311,7 @@ const Home: React.FC = () => {
             <VerticalDivider />
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -345,7 +345,7 @@ const Home: React.FC = () => {
           <ProductContainer>
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto
@@ -374,7 +374,7 @@ const Home: React.FC = () => {
             <VerticalDivider />
 
             <Product>
-              <TouchableOpacity onPress={() => navigate('Produto')}>
+              <TouchableOpacity onPress={() => navigate('ProdutoTabs')}>
                 <ProductImage>
                   <Text style={{color: 'white'}}>
                     Imagem do produto

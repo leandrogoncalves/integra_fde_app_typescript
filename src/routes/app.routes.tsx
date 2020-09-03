@@ -1,30 +1,45 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Colors } from '../config/ColorsConfig';
 
-import TabsRoutes from './bottomTabs.routes';
-import Produto from '../pages/Ecommerce/Produto';
+import BottomTabsRoutes from './bottomTabs.routes';
 import HistoricoBusca from '../pages/Ecommerce/HistoricoBusca';
+import TopTabsProduct from './topTabsProduct.routes';
 
 const App = createStackNavigator();
+
+const topNavOptions = {
+  headerTintColor: '#fff',
+  headerStyle: {
+    backgroundColor: Colors.header.primary
+  },
+  headerTitleAlign: 'left',
+  cardStyle: { backgroundColor: '#fff'}
+}
 
 const AppRoutes: React.FC = () => (
   <App.Navigator
     screenOptions={{
       headerShown: false,
-      // headerTintColor: '#fff',
-      // headerTitleStyle: {
-      //   fontWeight: 'bold',
-      // },
-      // headerStyle: {
-      //   backgroundColor: '#2f4050'
-      // },
-      // headerTitleAlign: 'center',
-      // cardStyle: { backgroundColor: '#fff'}
     }}
   >
-    <App.Screen name="Tabs" component={TabsRoutes} />
-    <App.Screen name="Produto" component={Produto} />
-    <App.Screen name="HistoricoBusca" component={HistoricoBusca} />
+    <App.Screen
+      name="Tabs"
+      component={BottomTabsRoutes}
+    />
+    <App.Screen
+      name="HistoricoBusca"
+      component={HistoricoBusca}
+    />
+    <App.Screen
+      name="ProdutoTabs"
+      component={TopTabsProduct}
+      options={{
+        headerShown: true,
+        title:'Detalhes',
+        ...topNavOptions
+      }}
+    />
   </App.Navigator>
 );
 

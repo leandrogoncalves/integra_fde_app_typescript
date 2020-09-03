@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Colors } from '../config/ColorsConfig';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -11,7 +12,7 @@ import Home from '../pages/Ecommerce/Home';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-function TabsRoutes() {
+function BottomTabsRoutes() {
   return (
     <Navigator
       tabBarOptions={{
@@ -19,7 +20,7 @@ function TabsRoutes() {
           elevation: 3,
           shadowOffset: 0,
           height: 60,
-          backgroundColor: '#2f4050'
+          backgroundColor: Colors.header.primary
         },
         tabStyle: {
           flexDirection: 'column',
@@ -31,7 +32,8 @@ function TabsRoutes() {
           width: 20,
           height: 20,
           alignItems: 'center',
-          marginLeft: 5
+          marginLeft: 5,
+          color:Colors.header.txtInactive
         },
         showLabel: true,
         labelStyle: {
@@ -39,10 +41,10 @@ function TabsRoutes() {
           fontSize:13,
           marginLeft: 5,
         },
-        inactiveBackgroundColor:'#2f4050',
-        activeBackgroundColor:'#273848',
-        inactiveTintColor:'#c1bccc',
-        activeTintColor:'#fff'
+        inactiveBackgroundColor:Colors.header.primary,
+        activeBackgroundColor:Colors.header.bgActive,
+        inactiveTintColor:Colors.header.txtInactive,
+        activeTintColor:Colors.header.txtActive
       }}
     >
       <Screen
@@ -94,4 +96,4 @@ function TabsRoutes() {
   );
 }
 
-export default TabsRoutes;
+export default BottomTabsRoutes;

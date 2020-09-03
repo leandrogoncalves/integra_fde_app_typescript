@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Card } from 'react-native-material-ui';
-import TopBar from '../../../components/TopBar';
+import TopBar from '../../../../components/TopBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Solicitante from '../../../components/Solicitante';
+import Solicitante from '../../../../components/Solicitante';
 
 import {
   Container,
@@ -23,12 +23,11 @@ import {
 } from './styles';
 
 
-const Produto: React.FC = () => {
+const ProdutoGeral: React.FC = () => {
   const { navigate } = useNavigation();
 
   return (
     <Container>
-      <TopBar iconBack={true} title="Detalhes" iconCart={true} />
 
       <Solicitante />
 
@@ -88,4 +87,4 @@ const Produto: React.FC = () => {
   )
 }
 
-export default Produto;
+export default ProdutoGeral;

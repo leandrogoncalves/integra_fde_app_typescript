@@ -18,5 +18,12 @@ export const Colors:IColors = {
   },
   background: {
     default: '#f0f0f7'
+  },
+  header: {
+    primary: '#2f4050',
+    secundary: '#2f4050e6',
+    bgActive: '#273848',
+    txtActive: '#fff',
+    txtInactive:'#c1bccc'
   }
 }
