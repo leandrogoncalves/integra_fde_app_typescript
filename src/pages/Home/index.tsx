@@ -1,19 +1,33 @@
 import React from 'react';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Avatar, Card, ListItem } from 'react-native-material-ui';
+import { Card } from 'react-native-material-ui';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Foundation from 'react-native-vector-icons/Foundation';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
 
 import TopBar from '../../components/TopBar';
 
 import {
   Container,
   Title,
-  styles,
   Category,
   CategoryIcon,
-  CategoryText
+  CategoryText,
+  VerticalDivider,
+  HorizontalDivider,
+  Product,
+  ProductContainer,
+  ProductImage,
+  ProductText,
+  ProductName,
+  ProductCategory,
+  ProductShortDescription,
+  ProductPrice,
+  SeeMore,
+  SeeMoreText
 } from './styles';
 
 const Home: React.FC = () => {
@@ -21,25 +35,40 @@ const Home: React.FC = () => {
 
   return (
     <Container >
-      <TopBar />
+      <TopBar title="Início" titleMarginLeft={70} iconExit={true} />
       <ScrollView
           keyboardShouldPersistTaps="handled"
         >
+
+        {/* Categorias */}
         <Card >
 
           <Title>
             Categorias
           </Title>
 
+          <HorizontalDivider />
+
           <ScrollView horizontal={true}>
 
             <TouchableOpacity onPress={() => navigate('Busca')}>
               <Category>
                 <CategoryIcon>
-                  <MaterialCommunityIcons name='chair-rolling' color="white" size={30} />
+                  <Ionicons name='restaurant' color="white" size={30} />
                 </CategoryIcon>
                 <CategoryText>
-                  Mobiliário
+                  Alimentação
+                </CategoryText>
+              </Category>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigate('Busca')}>
+              <Category>
+                <CategoryIcon>
+                  <MaterialCommunityIcons name='broom' color="white" size={30} />
+                </CategoryIcon>
+                <CategoryText>
+                  Higiene e Limpeza
                 </CategoryText>
               </Category>
             </TouchableOpacity>
@@ -58,10 +87,10 @@ const Home: React.FC = () => {
             <TouchableOpacity onPress={() => navigate('Busca')}>
               <Category>
                 <CategoryIcon>
-                  <MaterialCommunityIcons name='chair-rolling' color="white" size={30} />
+                  <MaterialCommunityIcons name='power-plug' color="white" size={30} />
                 </CategoryIcon>
                 <CategoryText>
-                  Mobiliário
+                  Equipamentos
                 </CategoryText>
               </Category>
             </TouchableOpacity>
@@ -69,10 +98,10 @@ const Home: React.FC = () => {
             <TouchableOpacity onPress={() => navigate('Busca')}>
               <Category>
                 <CategoryIcon>
-                  <MaterialCommunityIcons name='chair-rolling' color="white" size={30} />
+                  <Foundation name='page' color="white" size={30} />
                 </CategoryIcon>
                 <CategoryText>
-                  Mobiliário
+                  Papelaria
                 </CategoryText>
               </Category>
             </TouchableOpacity>
@@ -80,38 +109,298 @@ const Home: React.FC = () => {
             <TouchableOpacity onPress={() => navigate('Busca')}>
               <Category>
                 <CategoryIcon>
-                  <MaterialCommunityIcons name='chair-rolling' color="white" size={30} />
+                  <MaterialIcons name='computer' color="white" size={30} />
                 </CategoryIcon>
                 <CategoryText>
-                  Mobiliário
+                  Informática
                 </CategoryText>
               </Category>
             </TouchableOpacity>
 
           </ScrollView>
+
         </Card>
 
+        {/* Produtos em destaque */}
         <Card >
 
           <Title>
             Produtos em destaque
           </Title>
 
-          <ListItem
-            leftElement={<Avatar text="JM" />}
-            centerElement={{
-                primaryText: 'John Mitri',
-                secondaryText: '3 weeks ago',
-            }}
-          />
-          <View style={styles.textContainer}>
-            <Text>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium,
-                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                quasi architecto beatae vitae dicta sunt explicabo.
-            </Text>
-          </View>
+          <HorizontalDivider />
+
+          {/* Linha de produtos */}
+          <ProductContainer>
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+            <VerticalDivider />
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+          </ProductContainer>
+
+          {/* Linha de produtos */}
+          <ProductContainer>
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+            <VerticalDivider />
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+          </ProductContainer>
+
+          <HorizontalDivider />
+
+          <SeeMore onPress={() => navigate('Busca')}>
+            <SeeMoreText>
+              Veja a lista completa
+            </SeeMoreText>
+          </SeeMore>
+
+        </Card>
+
+        {/* Produtos mais vendidos */}
+        <Card >
+
+          <Title>
+            Produtos mais vendidos
+          </Title>
+
+          <HorizontalDivider />
+
+          {/* Linha de produtos */}
+          <ProductContainer>
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+            <VerticalDivider />
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+          </ProductContainer>
+
+          {/* Linha de produtos */}
+          <ProductContainer>
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+            <VerticalDivider />
+
+            <Product>
+              <TouchableOpacity onPress={() => navigate('Produto')}>
+                <ProductImage>
+                  <Text style={{color: 'white'}}>
+                    Imagem do produto
+                  </Text>
+                </ProductImage>
+                <ProductText>
+                  <ProductName>
+                    <Ionicons name="bookmark" size={15} />
+                      Nome do produto
+                  </ProductName>
+                  <ProductCategory>
+                    <FontAwesome name="circle" size={15} style={{marginRight:10}} />
+                    Categoria
+                  </ProductCategory>
+                  <ProductShortDescription>
+                    Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
+                  </ProductShortDescription>
+                  <ProductPrice>
+                    <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
+                    R$ 199,00
+                  </ProductPrice>
+                </ProductText>
+              </TouchableOpacity>
+            </Product>
+
+          </ProductContainer>
+
+          <HorizontalDivider />
+
+          <SeeMore onPress={() => navigate('Busca')}>
+            <SeeMoreText>
+              Veja a lista completa
+            </SeeMoreText>
+          </SeeMore>
+
         </Card>
 
       </ScrollView>

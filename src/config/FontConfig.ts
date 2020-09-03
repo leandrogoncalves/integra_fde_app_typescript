@@ -1,7 +1,13 @@
 interface IFonts {
-  [key:string]:string
+  [key:string]:any
 }
 
 export const Fonts:IFonts = {
-  RobotoDefault: 'Roboto-Medium'
+  family: {
+    default: 'Roboto-Medium',
+    bold: 'Roboto-Bold',
+  },
+  size: {
+    title: '25px'
+  },
 }
