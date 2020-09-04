@@ -4,7 +4,9 @@ interface IFonts {
 
 export const Fonts:IFonts = {
   family: {
-    default: 'Roboto-Medium',
+    default: 'Roboto-Regular',
+    medium: 'Roboto-Medium',
+    thin: 'Roboto-Thin',
     bold: 'Roboto-Bold',
   },
   size: {

@@ -1,14 +1,37 @@
 import React from 'react';
 import { Text } from 'react-native';
+import { Card } from 'react-native-material-ui';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { Container } from './styles';
+
+import {
+  Container,
+  ProductText,
+  ProductName,
+  ProductCategory,
+  ProductDescription,
+} from './styles';
 
 const ProdutoInformacoes: React.FC = () => {
   return (
     <Container>
-      <Text>
-        Teste
-      </Text>
+      <Card>
+        <ProductText>
+          <ProductName>
+            <Ionicons name="bookmark" size={15} />
+              Nome do produto
+          </ProductName>
+          <ProductCategory>
+            <FontAwesome name="certificate" size={15} style={{marginRight:10}} />
+            Categoria
+          </ProductCategory>
+          <ProductDescription>
+            Descrição Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et sem eu turpis dignissim egestas eu in justo. Sed eu enim tristique, suscipit mi eu, congue dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam convallis nisi tortor, ut faucibus lectus ultrices non. Nulla facilisi. Morbi at blandit risus. Quisque ut mollis dolor.
+          </ProductDescription>
+        </ProductText>
+      </Card>
     </Container>
   );
 }

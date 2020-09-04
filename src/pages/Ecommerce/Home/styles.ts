@@ -100,6 +100,7 @@ export const ProductShortDescription = styled.Text`
   color: ${Colors.text.primary};
   font-family: ${Fonts.family.default};
   margin-top: 5px;
+  font-size:12px;
 `;
 
 export const ProductPrice = styled.Text`
