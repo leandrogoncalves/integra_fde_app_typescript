@@ -5,10 +5,10 @@ import { Colors } from '../config/ColorsConfig';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Perfil from '../pages/Ecommerce/Perfil';
+import Home from '../pages/Ecommerce/Home';
 import Busca from '../pages/Ecommerce/Busca';
 import Pedidos from '../pages/Ecommerce/Pedidos';
-import Home from '../pages/Ecommerce/Home';
+import Perfil from '../pages/Ecommerce/Perfil';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -76,7 +76,7 @@ function BottomTabsRoutes() {
         options={{
           tabBarIcon: ({color, size, focused}) => {
             return (
-              <MaterialCommunityIcons name="cart" size={24} color="white" />
+              <MaterialCommunityIcons name="cart" size={size} color="white" />
             );
           }
         }}

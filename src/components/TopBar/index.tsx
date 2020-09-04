@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { useAuth } from '../../hooks/auth';
 import { Toolbar } from 'react-native-material-ui';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -19,7 +19,7 @@ const TopBar: React.FC = ({
   iconSearch,
 }) => {
   const { logout } = useAuth();
-  const { navigate, goBack } = useNavigation();
+  const { navigate, goBack, dispatch } = useNavigation();
 
   return (
     <Toolbar
