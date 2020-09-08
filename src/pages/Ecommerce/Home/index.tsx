@@ -49,7 +49,7 @@ const Home: React.FC = () => {
         <Card >
 
           <Title>
-            Categorias
+            Categoriass
           </Title>
 
           <HorizontalDivider />

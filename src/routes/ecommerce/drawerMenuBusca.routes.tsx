@@ -1,7 +1,7 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Busca from '../pages/Ecommerce/Busca';
-import MenuLateral from '../pages/Ecommerce/MenuLateral';
+import Busca from '../../pages/Ecommerce/Busca';
+import MenuLateral from '../../pages/Ecommerce/MenuLateral';
 
 const Drawer = createDrawerNavigator();
 

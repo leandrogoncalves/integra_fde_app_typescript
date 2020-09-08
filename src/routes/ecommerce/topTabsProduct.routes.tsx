@@ -1,8 +1,8 @@
 import React from 'react';
-import { Colors } from '../config/ColorsConfig';
+import { Colors } from '../../config/ColorsConfig';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import ProdutoGeral from '../pages/Ecommerce/Produto/ProdutoGeral';
-import ProdutoInformacoes from '../pages/Ecommerce/Produto/ProdutoInformacoes';
+import ProdutoGeral from '../../pages/Ecommerce/Produto/ProdutoGeral';
+import ProdutoInformacoes from '../../pages/Ecommerce/Produto/ProdutoInformacoes';
 
 const TopTabs = createMaterialTopTabNavigator();
 
