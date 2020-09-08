@@ -1,24 +1,24 @@
 import React from 'react';
 import { Text, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Card } from 'react-native-material-ui';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Foundation from 'react-native-vector-icons/Foundation';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Solicitante from '../../../components/Solicitante';
-import TopBar from '../../../components/TopBar';
+import Solicitante from '../../../components/Ecommerce/Solicitante';
+import TopBar from '../../../components/Layout/TopBar';
+import { Container } from '../../../components/Layout/Container';
+import { Title } from '../../../components/Typography/Title';
+import { HorizontalDivider } from '../../../components/Layout/HorizontalDivider';
+import { VerticalDivider } from '../../../components/Layout/VerticalDivider';
+import { Card } from '../../../components/Layout/Card';
 
 import {
-  Container,
-  Title,
   Category,
   CategoryIcon,
   CategoryText,
-  VerticalDivider,
-  HorizontalDivider,
   Product,
   ProductContainer,
   ProductImage,
@@ -30,6 +30,7 @@ import {
   SeeMore,
   SeeMoreText,
 } from './styles';
+
 
 
 const Home: React.FC = () => {

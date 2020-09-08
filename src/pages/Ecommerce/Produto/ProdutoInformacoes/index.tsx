@@ -1,18 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Card } from 'react-native-material-ui';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import { Container } from '../../../../components/Layout/Container';
+import Card from '../../../../components/Layout/Card';
 
 import {
-  Container,
   ProductText,
   ProductName,
   ProductCategory,
   ProductDescription,
 } from './styles';
+
 
 const ProdutoInformacoes: React.FC = () => {
   return (

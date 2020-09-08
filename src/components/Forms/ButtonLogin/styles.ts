@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
-import { Colors } from '../../config/ColorsConfig';
+import { Colors } from '../../../config/ColorsConfig';
 
 export const Container = styled(RectButton)`
   width:100%;

@@ -48,7 +48,7 @@ function BottomTabsRoutes() {
       }}
     >
       <Screen
-        name="Home"
+        name="HomeEcommerce"
         component={Home}
         options={{
           tabBarLabel: 'Inicio',

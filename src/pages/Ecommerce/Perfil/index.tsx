@@ -1,8 +1,8 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { ListItem } from 'react-native-material-ui';
-import { Container } from './styles';
-import TopBar from '../../../components/TopBar';
+import { Container } from '../../../components/Layout/Container';
+import TopBar from '../../../components/Layout/TopBar';
+import ListItem from '../../../components/Layout/ListItem';
 
 const Perfil: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { ListItem } from 'react-native-material-ui';
-import { Colors } from '../../config/ColorsConfig';
+import { Colors } from '../../../config/ColorsConfig';
 
 // import { Container } from './styles';
 

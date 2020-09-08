@@ -25,7 +25,7 @@ interface InputRef {
   focus(): void
 }
 
-const Input: React.RefForwardingComponent<InputRef, InputProps> = (
+const InputLogin: React.RefForwardingComponent<InputRef, InputProps> = (
   {name, icon, ...rest},
   ref
 ) => {
@@ -96,4 +96,4 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
   )
 };
 
-export default forwardRef(Input);
+export default forwardRef(InputLogin);

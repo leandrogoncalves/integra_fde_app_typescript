@@ -1,18 +1,20 @@
 import React from 'react';
-import TopBar from '../../../components/TopBar';
+import TopBar from '../../../components/Layout/TopBar';
 import { Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Card, Button } from 'react-native-material-ui';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Solicitante from '../../../components/Solicitante';
+import Solicitante from '../../../components/Ecommerce/Solicitante';
+
+import { Container } from '../../../components/Layout/Container';
+import { Card } from '../../../components/Layout/Card';
+import { HorizontalDivider } from '../../../components/Layout/HorizontalDivider';
+import { Title } from '../../../components/Typography/Title';
+import { Button } from '../../../components/Forms/Button';
 
 import {
-  Container,
-  Title,
-  HorizontalDivider,
   Product,
   ProductContainer,
   ProductImage,

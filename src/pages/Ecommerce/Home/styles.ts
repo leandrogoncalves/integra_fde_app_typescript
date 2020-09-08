@@ -2,19 +2,6 @@ import styled from 'styled-components/native';
 import { Colors } from '../../../config/ColorsConfig';
 import { Fonts } from '../../../config/FontConfig';
 
-export const Container = styled.View`
-  flex: 1;
-  background-color: ${Colors.background.default};
-`;
-
-export const Title = styled.Text`
-  font-family: ${Fonts.family.default};
-  font-size: ${Fonts.size.title};
-  color: ${Colors.highlight.primary};
-  margin-left: 10px;
-  margin-top: 10px;
-`;
-
 export const Category = styled.View`
   width: 80px;
   height: 90px;
@@ -41,22 +28,6 @@ export const CategoryText = styled.Text`
   font-size: 12px;
   color: ${Colors.highlight.primary};
   text-align: center;
-`;
-
-export const VerticalDivider = styled.View`
-  width: 1px;
-  height: 100%;
-  border-left-width: 1px;
-  border-left-color: #ccc;
-  margin: 0 15px;
-`;
-
-export const HorizontalDivider = styled.View`
-  width: 100%;
-  height: 1px;
-  border-top-width: 1px;
-  border-top-color: #ccc;
-  margin: 10px 0;
 `;
 
 export const ProductContainer = styled.View`

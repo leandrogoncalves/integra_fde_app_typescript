@@ -1,16 +1,15 @@
 import React from 'react';
 import { Text, ScrollView, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Card } from 'react-native-material-ui';
-import TopBar from '../../../../components/TopBar';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Solicitante from '../../../../components/Solicitante';
+import Solicitante from '../../../../components/Ecommerce/Solicitante';
+import { Container } from '../../../../components/Layout/Container';
+import Card from '../../../../components/Layout/Card';
 
 import {
-  Container,
   ProductContainer,
   ProductGalery,
   ProductText,

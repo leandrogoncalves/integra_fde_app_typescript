@@ -16,11 +16,11 @@ import getValidationErrors from '../../utils/getValidationErrors';
 
 import { useAuth } from '../../hooks/auth';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import InputLogin from '../../components/Forms/InputLogin';
+import ButtonLogin from '../../components/Forms/ButtonLogin';
 
 import { Container, Title, Footer, FooterText } from './styles';
-import logoImg from '../../assets/logo-fde.png';
+import logoImg from '../../assets/geral/logo-fde.png';
 
 interface LoginFormData {
   usuario:string;
@@ -100,7 +100,7 @@ const Login: React.FC = () => {
             </View>
 
             <Form ref={formRef} onSubmit={handleLogin} style={{width:'100%'}}>
-              <Input
+              <InputLogin
                 name="login"
                 icon="user"
                 placeholder="Usuário"
@@ -112,7 +112,7 @@ const Login: React.FC = () => {
                   passwordInputRef.current?.focus();
                 }}
               />
-              <Input
+              <InputLogin
                 ref={passwordInputRef}
                 name="senha"
                 icon="lock"
@@ -122,7 +122,7 @@ const Login: React.FC = () => {
                 onSubmitEditing={submitForm}
               />
 
-              <Button onPress={submitForm}>Entrar</Button>
+              <ButtonLogin onPress={submitForm}>Entrar</ButtonLogin>
             </Form>
           </Container>
         </ScrollView>

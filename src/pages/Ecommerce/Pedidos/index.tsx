@@ -1,14 +1,15 @@
 import React from 'react';
 import { Text, Alert, TouchableOpacity, View } from 'react-native';
-import TopBar from '../../../components/TopBar';
-import { Card, ListItem } from 'react-native-material-ui';
+import TopBar from '../../../components/Layout/TopBar';
+import Card from '../../../components/Layout/Card';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import Solicitante from '../../../components/Solicitante';
+import Solicitante from '../../../components/Ecommerce/Solicitante';
+import { Container } from '../../../components/Layout/Container';
+import { Title } from '../../../components/Typography/Title';
+import ListItem from '../../../components/Layout/ListItem';
 
 import {
-  Container,
-  Title,
   HorizontalDivider,
   ProductImage,
   ProductPrice,
@@ -17,6 +18,7 @@ import {
   ContinueText,
   RemoveItem
 } from './styles';
+
 
 const Pedidos: React.FC = () => {
   return (

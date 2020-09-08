@@ -103,3 +103,6 @@ yarn add @react-navigation/bottom-tabs
 
 ## Material UI
 yarn add react-native-material-ui
+
+## Install Paper
+yarn add react-native-paper

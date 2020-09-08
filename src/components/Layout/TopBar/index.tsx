@@ -1,13 +1,13 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../../hooks/auth';
 import { Toolbar } from 'react-native-material-ui';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import logoImg from '../../assets/logo_fde_negativo_mini.png';
+import logoImg from '../../../assets/geral/logo_fde_negativo_mini.png';
 
 
 const TopBar: React.FC = ({
@@ -33,13 +33,13 @@ const TopBar: React.FC = ({
                 </TouchableOpacity>
               </>
             ):(
-              <TouchableOpacity onPress={() => navigate('Home')}>
+              <TouchableOpacity onPress={() => navigate('HomeEcommerce')}>
                 <Image source={logoImg} style={{height:40, width:80}} />
               </TouchableOpacity>
             )}
         </View>
       }
-      onLeftElementPress={() => navigate('Home')}
+      onLeftElementPress={() => navigate('HomeEcommerce')}
       centerElement={
         <Text style={{color:'white', marginLeft:titleMarginLeft, fontSize:20}}>
           {title}

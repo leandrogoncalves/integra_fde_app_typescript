@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import { Container } from './styles';
+import { Container } from '../../../components/Layout/Container';
 
 const Home: React.FC = () => {
   return (
