@@ -30,15 +30,14 @@ const Pedidos: React.FC = () => {
       <Title>Detalhes</Title>
       <Card >
         <ListItem
+          divider
           leftElement={
             <ProductImage>
               <Text style={{color:'white'}}>Foto</Text>
             </ProductImage>
           }
-          centerElement={{
-              primaryText: 'Nome do produto',
-              secondaryText: 'Categoria',
-          }}
+          title= 'Nome do produto'
+          subtitle= 'Categoria'
           rightElement={
             <>
               <View>
@@ -69,17 +68,15 @@ const Pedidos: React.FC = () => {
             </>
           }
         />
-         <HorizontalDivider />
         <ListItem
+          divider
           leftElement={
             <ProductImage>
               <Text style={{color:'white'}}>Foto</Text>
             </ProductImage>
           }
-          centerElement={{
-              primaryText: 'Nome do produto',
-              secondaryText: 'Categoria',
-          }}
+          title= 'Nome do produto'
+          subtitle= 'Categoria'
           rightElement={
             <>
             <View>
@@ -110,17 +107,15 @@ const Pedidos: React.FC = () => {
           </>
           }
         />
-         <HorizontalDivider />
         <ListItem
+          divider
           leftElement={
             <ProductImage>
               <Text style={{color:'white'}}>Foto</Text>
             </ProductImage>
           }
-          centerElement={{
-              primaryText: 'Nome do produto',
-              secondaryText: 'Categoria',
-          }}
+          title= 'Nome do produto'
+          subtitle= 'Categoria'
           rightElement={
             <>
             <View>
@@ -151,10 +146,9 @@ const Pedidos: React.FC = () => {
           </>
           }
         />
-         <HorizontalDivider />
 
          <ListItem
-          centerElement={
+          leftElement={
             <Subtotal>
               Subtotal
             </Subtotal>

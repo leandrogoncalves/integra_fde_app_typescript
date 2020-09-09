@@ -1,15 +1,16 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Pedidos from '../pages/Ecommerce/Pedidos';
-import MenuLateral from '../pages/Ecommerce/MenuLateral';
+import Pedidos from '../../../pages/Ecommerce/Pedidos';
+import { CustomDrawerContent } from './customDrawerContent';
 
 const Drawer = createDrawerNavigator();
 
 function DrawerMenuPedidos() {
   return (
-    <Drawer.Navigator initialRouteName="Pedidos">
+    <Drawer.Navigator
+      drawerContent={props => <CustomDrawerContent {...props} />}
+    >
       <Drawer.Screen name="Pedidos" component={Pedidos} />
-      <Drawer.Screen name="MenuLateral" component={MenuLateral} />
     </Drawer.Navigator>
   );
 }

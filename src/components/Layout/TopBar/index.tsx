@@ -1,9 +1,8 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { useAuth } from '../../../hooks/auth';
 import { Toolbar } from 'react-native-material-ui';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -33,7 +32,7 @@ const TopBar: React.FC = ({
                 </TouchableOpacity>
               </>
             ):(
-              <TouchableOpacity onPress={() => navigate('HomeEcommerce')}>
+              <TouchableOpacity onPress={() => dispatch(DrawerActions.toggleDrawer())}>
                 <Image source={logoImg} style={{height:40, width:80}} />
               </TouchableOpacity>
             )}

@@ -102,10 +102,14 @@ yarn add react-native-splash-screen
 yarn add @react-navigation/bottom-tabs
 
 ## Material UI
-yarn add react-native-material-ui
+# yarn add react-native-material-ui
 
 ## Install Paper
-yarn add react-native-paper
+##yarn add react-native-paper
+
+## instal React Native elements
+yarn add react-native-elements
+
 
 ##Start emulator
 emulator -avd Pixel_2_API_29 -netdelay none -netspeed full

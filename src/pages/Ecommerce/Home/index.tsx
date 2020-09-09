@@ -38,7 +38,7 @@ const Home: React.FC = () => {
 
   return (
     <Container >
-      <TopBar title="Início" titleMarginLeft={70} iconExit={true} />
+      <TopBar title="Início" titleMarginLeft={70} iconExit={false} />
 
       <Solicitante />
 

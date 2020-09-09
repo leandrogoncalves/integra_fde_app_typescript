@@ -10,53 +10,40 @@ const Perfil: React.FC = () => {
       <TopBar title="Perfil" titleMarginLeft={60} />
       <ListItem
         divider
-        dense
-        leftElement="person-pin"
-        centerElement={{
-            primaryText: 'Leandro Gonçalves da Silva',
-            secondaryText: 'DTI/GSI',
-        }}
+        icon={{name:"person-pin"}}
+        title='Leandro Gonçalves da Silva'
+        subtitle='DTI/GSI'
         onPress={() => Alert.alert('Perfil')}
       />
       <ListItem
         divider
         dense
-        leftElement="message"
-        centerElement={{
-            primaryText: 'Mensagens',
-        }}
+        icon={{name:"message"}}
+        title='Mensagens'
         style={{
-          container: {
             marginTop:10
-          }
         }}
         onPress={() => Alert.alert('Mensagens')}
       />
       <ListItem
         divider
         dense
-        leftElement="move-to-inbox"
-        centerElement={{
-            primaryText: 'Pedidos',
-        }}
+        icon={{name:"move-to-inbox"}}
+        title='Pedidos'
         onPress={() => Alert.alert('Pedidos')}
       />
       <ListItem
         divider
         dense
-        leftElement="pin-drop"
-        centerElement={{
-            primaryText: 'Endereços',
-        }}
+        icon={{name:"pin-drop"}}
+        title='Endereços'
         onPress={() => Alert.alert('Endereços')}
       />
       <ListItem
         divider
         dense
-        leftElement="person"
-        centerElement={{
-            primaryText: 'Dados pessoais',
-        }}
+        icon={{name:"person"}}
+        title='Dados pessoais'
         onPress={() => Alert.alert('Dados pessoais')}
       />
     </Container>

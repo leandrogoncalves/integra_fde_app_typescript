@@ -5,10 +5,13 @@ import { Colors } from '../../config/ColorsConfig';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import Home from '../../pages/Ecommerce/Home';
 import Busca from '../../pages/Ecommerce/Busca';
 import Pedidos from '../../pages/Ecommerce/Pedidos';
 import Perfil from '../../pages/Ecommerce/Perfil';
+import DrawerMenuHome from './drawerMenu/drawerMenuHome.routes';
+import DrawerMenuBusca from './drawerMenu/drawerMenuBusca.routes';
+import DrawerMenuPedidos from './drawerMenu/drawerMenuPedidos.routes';
+import DrawerMenuPerfil from './drawerMenu/drawerMenuPerfil.routes';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -47,8 +50,8 @@ const BottomTabsRoutes: React.FC = () => (
     }}
   >
     <Screen
-      name="HomeEcommerce"
-      component={Home}
+      name="DrawerMenuHome"
+      component={DrawerMenuHome}
       options={{
         tabBarLabel: 'Inicio',
         tabBarIcon: ({color, size, focused}) => {
@@ -59,9 +62,10 @@ const BottomTabsRoutes: React.FC = () => (
       }}
     />
     <Screen
-      name="Busca"
-      component={Busca}
+      name="DrawerMenuBusca"
+      component={DrawerMenuBusca}
       options={{
+        tabBarLabel: 'Buscar',
         tabBarIcon: ({color, size, focused}) => {
           return (
             <Ionicons name="search" size={size} color="white" />
@@ -70,9 +74,10 @@ const BottomTabsRoutes: React.FC = () => (
       }}
     />
     <Screen
-      name="Pedidos"
-      component={Pedidos}
+      name="DrawerMenuPedidos"
+      component={DrawerMenuPedidos}
       options={{
+        tabBarLabel: 'Pedido',
         tabBarIcon: ({color, size, focused}) => {
           return (
             <MaterialCommunityIcons name="cart" size={size} color="white" />
@@ -81,9 +86,10 @@ const BottomTabsRoutes: React.FC = () => (
       }}
     />
     <Screen
-      name="Perfil"
-      component={Perfil}
+      name="DrawerMenuPerfil"
+      component={DrawerMenuPerfil}
       options={{
+        tabBarLabel: 'Perfil',
         tabBarIcon: ({color, size, focused}) => {
           return (
             <Ionicons name="person" size={size} color="white" />

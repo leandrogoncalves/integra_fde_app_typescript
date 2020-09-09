@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { ListItem } from 'react-native-material-ui';
 import { Colors } from '../../../config/ColorsConfig';
+import ListItem from '../../Layout/ListItem';
 
 // import { Container } from './styles';
 
@@ -10,10 +10,8 @@ const Solicitante: React.FC = () => {
     <ListItem
       divider
       dense
-      centerElement={{
-        primaryText: 'Leandro Gonçalves da Silva',
-        secondaryText: 'Solicitante - EE Mario de Toledo',
-      }}
+      title= 'Leandro Gonçalves da Silva'
+      subtitle= 'Solicitante - EE Mario de Toledo'
       rightElement={
         <>
           <View style={{paddingRight:10}}>
@@ -27,9 +25,7 @@ const Solicitante: React.FC = () => {
         </>
       }
       style={{
-        container: {
           marginBottom: 5
-        }
       }}
     />
 

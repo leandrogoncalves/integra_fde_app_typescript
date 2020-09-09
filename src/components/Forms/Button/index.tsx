@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button as MaterialButton } from 'react-native-material-ui';
+import { Button as ButtonElement } from 'react-native-elements';
 
 // import { Container } from './styles';
 
 const Button: React.FC = ({children, ...rest}) => {
   return (
-    <MaterialButton {...rest} />
+    <ButtonElement {...rest} />
   );
 }
 
