@@ -34,7 +34,7 @@ const MudaSistema: React.FC = () => {
             Solicitação
           </TextSystem>
         </ButtomSystem>
-        <ButtomSystem onPress={() => navigate('EcommerceRoutes', {screen: 'BottomTabsRoutes'}) }>
+        <ButtomSystem onPress={() => navigate('EcommerceRoutes', {screen: 'SelecionaPerfil'}) }>
           <Feather
             name="shopping-cart"
             size={35}

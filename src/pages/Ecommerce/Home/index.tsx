@@ -30,7 +30,7 @@ const Home: React.FC = () => {
 
   return (
     <Container >
-      <TopBar title="Início" />
+      <TopBar title="Início" iconExit={true} />
 
       <Solicitante />
 

@@ -5,7 +5,7 @@ import { Colors } from '../../config/ColorsConfig';
 import BottomTabsRoutes from './bottomTabs.routes';
 import HistoricoBusca from '../../pages/Ecommerce/HistoricoBusca';
 import TopTabsProduct from './topTabsProduct.routes';
-import Busca from '../../pages/Ecommerce/Busca';
+import SelecionaPerfil from '../../pages/Ecommerce/SelecionaPerfil';
 
 const Ecommerce = createStackNavigator();
 
@@ -40,6 +40,10 @@ const EcommerceRoutes: React.FC = () => (
         title:'Detalhes',
         ...topNavOptions
       }}
+    />
+    <Ecommerce.Screen
+      name="SelecionaPerfil"
+      component={SelecionaPerfil}
     />
   </Ecommerce.Navigator>
 );

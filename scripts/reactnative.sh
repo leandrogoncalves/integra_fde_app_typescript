@@ -110,6 +110,8 @@ yarn add @react-navigation/bottom-tabs
 ## instal React Native elements
 yarn add react-native-elements
 
+## Install picker
+yarn add @react-native-community/picker
 
 ##Start emulator
 emulator -avd Pixel_2_API_29 -netdelay none -netspeed full
@@ -123,3 +125,5 @@ https://react-native-elements.github.io/react-native-elements/docs/card
 https://origamid.com/projetos/flexbox-guia-completo/
 
 https://callstack.github.io/react-native-paper/2.0/appbar.html
+
+https://docs.nativebase.io/Components.html#Spinner
