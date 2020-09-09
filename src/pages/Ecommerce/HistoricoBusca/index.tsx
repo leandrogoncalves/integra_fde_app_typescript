@@ -13,6 +13,8 @@ const HistoricoBusca: React.FC = () => {
     <Container>
       <ListItem
         divider
+        margin={{top:10, bottom:0}}
+        padding={{bottom: 0}}
         leftElement={
           <>
             <TouchableOpacity onPress={() => goBack()}>

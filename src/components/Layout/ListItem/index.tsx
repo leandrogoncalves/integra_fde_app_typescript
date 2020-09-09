@@ -17,6 +17,8 @@ const ListItem: React.FC = ({
   chevron,
   divider,
   dense,
+  margin,
+  padding,
   ...rest
 }) => {
 
@@ -26,6 +28,24 @@ const ListItem: React.FC = ({
       paddingTop: 10,
       paddingBottom: 10,
     }
+
+  if(margin && margin.hasOwnProperty('top')){
+    listStyle['marginTop'] = margin.top;
+  }
+
+  if(margin && margin.hasOwnProperty('bottom')){
+    listStyle['marginBottom'] = margin.bottom;
+  }
+
+  if(padding && padding.hasOwnProperty('top')){
+    listStyle['paddingTop'] = padding.top;
+  }
+
+  if(padding && padding.hasOwnProperty('bottom')){
+    listStyle['paddingBottom'] = padding.bottom;
+  }
+
+
   return (
     <ListItemElement {...rest} bottomDivider={divider} containerStyle={listStyle} >
       {!icon?null:(

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { useAuth } from '../../../hooks/auth';
-import { Toolbar } from 'react-native-material-ui';
+import { Header } from 'react-native-elements'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -21,8 +21,8 @@ const TopBar: React.FC = ({
   const { navigate, goBack, dispatch } = useNavigation();
 
   return (
-    <Toolbar
-      leftElement={
+    <Header
+      leftComponent={
         <View style={{flexDirection:"row", justifyContent:"center", alignContent:'center'}}>
           {iconBack
             ? (
@@ -38,13 +38,12 @@ const TopBar: React.FC = ({
             )}
         </View>
       }
-      onLeftElementPress={() => navigate('HomeEcommerce')}
-      centerElement={
+      centerComponent={
         <Text style={{color:'white', marginLeft:titleMarginLeft, fontSize:20}}>
           {title}
         </Text>
       }
-      rightElement={
+      rightComponent={
         <>
           {iconExit
             ? (
@@ -72,7 +71,7 @@ const TopBar: React.FC = ({
           }
         </>
       }
-      style={{container: {backgroundColor: '#2f4050' }}}
+      containerStyle={ {backgroundColor: '#2f4050' }}
     />
   );
 }

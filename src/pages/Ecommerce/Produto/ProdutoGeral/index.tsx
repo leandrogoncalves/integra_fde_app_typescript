@@ -8,15 +8,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Solicitante from '../../../../components/Ecommerce/Solicitante';
 import { Container } from '../../../../components/Layout/Container';
 import Card from '../../../../components/Layout/Card';
+import ProductItem from '../../../../components/Ecommerce/ProductItem';
 
 import {
   ProductContainer,
-  ProductGalery,
-  ProductText,
-  ProductName,
-  ProductCategory,
-  ProductShortDescription,
-  ProductPrice,
   AddToCart,
   AddToCartText
 } from './styles';
@@ -35,26 +30,13 @@ const ProdutoGeral: React.FC = () => {
         >
       <Card>
         <ProductContainer>
-          <ProductGalery>
-            <Text style={{color:'white', fontSize:20}}>Galeria de fotos</Text>
-          </ProductGalery>
-          <ProductText>
-            <ProductName>
-              <Ionicons name="bookmark" size={15} />
-                Nome do produto
-            </ProductName>
-            <ProductCategory>
-              <FontAwesome name="certificate" size={15} style={{marginRight:10}} />
-              Categoria
-            </ProductCategory>
-            <ProductShortDescription>
-              Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa
-            </ProductShortDescription>
-            <ProductPrice>
-              <MaterialCommunityIcons name="tag" size={18} style={{marginRight:10}} />
-              R$ 199,00
-            </ProductPrice>
-          </ProductText>
+
+         <ProductItem
+            name="Nome do produto 1"
+            category="Categoria"
+            shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
+            price="199,00"
+          />
 
           <AddToCart onPress={()=> {
             Alert.alert(
