@@ -106,3 +106,16 @@ yarn add react-native-material-ui
 
 ## Install Paper
 yarn add react-native-paper
+
+##Start emulator
+emulator -avd Pixel_2_API_29 -netdelay none -netspeed full
+
+##Icons list
+https://oblador.github.io/react-native-vector-icons/
+
+##links
+https://react-native-elements.github.io/react-native-elements/docs/card
+
+https://origamid.com/projetos/flexbox-guia-completo/
+
+https://callstack.github.io/react-native-paper/2.0/appbar.html

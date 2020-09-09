@@ -3,19 +3,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../../pages/Solicitacao/Home';
 
 
-const App = createStackNavigator();
+const Solicitacao = createStackNavigator();
 
 const SolicitacaoRoutes: React.FC = () => (
-  <App.Navigator
+  <Solicitacao.Navigator
     screenOptions={{
       headerShown: false,
     }}
   >
-    <App.Screen
+    <Solicitacao.Screen
       name="HomeSolicitacao"
       component={Home}
     />
-  </App.Navigator>
+  </Solicitacao.Navigator>
 );
 
 export default SolicitacaoRoutes;

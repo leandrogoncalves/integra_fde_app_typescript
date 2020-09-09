@@ -4,7 +4,7 @@ import { ListItem as MaterialListItem } from 'react-native-material-ui';
 
 // import { Container } from './styles';
 
-const ListItem: React.FC = (...rest) => {
+const ListItem: React.FC = ({children, ...rest}) => {
   return (
     <MaterialListItem {...rest} />
   );

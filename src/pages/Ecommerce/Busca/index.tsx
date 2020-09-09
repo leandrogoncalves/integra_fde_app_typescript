@@ -9,10 +9,10 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Solicitante from '../../../components/Ecommerce/Solicitante';
 
 import { Container } from '../../../components/Layout/Container';
-import { Card } from '../../../components/Layout/Card';
 import { HorizontalDivider } from '../../../components/Layout/HorizontalDivider';
 import { Title } from '../../../components/Typography/Title';
-import { Button } from '../../../components/Forms/Button';
+import Card from '../../../components/Layout/Card';
+import Button from '../../../components/Forms/Button';
 
 import {
   Product,

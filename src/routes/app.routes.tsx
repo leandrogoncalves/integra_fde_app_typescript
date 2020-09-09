@@ -18,11 +18,11 @@ const AppRoutes: React.FC = () => (
       component={MudaSistema}
     />
     <App.Screen
-      name="Ecommerce"
+      name="EcommerceRoutes"
       component={EcommerceRoutes}
     />
     <App.Screen
-      name="Solicitacao"
+      name="SolicitacaoRoutes"
       component={SolicitacaoRoutes}
     />
   </App.Navigator>

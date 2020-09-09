@@ -5,8 +5,9 @@ import { Colors } from '../../config/ColorsConfig';
 import BottomTabsRoutes from './bottomTabs.routes';
 import HistoricoBusca from '../../pages/Ecommerce/HistoricoBusca';
 import TopTabsProduct from './topTabsProduct.routes';
+import Busca from '../../pages/Ecommerce/Busca';
 
-const App = createStackNavigator();
+const Ecommerce = createStackNavigator();
 
 const topNavOptions = {
   headerTintColor: '#fff',
@@ -18,20 +19,20 @@ const topNavOptions = {
 }
 
 const EcommerceRoutes: React.FC = () => (
-  <App.Navigator
+  <Ecommerce.Navigator
     screenOptions={{
       headerShown: false,
     }}
   >
-    <App.Screen
-      name="Tabs"
+    <Ecommerce.Screen
+      name="BottomTabsRoutes"
       component={BottomTabsRoutes}
     />
-    <App.Screen
+    <Ecommerce.Screen
       name="HistoricoBusca"
       component={HistoricoBusca}
     />
-    <App.Screen
+    <Ecommerce.Screen
       name="ProdutoTabs"
       component={TopTabsProduct}
       options={{
@@ -40,7 +41,7 @@ const EcommerceRoutes: React.FC = () => (
         ...topNavOptions
       }}
     />
-  </App.Navigator>
+  </Ecommerce.Navigator>
 );
 
 export default EcommerceRoutes;

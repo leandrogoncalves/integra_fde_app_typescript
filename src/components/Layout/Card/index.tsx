@@ -1,14 +1,12 @@
 import React from 'react';
-// import { View } from 'react-native';
-import { Card as MaterialCard } from 'react-native-material-ui';
 
-// import { Container } from './styles';
+import { ContainerCard } from './styles';
 
 const Card: React.FC = ({children, ...rest}) => {
   return (
-    <MaterialCard {...rest}>
+    <ContainerCard {...rest}>
       {children}
-    </MaterialCard>
+    </ContainerCard>
   );
 }
 

@@ -6,9 +6,8 @@ import ProdutoInformacoes from '../../pages/Ecommerce/Produto/ProdutoInformacoes
 
 const TopTabs = createMaterialTopTabNavigator();
 
-function TopTabsProduct() {
-  return (
-    <TopTabs.Navigator
+const TopTabsProduct: React.FC = () => (
+  <TopTabs.Navigator
     initialRouteName="Feed"
     tabBarOptions={{
       activeTintColor: '#FFFFFF',
@@ -43,7 +42,6 @@ function TopTabsProduct() {
         // ),
       }} />
   </TopTabs.Navigator>
-  );
-}
+);
 
 export default TopTabsProduct;

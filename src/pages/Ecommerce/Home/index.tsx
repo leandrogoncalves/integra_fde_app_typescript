@@ -13,7 +13,7 @@ import { Container } from '../../../components/Layout/Container';
 import { Title } from '../../../components/Typography/Title';
 import { HorizontalDivider } from '../../../components/Layout/HorizontalDivider';
 import { VerticalDivider } from '../../../components/Layout/VerticalDivider';
-import { Card } from '../../../components/Layout/Card';
+import Card from '../../../components/Layout/Card';
 
 import {
   Category,
