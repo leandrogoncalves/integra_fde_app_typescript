@@ -21,7 +21,7 @@ const Busca: React.FC = () => {
 
   return (
     <Container>
-      <TopBar title="Buscar" iconSearch={true} />
+      <TopBar title="Buscar" iconSearch drawerMenuLink />
       <Solicitante />
 
       <ScrollView

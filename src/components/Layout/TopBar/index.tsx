@@ -16,6 +16,7 @@ const TopBar: React.FC = ({
   iconExit,
   iconCart,
   iconSearch,
+  drawerMenuLink,
 }) => {
   const { logout } = useAuth();
   const { navigate, goBack, dispatch } = useNavigation();
@@ -32,7 +33,7 @@ const TopBar: React.FC = ({
                 </TouchableOpacity>
               </>
             ):(
-              <TouchableOpacity onPress={() => dispatch(DrawerActions.toggleDrawer())}>
+              <TouchableOpacity onPress={() => drawerMenuLink && dispatch(DrawerActions.toggleDrawer())}>
                 <Image source={logoImg} style={{height:40, width:80}} />
               </TouchableOpacity>
             )}

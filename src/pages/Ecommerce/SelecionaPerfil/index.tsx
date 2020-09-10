@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import Toast from 'react-native-simple-toast';
 
 import TopBar from '../../../components/Layout/TopBar';
 import { Container } from '../../../components/Layout/Container';
@@ -81,6 +82,31 @@ const SelecionaPerfil: React.FC = () => {
     },
   ];
 
+  const perfilValidate = () => {
+
+    if (!perfilSelected) {
+      Toast.showWithGravity(
+        "Selecione um perfil",
+        Toast.LONG,
+        Toast.TOP,
+      )
+
+      return;
+    }
+
+    if (!escolaSelected) {
+      Toast.showWithGravity(
+        "Selecione uma escola",
+        Toast.LONG,
+        Toast.TOP,
+      )
+
+      return;
+    }
+
+    navigate('EcommerceRoutes', {screen: 'BottomTabsRoutes'});
+  }
+
   return (
     <Container>
       <TopBar title="E-commerce" iconBack={true} />
@@ -114,7 +140,7 @@ const SelecionaPerfil: React.FC = () => {
         <View  style={{marginTop:20}}>
           <Button
             title="Continuar"
-            onPress={() =>navigate('EcommerceRoutes', {screen: 'BottomTabsRoutes'})}
+            onPress={() => perfilValidate()}
           />
         </View>
       </Card>

@@ -8,7 +8,7 @@ import { Title } from '../../../components/Typography/Title';
 const Home: React.FC = () => {
   return (
     <Container>
-      <TopBar title="Solicitacao" iconBack={true} />
+      <TopBar title="Solicitacao" iconBack />
       <Title>
         Em construção
       </Title>

@@ -7,7 +7,7 @@ import ListItem from '../../../components/Layout/ListItem';
 const Perfil: React.FC = () => {
   return (
     <Container>
-      <TopBar title="Perfil" titleMarginLeft={60} />
+      <TopBar title="Perfil" drawerMenuLink />
       <ListItem
         divider
         icon={{name:"person-pin"}}

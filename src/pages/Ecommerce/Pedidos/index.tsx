@@ -1,153 +1,51 @@
 import React from 'react';
-import { Text, Alert, TouchableOpacity, View } from 'react-native';
+import { Alert } from 'react-native';
 import TopBar from '../../../components/Layout/TopBar';
 import Card from '../../../components/Layout/Card';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import ProductListItem from '../../../components/Ecommerce/ProductListItem';
 import Solicitante from '../../../components/Ecommerce/Solicitante';
 import { Container } from '../../../components/Layout/Container';
 import { Title } from '../../../components/Typography/Title';
 import ListItem from '../../../components/Layout/ListItem';
 
 import {
-  HorizontalDivider,
-  ProductImage,
-  ProductPrice,
   Subtotal,
   Continue,
   ContinueText,
-  RemoveItem
 } from './styles';
 
 
 const Pedidos: React.FC = () => {
   return (
     <Container>
-      <TopBar title="Pedido" titleMarginLeft={60} />
+      <TopBar title="Pedido" drawerMenuLink />
 
       <Solicitante />
 
       <Title>Detalhes</Title>
       <Card >
-        <ListItem
-          divider
-          leftElement={
-            <ProductImage>
-              <Text style={{color:'white'}}>Foto</Text>
-            </ProductImage>
-          }
-          title= 'Nome do produto'
-          subtitle= 'Categoria'
-          rightElement={
-            <>
-              <View>
-                <ProductPrice>
-                  R$ 199,00
-                </ProductPrice>
-                <TouchableOpacity onPress={() => {
-                  Alert.alert(
-                    'Confirmação',
-                    'Deseja realmente remover este item',
-                    [
-                      {
-                        text: "Ok",
-                        onPress: () => Alert.alert('Produto removido com sucesso')
-                      },
-                      {
-                        text: "Cancelar",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel"
-                      },
-                    ]
-                    )
-                  }
-                }>
-                  <RemoveItem>Remover</RemoveItem>
-                </TouchableOpacity>
-              </View>
-            </>
-          }
-        />
-        <ListItem
-          divider
-          leftElement={
-            <ProductImage>
-              <Text style={{color:'white'}}>Foto</Text>
-            </ProductImage>
-          }
-          title= 'Nome do produto'
-          subtitle= 'Categoria'
-          rightElement={
-            <>
-            <View>
-              <ProductPrice>
-                R$ 199,00
-              </ProductPrice>
-              <TouchableOpacity onPress={() => {
-                Alert.alert(
-                  'Confirmação',
-                  'Deseja realmente remover este item',
-                  [
-                    {
-                      text: "Ok",
-                      onPress: () => Alert.alert('Produto removido com sucesso')
-                    },
-                    {
-                      text: "Cancelar",
-                      onPress: () => console.log("Cancel Pressed"),
-                      style: "cancel"
-                    },
-                  ]
-                  )
-                }
-              }>
-                <RemoveItem>Remover</RemoveItem>
-              </TouchableOpacity>
-            </View>
-          </>
-          }
-        />
-        <ListItem
-          divider
-          leftElement={
-            <ProductImage>
-              <Text style={{color:'white'}}>Foto</Text>
-            </ProductImage>
-          }
-          title= 'Nome do produto'
-          subtitle= 'Categoria'
-          rightElement={
-            <>
-            <View>
-              <ProductPrice>
-                R$ 199,00
-              </ProductPrice>
-              <TouchableOpacity onPress={() => {
-                Alert.alert(
-                  'Confirmação',
-                  'Deseja realmente remover este item',
-                  [
-                    {
-                      text: "Ok",
-                      onPress: () => Alert.alert('Produto removido com sucesso')
-                    },
-                    {
-                      text: "Cancelar",
-                      onPress: () => console.log("Cancel Pressed"),
-                      style: "cancel"
-                    },
-                  ]
-                  )
-                }
-              }>
-                <RemoveItem>Remover</RemoveItem>
-              </TouchableOpacity>
-            </View>
-          </>
-          }
+
+        <ProductListItem
+          name="Nome do produto"
+          category="Categoria"
+          price="199,00"
         />
 
-         <ListItem
+        <ProductListItem
+          name="Nome do produto"
+          category="Categoria"
+          price="199,00"
+        />
+
+        <ProductListItem
+          name="Nome do produto"
+          category="Categoria"
+          price="199,00"
+        />
+
+        <ListItem
           leftElement={
             <Subtotal>
               Subtotal

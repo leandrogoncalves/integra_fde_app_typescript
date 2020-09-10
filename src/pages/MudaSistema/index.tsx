@@ -19,7 +19,7 @@ const MudaSistema: React.FC = () => {
 
   return (
     <Container>
-      <TopBar title="Muda Sistema" titleMarginLeft={40} iconExit={true} />
+      <TopBar title="Muda Sistema" iconExit={true} />
       <Title>
         Selecione o sistema desejado:
       </Title>
