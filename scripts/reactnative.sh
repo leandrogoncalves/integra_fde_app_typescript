@@ -127,3 +127,7 @@ https://origamid.com/projetos/flexbox-guia-completo/
 https://callstack.github.io/react-native-paper/2.0/appbar.html
 
 https://docs.nativebase.io/Components.html#Spinner
+
+https://github.com/archriss/react-native-snap-carousel
+
+https://medium.com/@KPS250/creating-image-slider-with-flatlist-in-react-native-1815d3793d99

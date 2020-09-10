@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../../../hooks/auth';
-import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Avatar } from "react-native-elements";
 
@@ -9,18 +9,6 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
-
-import {
-  Title,
-  Caption,
-  Paragraph,
-  Drawer,
-  Text,
-  TouchableRipple,
-  Switch
-} from 'react-native-paper';
-
-
 import {
   DrawerContainer,
   DrawerContent,
@@ -28,6 +16,7 @@ import {
   UserText,
   UserName,
   UserProfile,
+  DrawerSection,
   styles
 } from './styles';
 
@@ -55,7 +44,7 @@ export function CustomDrawerContent(props) {
           </UserInfoSection>
         </DrawerContent>
 
-        <Drawer.Section style={styles.drawerSection}>
+        <DrawerSection style={styles.drawerSection}>
           <DrawerItem
             icon={({color, size}) => (
                 <Icon
@@ -78,9 +67,9 @@ export function CustomDrawerContent(props) {
             label="Selecionar Perfil"
             onPress={() => navigate("SelecionaPerfil")}
           />
-        </Drawer.Section>
+        </DrawerSection>
       </DrawerContentScrollView>
-      <Drawer.Section style={styles.bottomDrawerSection}>
+      <DrawerSection style={styles.bottomDrawerSection}>
         <DrawerItem
             icon={({color, size}) => (
                 <Icon
@@ -92,7 +81,7 @@ export function CustomDrawerContent(props) {
             label="Sair"
             onPress={() => {logout()}}
         />
-      </Drawer.Section>
+      </DrawerSection>
     </DrawerContainer>
   );
 }

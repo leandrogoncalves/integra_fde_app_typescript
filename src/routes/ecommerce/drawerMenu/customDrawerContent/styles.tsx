@@ -12,6 +12,13 @@ export const DrawerContent = styled.View`
   margin-bottom: 10px;
 `;
 
+export const DrawerSection = styled.View`
+  border-top-width: 1px;
+  border-top-color: #ccc;
+  border-bottom-color: #ccc;
+  border-bottom-width: 1px;
+`;
+
 export const UserInfoSection = styled.View`
   padding-left: 20px;
   flex-direction: row;
