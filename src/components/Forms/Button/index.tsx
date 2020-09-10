@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button as ReactNativeButton,StyleSheet } from 'react-native';
+import { Button as ReactNativeButton } from 'react-native';
 // import { Button as ButtonElement } from 'react-native-elements';
 
 // import { Container } from './styles';
