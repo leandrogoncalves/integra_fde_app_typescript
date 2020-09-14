@@ -12,6 +12,7 @@ import { Category, CategoryIcon, CategoryText } from "./styles";
 const ProductCategoryIcon: React.FC = ({
   children,
   route,
+  id,
   text,
   color,
   size,

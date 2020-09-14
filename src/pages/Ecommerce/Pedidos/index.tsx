@@ -1,21 +1,16 @@
-import React from 'react';
-import { Alert } from 'react-native';
-import TopBar from '../../../components/Layout/TopBar';
-import Card from '../../../components/Layout/Card';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import React from "react";
+import { Alert } from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import TopBar from "../../../components/Layout/TopBar";
+import Card from "../../../components/Layout/Card";
 
-import ProductListItem from '../../../components/Ecommerce/ProductListItem';
-import Solicitante from '../../../components/Ecommerce/Solicitante';
-import { Container } from '../../../components/Layout/Container';
-import { Title } from '../../../components/Typography/Title';
-import ListItem from '../../../components/Layout/ListItem';
+import ProductListItem from "../../../components/Ecommerce/ProductListItem";
+import Solicitante from "../../../components/Ecommerce/Solicitante";
+import { Container } from "../../../components/Layout/Container";
+import { Title } from "../../../components/Typography/Title";
+import ListItem from "../../../components/Layout/ListItem";
 
-import {
-  Subtotal,
-  Continue,
-  ContinueText,
-} from './styles';
-
+import { Subtotal, Continue, ContinueText } from "./styles";
 
 const Pedidos: React.FC = () => {
   return (
@@ -25,8 +20,7 @@ const Pedidos: React.FC = () => {
       <Solicitante />
 
       <Title>Detalhes</Title>
-      <Card >
-
+      <Card>
         <ProductListItem
           name="Nome do produto"
           category="Categoria"
@@ -46,43 +40,31 @@ const Pedidos: React.FC = () => {
         />
 
         <ListItem
-          leftElement={
-            <Subtotal>
-              Subtotal
-            </Subtotal>
-          }
-          rightElement={
-            <Subtotal>
-              R$ 598,00
-            </Subtotal>
-          }
+          leftElement={<Subtotal>Subtotal</Subtotal>}
+          rightElement={<Subtotal>R$ 598,00</Subtotal>}
         />
       </Card>
 
-      <Continue onPress={()=> {
-        Alert.alert(
-          'Confirmação',
-          'Deseja finalizar a compra?',
-            [
-              {
-                text: "Ok",
-                onPress: () => Alert.alert('Compra finalizada com sucesso')
-              },
-              {
-                text: "Cancelar",
-                onPress: () => console.log("Cancel Pressed"),
-                style: "cancel"
-              },
-            ]
-          )
-      }}>
+      <Continue
+        onPress={() => {
+          Alert.alert("Confirmação", "Deseja finalizar a compra?", [
+            {
+              text: "Ok",
+              onPress: () => Alert.alert("Compra finalizada com sucesso"),
+            },
+            {
+              text: "Cancelar",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel",
+            },
+          ]);
+        }}
+      >
         <MaterialIcons name="navigate-next" size={25} color="white" />
-        <ContinueText style={{marginLeft:10}}>
-          Finalizar compra
-        </ContinueText>
+        <ContinueText style={{ marginLeft: 10 }}>Finalizar compra</ContinueText>
       </Continue>
     </Container>
   );
-}
+};
 
 export default Pedidos;

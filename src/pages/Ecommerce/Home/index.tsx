@@ -82,6 +82,7 @@ const Home: React.FC = () => {
             ) : (
               categories.map((category) => (
                 <ProductCategoryIcon
+                  id={category.id}
                   route={category.route}
                   iconName={category.icon}
                   iconType={category.iconType}
@@ -107,6 +108,7 @@ const Home: React.FC = () => {
                 {productList.map((product, index) => (
                   <>
                     <ProductItemMini
+                      id={product.id}
                       name={product.name}
                       category={product.category}
                       shotDescription={product.shotDescription}
@@ -141,6 +143,7 @@ const Home: React.FC = () => {
                 {productList.map((product, index) => (
                   <>
                     <ProductItemMini
+                      id={product.id}
                       name={product.name}
                       category={product.category}
                       shotDescription={product.shotDescription}

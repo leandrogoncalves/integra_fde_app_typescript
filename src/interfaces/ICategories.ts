@@ -1,4 +1,5 @@
 export interface ICategory {
+  id?: string;
   route: string;
   icon: string;
   text: string;
