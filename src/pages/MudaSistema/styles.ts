@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native';
-import styled from 'styled-components/native';
-import { Colors } from '../../config/ColorsConfig';
-import { Fonts } from '../../config/FontConfig';
+import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { Colors } from "../../config/ColorsConfig";
+import { Fonts } from "../../config/FontConfig";
 
 export const ButtomSystem = styled.TouchableOpacity`
   width: 125px;
   height: 125px;
-  background-color:#fff;
+  background-color: #fff;
   margin-top: 30px;
   margin-bottom: 30px;
 
@@ -21,7 +21,7 @@ export const ButtomSystem = styled.TouchableOpacity`
   shadow-offset: 0 2px;
   justify-content: center;
   align-items: center;
-  elevation:1
+  elevation: 1;
 `;
 
 export const TextSystem = styled.Text`
@@ -31,7 +31,7 @@ export const TextSystem = styled.Text`
 
 export const styles = StyleSheet.create({
   card: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  }
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
 });

@@ -3,50 +3,34 @@ import React, {
   useCallback,
   useState,
   useEffect,
-  useContext
- } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-community/async-storage';
-import authService from '../services/auth/authService';
+  useContext,
+} from "react";
+import AsyncStorage from "@react-native-community/async-storage";
+import authService from "../services/auth/authService";
+import { IAuthState } from "../interfaces/IAuthState";
+import { IAuthContextData } from "../interfaces/IAuthContextData";
 
-interface AuthState {
-  token: string;
-  user: object;
-}
+const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
-interface LoginCredentials {
-  usuario: string;
-  senha: string;
-}
-
-interface AuthContextData {
-  user:object;
-  loading: boolean;
-  login(credentials:LoginCredentials): Promise<void>;
-  logout(): void;
-}
-
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
-
-const AuthProvider: React.FC = ({children}) => {
+const AuthProvider: React.FC = ({ children }) => {
   /**
    * Seta o estado inicial da autenticacao
    */
-  const [data, setData] = useState<AuthState>({} as AuthState);
+  const [data, setData] = useState<IAuthState>({} as IAuthState);
   const [loading, setLoading] = useState(true);
 
   /**
    * Lança um evento assim que o componente for renderizado
    */
-  useEffect(() =>{
-    async function loadStorageData():Promise<void> {
-      const [token,user] = await AsyncStorage.multiGet([
-        '@Integra:token',
-        '@Integra:user'
+  useEffect(() => {
+    async function loadStorageData(): Promise<void> {
+      const [token, user] = await AsyncStorage.multiGet([
+        "@Integra:token",
+        "@Integra:user",
       ]);
 
       if (token[1] && user[1]) {
-        setData({token: token[1], user: JSON.parse(user[1])});
+        setData({ token: token[1], user: JSON.parse(user[1]) });
         // return { token, user: JSON.parse(user)};
       }
 
@@ -54,55 +38,47 @@ const AuthProvider: React.FC = ({children}) => {
     }
 
     loadStorageData();
-  },[]);
+  }, []);
 
   /**
    * Metodo de login
    */
-  const login = useCallback(async ({usuario, senha}) => {
-
+  const login = useCallback(async ({ usuario, senha }) => {
     const response = await authService.login(usuario, senha);
 
-    const {access_token, user} = response;
+    const { access_token, user } = response;
 
     await AsyncStorage.multiSet([
-      ['@Integra:token', access_token],
-      ['@Integra:user', JSON.stringify(user)]
+      ["@Integra:token", access_token],
+      ["@Integra:user", JSON.stringify(user)],
     ]);
 
-    setData({token: access_token, user: user});
-
-
-
-  },[]);
+    setData({ token: access_token, user });
+  }, []);
 
   /**
    * Metodo de logout
    */
   const logout = useCallback(async () => {
     // const navigation = useNavigation();
-    await AsyncStorage.multiRemove([
-      '@Integra:token',
-      '@Integra:user'
-    ]);
+    await AsyncStorage.multiRemove(["@Integra:token", "@Integra:user"]);
 
-    setData({} as AuthState);
+    setData({} as IAuthState);
 
     // navigation.navigate('Login');
-  },[])
-
+  }, []);
 
   return (
-    <AuthContext.Provider value={{user: data.user, loading,  login, logout}} >
+    <AuthContext.Provider value={{ user: data.user, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};
 
 /**
  * Retorna o hook de autenticacao
  */
-function useAuth():AuthContextData {
+function useAuth(): IAuthContextData {
   const context = useContext(AuthContext);
 
   if (!context) {

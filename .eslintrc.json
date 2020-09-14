@@ -28,6 +28,7 @@
         "prettier"
     ],
     "rules": {
+      "camelcase":"off",
       "prettier/prettier": "error",
       "react/jsx-one-expression-per-line": "off",
       "react/jsx-props-no-spreading": "off",
@@ -36,13 +37,9 @@
       "react-hooks/exhaustive-deps": "warn",
       "no-unused-expressions": "off",
       "react/jsx-filename-extensions": [1, {"extensions": [".tsx"]}],
+      "react/jsx-filename-extension": "off",
       "import/prefer-default-export": "off",
-      "typescript-eslint/explicit-function-return-type":[
-        "error",
-        {
-          "allowExpressions": true
-        }
-      ],
+      "typescript-eslint/explicit-function-return-type":"off",
       "import/extensions": [
         "error",
         "ignorePackages",

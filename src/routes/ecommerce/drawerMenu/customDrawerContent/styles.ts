@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
-import styled from 'styled-components/native';
+import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 // import { Colors } from '../../config/ColorsConfig';
-import { Fonts } from '../../../../config/FontConfig';
+import { Fonts } from "../../../../config/FontConfig";
 
 export const DrawerContainer = styled.View`
   flex: 1;
@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   bottomDrawerSection: {
     marginBottom: 15,
-    borderTopColor: '#f4f4f4',
-    borderTopWidth: 1
-  }
+    borderTopColor: "#f4f4f4",
+    borderTopWidth: 1,
+  },
 });

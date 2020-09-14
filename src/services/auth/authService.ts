@@ -1,49 +1,50 @@
-import api from '../api';
+import api from "../api";
+import { IUser } from "../../interfaces/IUser";
+
+interface ILogin {
+  access_token: string;
+  user: IUser;
+}
 
 const authService = {
-
-  async login(usuario:string, senha:string) {
-
+  async login(usuario: string, senha: string): Promise<ILogin> {
     let output = {
       status: false,
-      message: ''
+      message: "",
     };
 
-    await api.post('/api/login', {usuario, senha})
-    .then(response => {
-      output = {
-        ...response.data,
-        status: true
-      };
-    }).catch(error => {
-      const statusCode = error.response.status;
+    await api
+      .post("/api/login", { usuario, senha })
+      .then((response) => {
+        output = {
+          ...response.data,
+          status: true,
+        };
+      })
+      .catch((error) => {
+        const statusCode = error.response.status;
 
-      if (! error.response.data.message) {
-        switch (statusCode) {
-          case 412:
-          output.message = 'Usuário ou senha inválidos';
-          return output;
-          break;
-          case 404:
-          output.message = 'Usuário não encontrado';
-          return output;
-          break;
-          case 500:
-          output.message = 'Erro interno do servidor';
-          return output;
-          break;
-
+        if (!error.response.data.message) {
+          switch (statusCode) {
+            case 412:
+              output.message = "Usuário ou senha inválidos";
+              return output;
+            case 404:
+              output.message = "Usuário não encontrado";
+              return output;
+            case 500:
+              output.message = "Erro interno do servidor";
+              return output;
+            default:
+              throw new Error("Erro: Codigo de status de retorno inválido");
+          }
         }
-      }
 
-      output.message = error.response.data.message;
-
-    });
+        output.message = error.response.data.message;
+      });
 
     return output;
-
-  }
-
-}
+  },
+};
 
 export default authService;
