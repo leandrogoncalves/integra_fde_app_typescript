@@ -1,116 +1,70 @@
-import React from 'react';
-import { Text, ScrollView, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from "react";
+import { ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Foundation from 'react-native-vector-icons/Foundation';
+import Solicitante from "../../../components/Ecommerce/Solicitante";
+import TopBar from "../../../components/Layout/TopBar";
+import { Container } from "../../../components/Layout/Container";
+import { Title } from "../../../components/Typography/Title";
+import { HorizontalDivider } from "../../../components/Layout/HorizontalDivider";
+import { VerticalDivider } from "../../../components/Layout/VerticalDivider";
+import Card from "../../../components/Layout/Card";
+import ProductCategoryIcon from "../../../components/Ecommerce/ProductCategoryIcon";
+import ProductItemMini from "../../../components/Ecommerce/ProductItemMini";
+import { categoryService } from "../../../services/categoryService";
+import { ICategory } from "../../../interfaces/ICategories";
 
-import Solicitante from '../../../components/Ecommerce/Solicitante';
-import TopBar from '../../../components/Layout/TopBar';
-import { Container } from '../../../components/Layout/Container';
-import { Title } from '../../../components/Typography/Title';
-import { HorizontalDivider } from '../../../components/Layout/HorizontalDivider';
-import { VerticalDivider } from '../../../components/Layout/VerticalDivider';
-import Card from '../../../components/Layout/Card';
-import ProductCategoryIcon from '../../../components/Ecommerce/ProductCategoryIcon';
-import ProductItemMini from '../../../components/Ecommerce/ProductItemMini';
-
-import {
-  ProductContainer,
-  SeeMore,
-  SeeMoreText,
-} from './styles';
-
+import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
 
 const Home: React.FC = () => {
   const { navigate } = useNavigation();
+  const { categoryLoading, setCategoryLoading } = useState(true);
+  const { catetegories, setCategories } = useState<ICategory>([]);
+
+  async function loadCategories() {
+    const { data } = await categoryService.getCategories();
+    console.log("data", data);
+
+    if (data) {
+      setCategories(data);
+      setCategoryLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
   return (
-    <Container >
+    <Container>
       <TopBar title="Início" drawerMenuLink />
 
       <Solicitante />
 
-      <ScrollView
-          keyboardShouldPersistTaps="handled"
-        >
-
+      <ScrollView keyboardShouldPersistTaps="handled">
         {/* Categorias */}
-        <Card >
-
-          <Title>
-            Categorias
-          </Title>
+        <Card>
+          <Title>Categorias</Title>
 
           <HorizontalDivider />
 
-          <ScrollView horizontal={true}>
-
+          <ScrollView horizontal>
             <ProductCategoryIcon
               route="DrawerMenuBusca"
-              name="restaurant"
+              iconName="restaurant"
               text="Alimentação"
-             />
-
-            <ProductCategoryIcon
-              route="DrawerMenuBusca"
-              iconComponent={
-                <MaterialCommunityIcons name="broom" color="white" size={30} />
-              }
-              text="Higiene e Limpeza"
-              />
-
-            <ProductCategoryIcon
-              route="DrawerMenuBusca"
-              iconComponent={
-                <MaterialCommunityIcons name="chair-rolling" color="white" size={30} />
-              }
-              text="Mobiliário"
-             />
-
-            <ProductCategoryIcon
-              route="DrawerMenuBusca"
-              iconComponent={
-                <MaterialCommunityIcons name="power-plug" color="white" size={30} />
-              }
-              text="Equipamentos"
-              />
-
-            <ProductCategoryIcon
-              route="DrawerMenuBusca"
-              iconComponent={
-                <Foundation name="page" color="white" size={30} />
-              }
-              text="Papelaria"
-              />
-
-            <ProductCategoryIcon
-              route="DrawerMenuBusca"
-              iconComponent={
-                <MaterialIcons name="computer" color="white" size={30} />
-              }
-              text="Informática"
-             />
-
+            />
           </ScrollView>
-
         </Card>
 
         {/* Produtos em destaque */}
-        <Card >
-
-          <Title>
-            Produtos em destaque
-          </Title>
+        <Card>
+          <Title>Produtos em destaque</Title>
 
           <HorizontalDivider />
 
           {/* Linha de produtos */}
           <ProductContainer>
-
             <ProductItemMini
               name="Nome do produto 1"
               category="Categoria"
@@ -126,14 +80,12 @@ const Home: React.FC = () => {
               shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
               price="199,00"
             />
-
           </ProductContainer>
 
           <HorizontalDivider />
 
           {/* Linha de produtos */}
           <ProductContainer>
-
             <ProductItemMini
               name="Nome do produto"
               category="Categoria"
@@ -149,31 +101,23 @@ const Home: React.FC = () => {
               shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
               price="199,00"
             />
-
           </ProductContainer>
 
           <HorizontalDivider />
 
-          <SeeMore onPress={() => navigate('Busca')}>
-            <SeeMoreText>
-              Veja a lista completa
-            </SeeMoreText>
+          <SeeMore onPress={() => navigate("Busca")}>
+            <SeeMoreText>Veja a lista completa</SeeMoreText>
           </SeeMore>
-
         </Card>
 
         {/* Produtos mais vendidos */}
-        <Card >
-
-          <Title>
-            Produtos mais vendidos
-          </Title>
+        <Card>
+          <Title>Produtos mais vendidos</Title>
 
           <HorizontalDivider />
 
           {/* Linha de produtos */}
           <ProductContainer>
-
             <ProductItemMini
               name="Nome do produto"
               category="Categoria"
@@ -189,15 +133,13 @@ const Home: React.FC = () => {
               shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
               price="199,00"
             />
-
           </ProductContainer>
 
           <HorizontalDivider />
 
           {/* Linha de produtos */}
           <ProductContainer>
-
-          <ProductItemMini
+            <ProductItemMini
               name="Nome do produto"
               category="Categoria"
               shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
@@ -212,22 +154,17 @@ const Home: React.FC = () => {
               shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
               price="199,00"
             />
-
           </ProductContainer>
 
           <HorizontalDivider />
 
-          <SeeMore onPress={() => navigate('Busca')}>
-            <SeeMoreText>
-              Veja a lista completa
-            </SeeMoreText>
+          <SeeMore onPress={() => navigate("Busca")}>
+            <SeeMoreText>Veja a lista completa</SeeMoreText>
           </SeeMore>
-
         </Card>
-
       </ScrollView>
     </Container>
   );
-}
+};
 
 export default Home;

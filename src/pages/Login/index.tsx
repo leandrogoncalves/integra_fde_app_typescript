@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef } from "react";
 import {
   Image,
   View,
@@ -6,25 +6,25 @@ import {
   KeyboardAvoidingView,
   Platform,
   TextInput,
-  Alert
-} from 'react-native';
-import { Form } from '@unform/mobile';
-import { FormHandles } from '@unform/core';
+  Alert,
+} from "react-native";
+import { Form } from "@unform/mobile";
+import { FormHandles } from "@unform/core";
 
-import * as Yup from 'yup';
-import getValidationErrors from '../../utils/getValidationErrors';
+import * as Yup from "yup";
+import getValidationErrors from "../../utils/getValidationErrors";
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from "../../hooks/auth";
 
-import InputLogin from '../../components/Forms/InputLogin';
-import ButtonLogin from '../../components/Forms/ButtonLogin';
+import InputLogin from "../../components/Forms/InputLogin";
+import ButtonLogin from "../../components/Forms/ButtonLogin";
 
-import { Container, Title, Footer, FooterText } from './styles';
-import logoImg from '../../assets/geral/logo-fde.png';
+import { Container, Title, Footer, FooterText } from "./styles";
+import logoImg from "../../assets/geral/logo-fde.png";
 
 interface LoginFormData {
-  usuario:string;
-  senha:string;
+  usuario: string;
+  senha: string;
 }
 
 const Login: React.FC = () => {
@@ -35,48 +35,39 @@ const Login: React.FC = () => {
 
   const { login, user } = useAuth();
 
-  console.log('user', user);
+  const handleLogin = useCallback(async (data: LoginFormData) => {
+    try {
+      const schema = Yup.object().shape({
+        login: Yup.string()
+          .required("O campo usuário é obrigatório")
+          .min(4, "O campo login deve ter no mínimo 3 caracteres"),
+        senha: Yup.string().min(
+          3,
+          "O campo senha deve ter no mínimo 3 caracteres"
+        ),
+      });
 
-
-  const handleLogin = useCallback(
-    async (data:LoginFormData) => {
-
-      console.log(data);
-      try{
-
-        const schema = Yup.object().shape({
-          login: Yup.string()
-            .required('O campo usuário é obrigatório')
-            .min(4, 'O campo login deve ter no mínimo 3 caracteres'),
-          senha: Yup.string()
-            .min(3, 'O campo senha deve ter no mínimo 3 caracteres')
-        });
-
-        await schema.validate(data,{
-          abortEarly: false
-        });
+      await schema.validate(data, {
+        abortEarly: false,
+      });
 
       await login({
         usuario: data.login,
         senha: data.senha,
       });
-
-      }catch(err){
-        if (err instanceof Yup.ValidationError) {
-          const errors = getValidationErrors(err);
-          formRef.current?.setErrors(errors);
-        }
-
-        Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu um erro ao fazer login, verifique seu login e senha'
-        );
-        return false;
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
       }
 
-    },
-    []
-  );
+      Alert.alert(
+        "Erro na autenticação",
+        "Ocorreu um erro ao fazer login, verifique seu login e senha"
+      );
+      return false;
+    }
+  }, []);
 
   const submitForm = () => {
     formRef.current?.submitForm();
@@ -85,12 +76,12 @@ const Login: React.FC = () => {
   return (
     <>
       <KeyboardAvoidingView
-        style={{flex:1}}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
         enabled
       >
         <ScrollView
-          contentContainerStyle={{ flex:1 }}
+          contentContainerStyle={{ flex: 1 }}
           keyboardShouldPersistTaps="handled"
         >
           <Container>
@@ -99,7 +90,11 @@ const Login: React.FC = () => {
               <Title>Login</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleLogin} style={{width:'100%'}}>
+            <Form
+              ref={formRef}
+              onSubmit={handleLogin}
+              style={{ width: "100%" }}
+            >
               <InputLogin
                 name="login"
                 icon="user"
@@ -108,7 +103,7 @@ const Login: React.FC = () => {
                 autoCapitalize="none"
                 keyboardType="email-address"
                 returnKeyType="next"
-                onSubmitEditing={()=>{
+                onSubmitEditing={() => {
                   passwordInputRef.current?.focus();
                 }}
               />
@@ -117,7 +112,7 @@ const Login: React.FC = () => {
                 name="senha"
                 icon="lock"
                 placeholder="Senha"
-                secureTextEntry={true}
+                secureTextEntry
                 returnKeyType="send"
                 onSubmitEditing={submitForm}
               />
@@ -133,6 +128,6 @@ const Login: React.FC = () => {
       </Footer>
     </>
   );
-}
+};
 
 export default Login;

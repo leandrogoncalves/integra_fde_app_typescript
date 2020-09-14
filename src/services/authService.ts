@@ -1,10 +1,5 @@
-import api from "../api";
-import { IUser } from "../../interfaces/IUser";
-
-interface ILogin {
-  access_token: string;
-  user: IUser;
-}
+import api from "./api";
+import { ILogin } from "../interfaces/ILogin";
 
 const authService = {
   async login(usuario: string, senha: string): Promise<ILogin> {

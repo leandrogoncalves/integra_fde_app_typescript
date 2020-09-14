@@ -1,13 +1,13 @@
-import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
 
-import {
-  Category,
-  CategoryIcon,
-  CategoryText,
-} from './styles';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Foundation from "react-native-vector-icons/Foundation";
+
+import { Category, CategoryIcon, CategoryText } from "./styles";
 
 const ProductCategoryIcon: React.FC = ({
   children,
@@ -15,27 +15,41 @@ const ProductCategoryIcon: React.FC = ({
   text,
   color,
   size,
-  name,
-  iconComponent,
+  iconName,
+  iconType,
   ...rest
 }) => {
   const { navigate } = useNavigation();
+  let icon: any = "";
+
+  switch (iconType) {
+    case "MaterialCommunityIcons":
+      icon = <MaterialCommunityIcons name={iconName} color="white" size={30} />;
+      break;
+
+    case "Foundation":
+      icon = <Foundation name={iconName} color="white" size={30} />;
+      break;
+
+    case "MaterialIcons":
+      icon = <MaterialIcons name={iconName} color="white" size={30} />;
+      break;
+
+    default:
+      icon = (
+        <Ionicons name={iconName} color={color || "white"} size={size || 30} />
+      );
+      break;
+  }
 
   return (
     <TouchableOpacity onPress={() => navigate(route)}>
       <Category>
-        <CategoryIcon>
-        {!name?null:(
-          <Ionicons name={name} color={color||"white"} size={size||30} />
-        )}
-        {!iconComponent?null:(iconComponent)}
-        </CategoryIcon>
-        <CategoryText>
-          {text}
-        </CategoryText>
+        <CategoryIcon>{icon}</CategoryIcon>
+        <CategoryText>{text}</CategoryText>
       </Category>
     </TouchableOpacity>
   );
-}
+};
 
 export default ProductCategoryIcon;

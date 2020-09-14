@@ -28,6 +28,7 @@ export const UserInfoSection = styled.View`
 export const UserText = styled.View`
   margin-left: 15px;
   flex-direction: column;
+  margin-right: 50px;
 `;
 
 export const UserName = styled.Text`

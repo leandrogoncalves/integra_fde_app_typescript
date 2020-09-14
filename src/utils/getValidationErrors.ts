@@ -1,10 +1,10 @@
-import { ValidationError } from 'yup';
+import { ValidationError } from "yup";
 
 interface Errors {
-  [key:string]:string;
+  [key: string]: string;
 }
 
-export default function getValidationErrors(err:ValidationError):Errors {
+export default function getValidationErrors(err: ValidationError): Errors {
   const validationErrors: Errors = {};
 
   err.inner.forEach((error) => {
@@ -12,5 +12,4 @@ export default function getValidationErrors(err:ValidationError):Errors {
   });
 
   return validationErrors;
-
 }

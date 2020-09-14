@@ -18,7 +18,8 @@ import {
 } from "./styles";
 
 export function CustomDrawerContent(props) {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
+
   const { navigate } = useNavigation();
 
   return (
@@ -34,8 +35,8 @@ export function CustomDrawerContent(props) {
               containerStyle={{ backgroundColor: "#ccc" }}
             />
             <UserText>
-              <UserName>Leandro G da Silva</UserName>
-              <UserProfile>GSI - FDE</UserProfile>
+              <UserName textBreakStrategy="simple">{user.name}</UserName>
+              <UserProfile>{user.department}</UserProfile>
             </UserText>
           </UserInfoSection>
         </DrawerContent>

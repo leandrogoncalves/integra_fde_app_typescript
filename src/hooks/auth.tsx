@@ -6,7 +6,7 @@ import React, {
   useContext,
 } from "react";
 import AsyncStorage from "@react-native-community/async-storage";
-import authService from "../services/auth/authService";
+import authService from "../services/authService";
 import { IAuthState } from "../interfaces/IAuthState";
 import { IAuthContextData } from "../interfaces/IAuthContextData";
 
