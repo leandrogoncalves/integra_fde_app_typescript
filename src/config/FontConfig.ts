@@ -1,15 +1,16 @@
 interface IFonts {
-  [key:string]:any
+  [key: string]: any;
 }
 
-export const Fonts:IFonts = {
+export const Fonts: IFonts = {
   family: {
-    default: 'Roboto-Regular',
-    medium: 'Roboto-Medium',
-    thin: 'Roboto-Thin',
-    bold: 'Roboto-Bold',
+    default: "Roboto-Regular",
+    medium: "Roboto-Medium",
+    thin: "Roboto-Thin",
+    bold: "Roboto-Bold",
   },
   size: {
-    title: '25px'
+    title: "25px",
+    subtitle: "18px",
   },
-}
+};

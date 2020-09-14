@@ -1,42 +1,70 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ICategory } from "../../../interfaces/ICategories";
+import { IProduct } from "../../../interfaces/IProduct";
+
+import { productService } from "../../../services/productService";
+import { categoryService } from "../../../services/categoryService";
 
 import Solicitante from "../../../components/Ecommerce/Solicitante";
 import TopBar from "../../../components/Layout/TopBar";
 import { Container } from "../../../components/Layout/Container";
 import { Title } from "../../../components/Typography/Title";
+import { Subtitle } from "../../../components/Typography/Subtitle";
 import { HorizontalDivider } from "../../../components/Layout/HorizontalDivider";
 import { VerticalDivider } from "../../../components/Layout/VerticalDivider";
-import Card from "../../../components/Layout/Card";
 import ProductCategoryIcon from "../../../components/Ecommerce/ProductCategoryIcon";
 import ProductItemMini from "../../../components/Ecommerce/ProductItemMini";
-import { categoryService } from "../../../services/categoryService";
-import { ICategory } from "../../../interfaces/ICategories";
+import Card from "../../../components/Layout/Card";
+import Loader from "../../../components/Layout/Loader";
 
 import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
 
 const Home: React.FC = () => {
   const { navigate } = useNavigation();
-  const { categoryLoading, setCategoryLoading } = useState(true);
-  const { catetegories, setCategories } = useState<ICategory>([]);
+  const [loader, setLoader] = useState(true);
+  const [categories, setCategories] = useState<ICategory>([]);
+  const [productsHighlights, setProductsHighlights] = useState<IProduct>([]);
+  const [productsMoreSolded, setProductsMoreSolded] = useState<IProduct>([]);
 
   async function loadCategories() {
     const { data } = await categoryService.getCategories();
-    console.log("data", data);
 
     if (data) {
       setCategories(data);
-      setCategoryLoading(false);
+    }
+  }
+
+  async function loadProductHighlight() {
+    const { data } = await productService.getProductsHighlight();
+
+    if (data) {
+      setProductsHighlights(data);
+    }
+  }
+
+  async function loadProductsMoreSolded() {
+    const { data } = await productService.getProductsMoreSolded();
+
+    if (data) {
+      setProductsMoreSolded(data);
     }
   }
 
   useEffect(() => {
     loadCategories();
+    loadProductHighlight();
+    loadProductsMoreSolded();
+    if (categories && productsHighlights && productsMoreSolded) {
+      setLoader(false);
+    }
   }, []);
 
   return (
     <Container>
+      {!loader ? null : <Loader />}
+
       <TopBar title="Início" drawerMenuLink />
 
       <Solicitante />
@@ -49,11 +77,18 @@ const Home: React.FC = () => {
           <HorizontalDivider />
 
           <ScrollView horizontal>
-            <ProductCategoryIcon
-              route="DrawerMenuBusca"
-              iconName="restaurant"
-              text="Alimentação"
-            />
+            {!categories ? (
+              <Subtitle>Carregando...</Subtitle>
+            ) : (
+              categories.map((category) => (
+                <ProductCategoryIcon
+                  route={category.route}
+                  iconName={category.icon}
+                  iconType={category.iconType}
+                  text={category.text}
+                />
+              ))
+            )}
           </ScrollView>
         </Card>
 
@@ -64,44 +99,25 @@ const Home: React.FC = () => {
           <HorizontalDivider />
 
           {/* Linha de produtos */}
-          <ProductContainer>
-            <ProductItemMini
-              name="Nome do produto 1"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-
-            <VerticalDivider />
-
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-          </ProductContainer>
-
-          <HorizontalDivider />
-
-          {/* Linha de produtos */}
-          <ProductContainer>
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-
-            <VerticalDivider />
-
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-          </ProductContainer>
+          {!productsHighlights ? (
+            <Subtitle>Carregando...</Subtitle>
+          ) : (
+            productsHighlights.map(({ productList }) => (
+              <ProductContainer>
+                {productList.map((product, index) => (
+                  <>
+                    <ProductItemMini
+                      name={product.name}
+                      category={product.category}
+                      shotDescription={product.shotDescription}
+                      price={product.price}
+                    />
+                    {index % 2 !== 0 ? null : <VerticalDivider />}
+                  </>
+                ))}
+              </ProductContainer>
+            ))
+          )}
 
           <HorizontalDivider />
 
@@ -117,44 +133,25 @@ const Home: React.FC = () => {
           <HorizontalDivider />
 
           {/* Linha de produtos */}
-          <ProductContainer>
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-
-            <VerticalDivider />
-
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-          </ProductContainer>
-
-          <HorizontalDivider />
-
-          {/* Linha de produtos */}
-          <ProductContainer>
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-
-            <VerticalDivider />
-
-            <ProductItemMini
-              name="Nome do produto"
-              category="Categoria"
-              shotDescription="Descrição curta dsa dsa fdsa fds afds afd afdsa fds afds fas dfa fdsa"
-              price="199,00"
-            />
-          </ProductContainer>
+          {!productsMoreSolded ? (
+            <Subtitle>Carregando...</Subtitle>
+          ) : (
+            productsMoreSolded.map(({ productList }) => (
+              <ProductContainer>
+                {productList.map((product, index) => (
+                  <>
+                    <ProductItemMini
+                      name={product.name}
+                      category={product.category}
+                      shotDescription={product.shotDescription}
+                      price={product.price}
+                    />
+                    {index % 2 !== 0 ? null : <VerticalDivider />}
+                  </>
+                ))}
+              </ProductContainer>
+            ))
+          )}
 
           <HorizontalDivider />
 
