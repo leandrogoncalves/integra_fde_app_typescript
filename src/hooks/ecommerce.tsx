@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext } from "react";
 import { IEcommerceContextData } from "../interfaces/IEcommerceContextData";
+import { IProduct } from "../interfaces/IProduct";
 
 const EcommerceContext = createContext<IEcommerceContextData>(
   {} as IEcommerceContextData
@@ -8,6 +9,7 @@ const EcommerceContext = createContext<IEcommerceContextData>(
 const EcommerceProvider: React.FC = ({ children }) => {
   const [profile, setProfile] = useState<string>("");
   const [school, setSchool] = useState<string>("");
+  const [productDetail, setProductDetail] = useState<IProduct | undefined>();
 
   return (
     <EcommerceContext.Provider
@@ -16,6 +18,8 @@ const EcommerceProvider: React.FC = ({ children }) => {
         setProfile,
         school,
         setSchool,
+        productDetail,
+        setProductDetail,
       }}
     >
       {children}

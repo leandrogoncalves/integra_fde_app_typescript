@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../../../hooks/auth";
+
 import { ICategory } from "../../../interfaces/ICategories";
 import { IProduct } from "../../../interfaces/IProduct";
 
@@ -22,6 +24,10 @@ import Loader from "../../../components/Layout/Loader";
 import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
 
 const Home: React.FC = () => {
+  const { token } = useAuth();
+  categoryService.token = token;
+  productService.token = token;
+
   const { navigate } = useNavigation();
   const [loader, setLoader] = useState(true);
   const [categories, setCategories] = useState<ICategory>([]);
@@ -80,8 +86,9 @@ const Home: React.FC = () => {
             {!categories ? (
               <Subtitle>Carregando...</Subtitle>
             ) : (
-              categories.map((category) => (
+              categories.map((category, index) => (
                 <ProductCategoryIcon
+                  key={index}
                   id={category.id}
                   route={category.route}
                   iconName={category.icon}
@@ -103,16 +110,19 @@ const Home: React.FC = () => {
           {!productsHighlights ? (
             <Subtitle>Carregando...</Subtitle>
           ) : (
-            productsHighlights.map(({ productList }) => (
-              <ProductContainer>
+            productsHighlights.map(({ productList }, index) => (
+              <ProductContainer key={index}>
                 {productList.map((product, index) => (
                   <>
                     <ProductItemMini
+                      key={product.id}
                       id={product.id}
                       name={product.name}
                       category={product.category}
+                      images={product.images}
                       shotDescription={product.shotDescription}
                       price={product.price}
+                      product={product}
                     />
                     {index % 2 !== 0 ? null : <VerticalDivider />}
                   </>
@@ -146,8 +156,10 @@ const Home: React.FC = () => {
                       id={product.id}
                       name={product.name}
                       category={product.category}
+                      images={product.images}
                       shotDescription={product.shotDescription}
                       price={product.price}
+                      product={product}
                     />
                     {index % 2 !== 0 ? null : <VerticalDivider />}
                   </>

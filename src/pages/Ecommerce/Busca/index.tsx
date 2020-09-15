@@ -57,8 +57,10 @@ const Busca: React.FC = () => {
                 <ProductItem
                   name={product.name}
                   category={product.category}
+                  images={product.images}
                   shotDescription={product.shotDescription}
                   price={product.price}
+                  product={product}
                 />
               </ProductContainer>
             </Card>

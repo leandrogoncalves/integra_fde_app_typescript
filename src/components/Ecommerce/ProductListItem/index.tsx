@@ -1,12 +1,8 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
-import ListItem from '../../../components/Layout/ListItem';
+import React from "react";
+import { View, Text, TouchableOpacity, Alert } from "react-native";
+import ListItem from "../../Layout/ListItem";
 
-import {
-  ProductImage,
-  ProductPrice,
-  RemoveItem
-} from './styles';
+import { ProductImage, ProductPrice, RemoveItem } from "./styles";
 
 const ProductListItem: React.FC = ({
   children,
@@ -18,14 +14,14 @@ const ProductListItem: React.FC = ({
   return (
     <ListItem
       divider
-      leftElement={
+      leftElement={(
         <ProductImage>
           <Text style={{color:'white'}}>Foto</Text>
         </ProductImage>
-      }
+      )}
       title={name}
       subtitle={category}
-      rightElement={
+      rightElement={(
         <>
           <View>
             <ProductPrice>
@@ -53,9 +49,9 @@ const ProductListItem: React.FC = ({
             </TouchableOpacity>
           </View>
         </>
-      }
+      )}
     />
   );
-}
+};
 
 export default ProductListItem;

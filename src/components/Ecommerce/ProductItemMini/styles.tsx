@@ -1,7 +1,6 @@
-import styled from 'styled-components/native';
-import { Colors } from '../../../config/ColorsConfig';
-import { Fonts } from '../../../config/FontConfig';
-
+import styled from "styled-components/native";
+import { Colors } from "../../../config/ColorsConfig";
+import { Fonts } from "../../../config/FontConfig";
 
 export const Product = styled.View`
   width: 46%;
@@ -11,7 +10,7 @@ export const Product = styled.View`
 export const ProductImage = styled.View`
   height: 150px;
   width: 100%;
-  background: ${Colors.highlight.primary};
+  background: #fff;
 
   align-items: center;
   justify-content: center;
@@ -36,12 +35,12 @@ export const ProductShortDescription = styled.Text`
   color: ${Colors.text.primary};
   font-family: ${Fonts.family.default};
   margin-top: 5px;
-  font-size:12px;
+  font-size: 12px;
 `;
 
 export const ProductPrice = styled.Text`
   font-family: ${Fonts.family.bold};
-  font-size:18px;
+  font-size: 18px;
   color: ${Colors.highlight.primary};
   margin-top: 5px;
 `;
