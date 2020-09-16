@@ -11,12 +11,26 @@ const ProductListItem: React.FC = ({
   price,
   ...rest
 }) => {
+  const handleClick = () => {
+    Alert.alert("Confirmação", "Deseja realmente remover este item", [
+      {
+        text: "Ok",
+        onPress: () => Alert.alert("Produto removido com sucesso"),
+      },
+      {
+        text: "Cancelar",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+    ]);
+  };
+
   return (
     <ListItem
       divider
       leftElement={(
         <ProductImage>
-          <Text style={{color:'white'}}>Foto</Text>
+          <Text style={{ color: "white" }}>Foto</Text>
         </ProductImage>
       )}
       title={name}
@@ -24,27 +38,8 @@ const ProductListItem: React.FC = ({
       rightElement={(
         <>
           <View>
-            <ProductPrice>
-              R$ {price}
-            </ProductPrice>
-            <TouchableOpacity onPress={() => {
-              Alert.alert(
-                'Confirmação',
-                'Deseja realmente remover este item',
-                [
-                  {
-                    text: "Ok",
-                    onPress: () => Alert.alert('Produto removido com sucesso')
-                  },
-                  {
-                    text: "Cancelar",
-                    onPress: () => console.log("Cancel Pressed"),
-                    style: "cancel"
-                  },
-                ]
-                )
-              }
-            }>
+            <ProductPrice>R$ {price}</ProductPrice>
+            <TouchableOpacity onPress={() => handleClick()}>
               <RemoveItem>Remover</RemoveItem>
             </TouchableOpacity>
           </View>

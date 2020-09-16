@@ -1,5 +1,4 @@
 import { ICategories } from "../interfaces/ICategories";
-import { useAuth } from "../hooks/auth";
 import api from "./api";
 
 export const categoryService = {

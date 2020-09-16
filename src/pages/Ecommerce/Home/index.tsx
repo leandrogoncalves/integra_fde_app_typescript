@@ -111,27 +111,29 @@ const Home: React.FC = () => {
             <Subtitle>Carregando...</Subtitle>
           ) : (
             productsHighlights.map(({ productList }, index) => (
-              <ProductContainer key={index}>
-                {productList.map((product, index) => (
-                  <>
-                    <ProductItemMini
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      category={product.category}
-                      images={product.images}
-                      shotDescription={product.shotDescription}
-                      price={product.price}
-                      product={product}
-                    />
-                    {index % 2 !== 0 ? null : <VerticalDivider />}
-                  </>
-                ))}
-              </ProductContainer>
+              <>
+                <ProductContainer key={index}>
+                  {productList.map((product, index) => (
+                    <>
+                      <ProductItemMini
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        category={product.category}
+                        images={product.images}
+                        shotDescription={product.shotDescription}
+                        price={product.price}
+                        product={product}
+                      />
+                      {index % 2 !== 0 ? null : <VerticalDivider />}
+                    </>
+                  ))}
+                </ProductContainer>
+
+                <HorizontalDivider />
+              </>
             ))
           )}
-
-          <HorizontalDivider />
 
           <SeeMore onPress={() => navigate("Busca")}>
             <SeeMoreText>Veja a lista completa</SeeMoreText>
@@ -148,27 +150,30 @@ const Home: React.FC = () => {
           {!productsMoreSolded ? (
             <Subtitle>Carregando...</Subtitle>
           ) : (
-            productsMoreSolded.map(({ productList }) => (
-              <ProductContainer>
-                {productList.map((product, index) => (
-                  <>
-                    <ProductItemMini
-                      id={product.id}
-                      name={product.name}
-                      category={product.category}
-                      images={product.images}
-                      shotDescription={product.shotDescription}
-                      price={product.price}
-                      product={product}
-                    />
-                    {index % 2 !== 0 ? null : <VerticalDivider />}
-                  </>
-                ))}
-              </ProductContainer>
+            productsMoreSolded.map(({ productList }, index) => (
+              <>
+                <ProductContainer key={index}>
+                  {productList.map((product, index) => (
+                    <>
+                      <ProductItemMini
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        category={product.category}
+                        images={product.images}
+                        shotDescription={product.shotDescription}
+                        price={product.price}
+                        product={product}
+                      />
+                      {index % 2 !== 0 ? null : <VerticalDivider />}
+                    </>
+                  ))}
+                </ProductContainer>
+
+                <HorizontalDivider />
+              </>
             ))
           )}
-
-          <HorizontalDivider />
 
           <SeeMore onPress={() => navigate("Busca")}>
             <SeeMoreText>Veja a lista completa</SeeMoreText>
