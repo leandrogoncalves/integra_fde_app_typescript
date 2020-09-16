@@ -12,10 +12,10 @@ import ListItem from "../../../components/Layout/ListItem";
 
 import { Subtotal, Continue, ContinueText } from "./styles";
 
-const Pedidos: React.FC = () => {
+const Carrinho: React.FC = () => {
   return (
     <Container>
-      <TopBar title="Pedido" drawerMenuLink />
+      <TopBar title="Carrinho" drawerMenuLink />
 
       <Solicitante />
 
@@ -67,4 +67,4 @@ const Pedidos: React.FC = () => {
   );
 };
 
-export default Pedidos;
+export default Carrinho;

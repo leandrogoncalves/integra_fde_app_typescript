@@ -30,9 +30,9 @@ const Home: React.FC = () => {
 
   const { navigate } = useNavigation();
   const [loader, setLoader] = useState(true);
-  const [categories, setCategories] = useState<ICategory>([]);
-  const [productsHighlights, setProductsHighlights] = useState<IProduct>([]);
-  const [productsMoreSolded, setProductsMoreSolded] = useState<IProduct>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [productsHighlights, setProductsHighlights] = useState<IProduct[]>([]);
+  const [productsMoreSolded, setProductsMoreSolded] = useState<IProduct[]>([]);
 
   async function loadCategories() {
     const { data } = await categoryService.getCategories();
@@ -62,10 +62,14 @@ const Home: React.FC = () => {
     loadCategories();
     loadProductHighlight();
     loadProductsMoreSolded();
-    if (categories && productsHighlights && productsMoreSolded) {
+    if (
+      categories.length > 0 &&
+      productsHighlights.length > 0 &&
+      productsMoreSolded.length > 0
+    ) {
       setLoader(false);
     }
-  }, []);
+  }, [categories, productsHighlights, productsMoreSolded]);
 
   return (
     <Container>
@@ -83,7 +87,7 @@ const Home: React.FC = () => {
           <HorizontalDivider />
 
           <ScrollView horizontal>
-            {!categories ? (
+            {categories.length === 0 ? (
               <Subtitle>Carregando...</Subtitle>
             ) : (
               categories.map((category, index) => (
@@ -107,7 +111,7 @@ const Home: React.FC = () => {
           <HorizontalDivider />
 
           {/* Linha de produtos */}
-          {!productsHighlights ? (
+          {productsHighlights.length === 0 ? (
             <Subtitle>Carregando...</Subtitle>
           ) : (
             productsHighlights.map(({ productList }, index) => (
@@ -135,9 +139,11 @@ const Home: React.FC = () => {
             ))
           )}
 
-          <SeeMore onPress={() => navigate("Busca")}>
-            <SeeMoreText>Veja a lista completa</SeeMoreText>
-          </SeeMore>
+          {productsHighlights.length === 0 ? null : (
+            <SeeMore onPress={() => navigate("Busca")}>
+              <SeeMoreText>Veja a lista completa</SeeMoreText>
+            </SeeMore>
+          )}
         </Card>
 
         {/* Produtos mais vendidos */}
@@ -147,7 +153,7 @@ const Home: React.FC = () => {
           <HorizontalDivider />
 
           {/* Linha de produtos */}
-          {!productsMoreSolded ? (
+          {productsMoreSolded.length === 0 ? (
             <Subtitle>Carregando...</Subtitle>
           ) : (
             productsMoreSolded.map(({ productList }, index) => (
@@ -175,9 +181,11 @@ const Home: React.FC = () => {
             ))
           )}
 
-          <SeeMore onPress={() => navigate("Busca")}>
-            <SeeMoreText>Veja a lista completa</SeeMoreText>
-          </SeeMore>
+          {productsMoreSolded.length === 0 ? null : (
+            <SeeMore onPress={() => navigate("Busca")}>
+              <SeeMoreText>Veja a lista completa</SeeMoreText>
+            </SeeMore>
+          )}
         </Card>
       </ScrollView>
     </Container>

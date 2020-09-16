@@ -18,7 +18,7 @@ import { ProductContainer } from "./styles";
 
 const Busca: React.FC = () => {
   const [loader, setLoader] = useState(true);
-  const [products, setProducts] = useState<IProduct>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   async function loadProductsFound() {
     const { data } = await productService.getProductsFound();
@@ -30,10 +30,10 @@ const Busca: React.FC = () => {
 
   useEffect(() => {
     loadProductsFound();
-    if (products) {
+    if (products.length > 0) {
       setLoader(false);
     }
-  }, []);
+  }, [products]);
 
   return (
     <Container>
@@ -48,8 +48,10 @@ const Busca: React.FC = () => {
         <Title>Resultado da Busca</Title>
 
         {/* Linha de produtos */}
-        {!products ? (
-          <Subtitle>Carregando...</Subtitle>
+        {products.length === 0 ? (
+          <Card>
+            <Subtitle>Carregando...</Subtitle>
+          </Card>
         ) : (
           products.map((product, index) => (
             <Card key={index}>
@@ -67,10 +69,12 @@ const Busca: React.FC = () => {
           ))
         )}
 
-        <Button
-          title="Carregar mais"
-          onPress={() => Alert.alert("Aviso", "Carregando")}
-        />
+        {products.length === 0 ? null : (
+          <Button
+            title="Carregar mais"
+            onPress={() => Alert.alert("Aviso", "Carregando")}
+          />
+        )}
       </ScrollView>
     </Container>
   );

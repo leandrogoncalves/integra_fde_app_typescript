@@ -1,17 +1,16 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Colors } from '../../config/ColorsConfig';
+import Feather from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Colors } from "../../config/ColorsConfig";
 
-import Busca from "../../pages/Ecommerce/Busca";
-import Pedidos from "../../pages/Ecommerce/Pedidos";
-import Perfil from "../../pages/Ecommerce/Perfil";
 import DrawerMenuHome from "./drawerMenu/drawerMenuHome.routes";
 import DrawerMenuBusca from "./drawerMenu/drawerMenuBusca.routes";
-import DrawerMenuPedidos from "./drawerMenu/drawerMenuPedidos.routes";
-import DrawerMenuPerfil from "./drawerMenu/drawerMenuPerfil.routes";
+import DrawerMenuFavoritos from "./drawerMenu/drawerMenuFavoritos.routes";
+import DrawerMenuCarrinho from "./drawerMenu/drawerMenuCarrinho.routes";
+import DrawerMenuMinhaConta from "./drawerMenu/drawerMenuMinhaConta.routes";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -70,10 +69,20 @@ const BottomTabsRoutes: React.FC = () => (
       }}
     />
     <Screen
-      name="DrawerMenuPedidos"
-      component={DrawerMenuPedidos}
+      name="DrawerMenuFavoritos"
+      component={DrawerMenuFavoritos}
       options={{
-        tabBarLabel: "Pedido",
+        tabBarLabel: "Favoritos",
+        tabBarIcon: ({ color, size, focused }) => {
+          return <Feather name="heart" size={size} color="white" />;
+        },
+      }}
+    />
+    <Screen
+      name="DrawerMenuCarrinho"
+      component={DrawerMenuCarrinho}
+      options={{
+        tabBarLabel: "Carrinho",
         tabBarIcon: ({ color, size, focused }) => {
           return (
             <MaterialCommunityIcons name="cart" size={size} color="white" />
@@ -83,9 +92,9 @@ const BottomTabsRoutes: React.FC = () => (
     />
     <Screen
       name="DrawerMenuPerfil"
-      component={DrawerMenuPerfil}
+      component={DrawerMenuMinhaConta}
       options={{
-        tabBarLabel: "Perfil",
+        tabBarLabel: "Minha conta",
         tabBarIcon: ({ color, size, focused }) => {
           return <Ionicons name="person" size={size} color="white" />;
         },

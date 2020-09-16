@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   Image,
   View,
@@ -21,6 +21,7 @@ import ButtonLogin from "../../components/Forms/ButtonLogin";
 
 import { Container, Title, Footer, FooterText } from "./styles";
 import logoImg from "../../assets/geral/logo-fde.png";
+import Loader from "../../components/Layout/Loader";
 
 interface LoginFormData {
   usuario: string;
@@ -29,6 +30,7 @@ interface LoginFormData {
 
 const Login: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const [loader, setLoader] = useState(false);
   // formRef.current?.setFieldValue
 
   const passwordInputRef = useRef<TextInput>(null);
@@ -36,6 +38,7 @@ const Login: React.FC = () => {
   const { login, user } = useAuth();
 
   const handleLogin = useCallback(async (data: LoginFormData) => {
+    setLoader(true);
     try {
       const schema = Yup.object().shape({
         login: Yup.string()
@@ -56,6 +59,7 @@ const Login: React.FC = () => {
         senha: data.senha,
       });
     } catch (err) {
+      setLoader(false);
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
         formRef.current?.setErrors(errors);
@@ -75,6 +79,7 @@ const Login: React.FC = () => {
 
   return (
     <>
+      {!loader ? null : <Loader />}
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
