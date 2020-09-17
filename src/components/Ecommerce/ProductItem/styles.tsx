@@ -20,7 +20,7 @@ export const ProductText = styled.View`
 `;
 
 export const ProductName = styled.Text`
-  font-size: 20px;
+  font-size: 22px;
   color: ${Colors.highlight.primary};
   font-family: ${Fonts.family.bold};
 `;
@@ -38,7 +38,7 @@ export const ProductShortDescription = styled.Text`
 
 export const ProductPrice = styled.Text`
   font-family: ${Fonts.family.bold};
-  font-size: 18px;
+  font-size: 20px;
   color: ${Colors.highlight.primary};
   margin-top: 5px;
 `;

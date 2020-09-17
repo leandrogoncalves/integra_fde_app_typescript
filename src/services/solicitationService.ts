@@ -10,15 +10,11 @@ export const solicitationService = {
         `/api/solicitacao/list?api_token=${this.token}`
       );
 
-      return new Promise<ISolicitations>((resolve, reject) => {
-        resolve(data);
-      });
+      return data;
     } catch (err) {
       console.error(err);
     }
 
-    return new Promise<ISolicitations>((resolve, reject) => {
-      resolve(undefined);
-    });
+    return undefined;
   },
 };

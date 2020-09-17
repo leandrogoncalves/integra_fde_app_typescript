@@ -44,7 +44,7 @@ const ProductCategoryIcon: React.FC = ({
   }
 
   return (
-    <TouchableOpacity onPress={() => navigate(route)}>
+    <TouchableOpacity onPress={() => navigate(route)} {...rest}>
       <Category>
         <CategoryIcon>{icon}</CategoryIcon>
         <CategoryText>{text}</CategoryText>

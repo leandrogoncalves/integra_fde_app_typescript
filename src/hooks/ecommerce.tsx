@@ -10,6 +10,7 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const [profile, setProfile] = useState<string>("");
   const [school, setSchool] = useState<string>("");
   const [productDetail, setProductDetail] = useState<IProduct | undefined>();
+  const [productQuantity, setProductQuantity] = useState<number>(1);
 
   return (
     <EcommerceContext.Provider
@@ -20,6 +21,8 @@ const EcommerceProvider: React.FC = ({ children }) => {
         setSchool,
         productDetail,
         setProductDetail,
+        productQuantity,
+        setProductQuantity,
       }}
     >
       {children}

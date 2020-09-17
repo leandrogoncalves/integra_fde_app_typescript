@@ -20,7 +20,7 @@ const Realizadas: React.FC = () => {
   const { token } = useAuth();
   solicitationService.token = token;
   const { navigate } = useNavigation();
-  const { setsolicitationDetail } = useSolicitation();
+  const { setSolicitationDetail } = useSolicitation();
   const [loader, setLoader] = useState(true);
   const [solicitations, setSolicitations] = useState<ISolicitation[]>([]);
 
@@ -29,21 +29,18 @@ const Realizadas: React.FC = () => {
 
     if (data) {
       setSolicitations(data);
+      setLoader(false);
     }
   }
 
-  const handleClick = (solicitation) => {
-    setsolicitationDetail(solicitation);
+  const handleClick = (solicitation: ISolicitation) => {
+    setSolicitationDetail(solicitation);
     navigate("homeSolicitacao");
   };
 
   useEffect(() => {
     loadSolicitations();
-
-    if (solicitations.length > 0) {
-      setLoader(false);
-    }
-  }, [solicitations]);
+  }, []);
 
   return (
     <Container>
@@ -57,7 +54,7 @@ const Realizadas: React.FC = () => {
             solicitations.map((solicitation, index) => (
               // eslint-disable-next-line react/jsx-indent
               <ListItem
-                key={index}
+                key={solicitation.slonumero}
                 divider
                 dense
                 icon={{ name: "event" }}

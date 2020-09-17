@@ -7,7 +7,7 @@ const SolicitationContext = createContext<ISolicitationContextData>(
 );
 
 const SolicitationProvider: React.FC = ({ children }) => {
-  const [solicitationDetail, setsolicitationDetail] = useState<
+  const [solicitationDetail, setSolicitationDetail] = useState<
     ISolicitation | undefined
   >();
 
@@ -15,7 +15,7 @@ const SolicitationProvider: React.FC = ({ children }) => {
     <SolicitationContext.Provider
       value={{
         solicitationDetail,
-        setsolicitationDetail,
+        setSolicitationDetail,
       }}
     >
       {children}

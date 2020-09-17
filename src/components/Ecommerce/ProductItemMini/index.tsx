@@ -7,6 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { useEcommerce } from "../../../hooks/ecommerce";
+import currency from "../../../utils/formatNumber";
 
 import {
   Product,
@@ -38,7 +39,7 @@ const ProductItemMini: React.FC = ({
   };
 
   return (
-    <Product>
+    <Product {...rest}>
       <TouchableOpacity onPress={() => handleClick()}>
         <ProductImage>
           {!images ? (
@@ -70,7 +71,7 @@ const ProductItemMini: React.FC = ({
               size={18}
               style={{ marginRight: 10 }}
             />
-            R$ {price}
+            {currency(price)}
           </ProductPrice>
         </ProductText>
       </TouchableOpacity>

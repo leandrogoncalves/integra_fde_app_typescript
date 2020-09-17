@@ -24,6 +24,9 @@ import Loader from "../../../components/Layout/Loader";
 import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
 
 const Home: React.FC = () => {
+  console.log("====================================");
+  console.log("categories1", categories);
+  console.log("====================================");
   const { token } = useAuth();
   categoryService.token = token;
   productService.token = token;
@@ -59,14 +62,15 @@ const Home: React.FC = () => {
   }
 
   useEffect(() => {
-    loadCategories();
-    loadProductHighlight();
-    loadProductsMoreSolded();
     if (
-      categories.length > 0 &&
-      productsHighlights.length > 0 &&
-      productsMoreSolded.length > 0
+      categories.length === 0 ||
+      productsHighlights.length === 0 ||
+      productsMoreSolded.length === 0
     ) {
+      loadCategories();
+      loadProductHighlight();
+      loadProductsMoreSolded();
+    } else {
       setLoader(false);
     }
   }, [categories, productsHighlights, productsMoreSolded]);
@@ -90,14 +94,14 @@ const Home: React.FC = () => {
             {categories.length === 0 ? (
               <Subtitle>Carregando...</Subtitle>
             ) : (
-              categories.map((category, index) => (
+              categories?.map((category) => (
                 <ProductCategoryIcon
-                  key={index}
-                  id={category.id}
-                  route={category.route}
-                  iconName={category.icon}
-                  iconType={category.iconType}
-                  text={category.text}
+                  key={category?.id}
+                  id={category?.id}
+                  route={category?.route}
+                  iconName={category?.icon}
+                  iconType={category?.iconType}
+                  text={category?.text}
                 />
               ))
             )}
@@ -114,19 +118,19 @@ const Home: React.FC = () => {
           {productsHighlights.length === 0 ? (
             <Subtitle>Carregando...</Subtitle>
           ) : (
-            productsHighlights.map(({ productList }, index) => (
+            productsHighlights?.map(({ productList }, index) => (
               <>
                 <ProductContainer key={index}>
                   {productList.map((product, index) => (
                     <>
                       <ProductItemMini
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        category={product.category}
-                        images={product.images}
-                        shotDescription={product.shotDescription}
-                        price={product.price}
+                        key={product?.id || index}
+                        id={product?.id}
+                        name={product?.name}
+                        category={product?.category}
+                        images={product?.images}
+                        shotDescription={product?.shotDescription}
+                        price={product?.price}
                         product={product}
                       />
                       {index % 2 !== 0 ? null : <VerticalDivider />}
@@ -156,19 +160,19 @@ const Home: React.FC = () => {
           {productsMoreSolded.length === 0 ? (
             <Subtitle>Carregando...</Subtitle>
           ) : (
-            productsMoreSolded.map(({ productList }, index) => (
+            productsMoreSolded?.map(({ productList }, index) => (
               <>
                 <ProductContainer key={index}>
                   {productList.map((product, index) => (
                     <>
                       <ProductItemMini
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        category={product.category}
-                        images={product.images}
-                        shotDescription={product.shotDescription}
-                        price={product.price}
+                        key={product?.id || index}
+                        id={product?.id}
+                        name={product?.name}
+                        category={product?.category}
+                        images={product?.images}
+                        shotDescription={product?.shotDescription}
+                        price={product?.price}
                         product={product}
                       />
                       {index % 2 !== 0 ? null : <VerticalDivider />}

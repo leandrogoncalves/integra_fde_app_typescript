@@ -116,6 +116,9 @@ yarn add @react-native-community/picker
 ##Start emulator
 emulator -avd Pixel_2_API_29 -netdelay none -netspeed full
 
+## Add Js formater Lib
+yarn add intl react-intl
+
 ##Icons list
 https://oblador.github.io/react-native-vector-icons/
 

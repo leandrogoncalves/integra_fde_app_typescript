@@ -7,4 +7,6 @@ export interface IEcommerceContextData {
   setSchool: any;
   productDetail: IProduct | undefined;
   setProductDetail: any;
+  productQuantity: number | undefined;
+  setProductQuantity: any;
 }
