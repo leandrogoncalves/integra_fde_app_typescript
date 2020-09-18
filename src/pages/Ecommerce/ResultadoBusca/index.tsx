@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Alert } from "react-native";
+
+import { useAuth } from "../../../hooks/auth";
+import productService from "../../../services/productService";
+
 import TopBar from "../../../components/Layout/TopBar";
-import { IProduct } from "../../../interfaces/IProduct";
-
-import { productService } from "../../../services/productService";
-
 import Solicitante from "../../../components/Ecommerce/Balance";
 import ProductItem from "../../../components/Ecommerce/ProductItem";
-import { Container } from "../../../components/Layout/Container";
 import Loader from "../../../components/Layout/Loader";
+import Button from "../../../components/Forms/Button";
 import Card from "../../../components/Layout/Card";
+import { IProduct } from "../../../interfaces/IProduct";
+import { Container } from "../../../components/Layout/Container";
 import { Title } from "../../../components/Typography/Title";
 import { Subtitle } from "../../../components/Typography/Subtitle";
-import Button from "../../../components/Forms/Button";
 
 import { ProductContainer } from "./styles";
 
 const ResultadoBusca: React.FC = () => {
+  const { token } = useAuth();
+  productService.setToken(token);
   const [loader, setLoader] = useState(true);
   const [products, setProducts] = useState<IProduct[]>([]);
 

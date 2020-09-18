@@ -1,13 +1,12 @@
 import { IFamilies } from "../interfaces/IFamily";
+import { ServiceBase } from "./ServiceBase";
 import api from "./api";
 
-export const familyService = {
-  token: null,
-
+class FamilyService extends ServiceBase {
   async getFamilies(): Promise<IFamilies | undefined> {
     try {
       const { data } = await api.get(
-        `/api/ecommerce/categorias?api_token=${this.token}`
+        `/api/ecommerce/familias?api_token=${this.token}`
       );
 
       return new Promise<IFamilies>((resolve, reject) => {
@@ -20,5 +19,7 @@ export const familyService = {
     return new Promise<IFamilies>((resolve, reject) => {
       resolve(undefined);
     });
-  },
-};
+  }
+}
+
+export default new FamilyService();

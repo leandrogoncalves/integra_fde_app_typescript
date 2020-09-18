@@ -3,7 +3,7 @@ import { ScrollView } from "react-native";
 
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import { categoryService } from "../../../services/categoryService";
+import categoryService from "../../../services/categoryService";
 
 import Balance from "../../../components/Ecommerce/Balance";
 import TopBar from "../../../components/Layout/TopBar";
@@ -16,8 +16,13 @@ import { Subtitle } from "../../../components/Typography/Subtitle";
 import { ICategory } from "../../../interfaces/ICategories";
 
 import { useEcommerce } from "../../../hooks/ecommerce";
+import { useAuth } from "../../../hooks/auth";
 
 const Categoria: React.FC = () => {
+  const { token, logout } = useAuth();
+  if (!token) logout();
+  categoryService.setToken(token);
+
   const [loader, setLoader] = useState(true);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const { familySelected, setCategorySelected } = useEcommerce();

@@ -5,8 +5,8 @@ import { useAuth } from "../../../hooks/auth";
 
 import { IProduct } from "../../../interfaces/IProduct";
 
-import { productService } from "../../../services/productService";
-import { familyService } from "../../../services/familyService";
+import productService from "../../../services/productService";
+import familyService from "../../../services/familyService";
 
 import Balance from "../../../components/Ecommerce/Balance";
 import TopBar from "../../../components/Layout/TopBar";
@@ -24,9 +24,11 @@ import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
 import { IFamily } from "../../../interfaces/IFamily";
 
 const Home: React.FC = () => {
-  const { token } = useAuth();
-  familyService.token = token;
-  productService.token = token;
+  const { token, logout } = useAuth();
+  if (!token) logout();
+
+  familyService.setToken(token);
+  productService.setToken(token);
 
   const { navigate } = useNavigation();
   const [loader, setLoader] = useState(true);

@@ -34,7 +34,6 @@ const BottomTabsRoutes: React.FC = () => (
         height: 20,
         alignItems: "center",
         marginLeft: 5,
-        color: Colors.header.txtInactive,
       },
       showLabel: true,
       labelStyle: {
@@ -44,8 +43,8 @@ const BottomTabsRoutes: React.FC = () => (
       },
       inactiveBackgroundColor: Colors.header.primary,
       activeBackgroundColor: Colors.header.bgActive,
-      inactiveTintColor: Colors.header.txtInactive,
-      activeTintColor: Colors.header.txtActive,
+      inactiveTintColor: "#999",
+      activeTintColor: "#fff",
     }}
   >
     <Screen

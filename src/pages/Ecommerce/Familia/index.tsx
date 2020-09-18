@@ -7,7 +7,7 @@ import Foundation from "react-native-vector-icons/Foundation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
-import { familyService } from "../../../services/familyService";
+import familyService from "../../../services/familyService";
 
 import Balance from "../../../components/Ecommerce/Balance";
 import TopBar from "../../../components/Layout/TopBar";
@@ -21,11 +21,16 @@ import { IFamily } from "../../../interfaces/IFamily";
 
 import { FamilyIcon } from "./styles";
 import { useEcommerce } from "../../../hooks/ecommerce";
+import { useAuth } from "../../../hooks/auth";
 
 const Familia: React.FC = () => {
+  const { token, logout } = useAuth();
+  if (!token) logout();
+  familyService.setToken(token);
   const [loader, setLoader] = useState(true);
   const [families, setFamilies] = useState<IFamily[]>([]);
   const { setFamilySelected } = useEcommerce();
+  const iconSize = 20;
 
   const { navigate } = useNavigation();
 
@@ -42,27 +47,33 @@ const Familia: React.FC = () => {
     switch (family.iconType) {
       case "MaterialCommunityIcons":
         icon = (
-          <MaterialCommunityIcons name={family.icon} color="white" size={30} />
+          <MaterialCommunityIcons
+            name={family.icon}
+            color="white"
+            size={iconSize}
+          />
         );
         break;
 
       case "Foundation":
-        icon = <Foundation name={family.icon} color="white" size={30} />;
+        icon = <Foundation name={family.icon} color="white" size={iconSize} />;
         break;
 
       case "MaterialIcons":
-        icon = <MaterialIcons name={family.icon} color="white" size={30} />;
+        icon = (
+          <MaterialIcons name={family.icon} color="white" size={iconSize} />
+        );
         break;
 
       default:
-        icon = <Ionicons name={family.icon} color="white" size={30} />;
+        icon = <Ionicons name={family.icon} color="white" size={iconSize} />;
         break;
     }
 
     return <FamilyIcon>{icon}</FamilyIcon>;
   };
 
-  const handleClickCategoy = (family: IFamily) => {
+  const handleClickCategory = (family: IFamily) => {
     setFamilySelected(family);
     navigate("Categoria");
   };
@@ -104,7 +115,7 @@ const Familia: React.FC = () => {
                 style={{
                   marginBottom: 5,
                 }}
-                onPress={() => handleClickCategoy(family)}
+                onPress={() => handleClickCategory(family)}
               />
             ))
           )}

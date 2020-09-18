@@ -1,31 +1,13 @@
 import { ICategories } from "../interfaces/ICategories";
-// import api from "./api";
+import { ServiceBase } from "./ServiceBase";
+import api from "./api";
 
-export const categoryService = {
-  token: null,
-
+class CategoryService extends ServiceBase {
   async getCategories(familyId?: string): Promise<ICategories | undefined> {
     try {
-      const data = {
-        data: [
-          {
-            id: "123",
-            text: "teset",
-          },
-          {
-            id: "456",
-            text: "teset",
-          },
-          {
-            id: "789",
-            text: "teset",
-          },
-          {
-            id: "018",
-            text: "teset",
-          },
-        ],
-      };
+      const { data } = await api.get(
+        `/api/ecommerce/categorias?api_token=${this.token}&familia_id=${familyId}`
+      );
 
       return new Promise<ICategories>((resolve, reject) => {
         resolve(data);
@@ -37,5 +19,7 @@ export const categoryService = {
     return new Promise<ICategories>((resolve, reject) => {
       resolve([]);
     });
-  },
-};
+  }
+}
+
+export default new CategoryService();

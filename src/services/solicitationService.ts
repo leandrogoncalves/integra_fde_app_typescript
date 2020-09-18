@@ -1,9 +1,8 @@
 import { ISolicitations } from "../interfaces/ISolicitations";
+import { ServiceBase } from "./ServiceBase";
 import api from "./api";
 
-export const solicitationService = {
-  token: null,
-
+class SolicitationService extends ServiceBase {
   async getSolicitations(): Promise<ISolicitations | undefined> {
     try {
       const { data } = await api.get(
@@ -16,5 +15,7 @@ export const solicitationService = {
     }
 
     return undefined;
-  },
-};
+  }
+}
+
+export default new SolicitationService();

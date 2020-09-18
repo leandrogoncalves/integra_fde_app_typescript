@@ -3,10 +3,10 @@ import {
   IProductsMoreSolded,
   IProducts,
 } from "../interfaces/IProduct";
+import { ServiceBase } from "./ServiceBase";
 import api from "./api";
 
-export const productService = {
-  token: null,
+class ProductService extends ServiceBase {
   /**
    * Obtem produtos em destaque
    */
@@ -26,7 +26,7 @@ export const productService = {
     return new Promise<IProductsHighlight>((resolve, reject) => {
       resolve(undefined);
     });
-  },
+  }
 
   /**
    * Obtem produtos mais vendidos
@@ -47,7 +47,7 @@ export const productService = {
     return new Promise<IProductsMoreSolded>((resolve, reject) => {
       resolve(undefined);
     });
-  },
+  }
 
   /**
    * Obtem produtos encontrados na busca
@@ -68,5 +68,7 @@ export const productService = {
     return new Promise<IProducts>((resolve, reject) => {
       resolve(undefined);
     });
-  },
-};
+  }
+}
+
+export default new ProductService();
