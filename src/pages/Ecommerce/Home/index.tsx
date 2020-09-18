@@ -24,9 +24,6 @@ import Loader from "../../../components/Layout/Loader";
 import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
 
 const Home: React.FC = () => {
-  console.log("====================================");
-  console.log("categories1", categories);
-  console.log("====================================");
   const { token } = useAuth();
   categoryService.token = token;
   productService.token = token;

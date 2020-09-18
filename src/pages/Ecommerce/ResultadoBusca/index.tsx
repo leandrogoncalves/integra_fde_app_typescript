@@ -5,7 +5,7 @@ import { IProduct } from "../../../interfaces/IProduct";
 
 import { productService } from "../../../services/productService";
 
-import Solicitante from "../../../components/Ecommerce/Solicitante";
+import Solicitante from "../../../components/Ecommerce/Balance";
 import ProductItem from "../../../components/Ecommerce/ProductItem";
 import { Container } from "../../../components/Layout/Container";
 import Loader from "../../../components/Layout/Loader";
@@ -16,7 +16,7 @@ import Button from "../../../components/Forms/Button";
 
 import { ProductContainer } from "./styles";
 
-const Busca: React.FC = () => {
+const ResultadoBusca: React.FC = () => {
   const [loader, setLoader] = useState(true);
   const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -81,4 +81,4 @@ const Busca: React.FC = () => {
   );
 };
 
-export default Busca;
+export default ResultadoBusca;
