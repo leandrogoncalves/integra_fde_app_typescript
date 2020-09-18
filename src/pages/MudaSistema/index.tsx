@@ -14,7 +14,7 @@ const MudaSistema: React.FC = () => {
 
   return (
     <Container>
-      <TopBar title="Muda Sistema" iconExit />
+      <TopBar title="Muda Sistema" drawerMenuLink />
       <Title>Selecione o sistema desejado:</Title>
       <Card style={styles.card}>
         <ButtomSystem onPress={() => navigate("SolicitacaoRoutes")}>

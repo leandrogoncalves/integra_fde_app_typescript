@@ -5,8 +5,8 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Avatar } from "react-native-elements";
 
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-import { useAuth } from "../../../../hooks/auth";
-import { useEcommerce } from "../../../../hooks/ecommerce";
+import { useAuth } from "../../../hooks/auth";
+import { useEcommerce } from "../../../hooks/ecommerce";
 
 import {
   DrawerContainer,
@@ -21,11 +21,8 @@ import {
   School,
 } from "./styles";
 
-export function CustomDrawerContent(props) {
+export function CustomDrawerContentGeral(props) {
   const { user, logout } = useAuth();
-  const { profile, school } = useEcommerce();
-
-  const { navigate } = useNavigation();
 
   return (
     <DrawerContainer>
@@ -46,29 +43,9 @@ export function CustomDrawerContent(props) {
               </UserSector>
             </UserText>
           </UserInfoSection>
-          <UserText style={{ marginTop: 20 }}>
-            <UserProfile>{profile?.label}</UserProfile>
-            <School>{school?.label}</School>
-          </UserText>
         </DrawerContent>
-
-        <DrawerSection style={styles.drawerSection}>
-          <DrawerItem
-            icon={({ color, size }) => (
-              <Icon name="key-change" color={color} size={size} />
-            )}
-            label="Muda Sistema"
-            onPress={() => navigate("MudaSistema")}
-          />
-          <DrawerItem
-            icon={({ color, size }) => (
-              <Icon name="face-profile" color={color} size={size} />
-            )}
-            label="Selecionar Perfil"
-            onPress={() => navigate("SelecionaPerfil")}
-          />
-        </DrawerSection>
       </DrawerContentScrollView>
+
       <DrawerSection style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({ color, size }) => (

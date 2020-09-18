@@ -7,7 +7,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { Colors } from "../../config/ColorsConfig";
 
 import DrawerMenuHome from "./drawerMenu/drawerMenuHome.routes";
-import DrawerMenuBusca from "./drawerMenu/drawerMenuBusca.routes";
+import DrawerMenuFamilia from "./drawerMenu/drawerMenuFamilia.routes";
 import DrawerMenuFavoritos from "./drawerMenu/drawerMenuFavoritos.routes";
 import DrawerMenuCarrinho from "./drawerMenu/drawerMenuCarrinho.routes";
 import DrawerMenuMinhaConta from "./drawerMenu/drawerMenuMinhaConta.routes";
@@ -59,8 +59,8 @@ const BottomTabsRoutes: React.FC = () => (
       }}
     />
     <Screen
-      name="DrawerMenuBusca"
-      component={DrawerMenuBusca}
+      name="DrawerMenuFamilia"
+      component={DrawerMenuFamilia}
       options={{
         tabBarLabel: "Buscar",
         tabBarIcon: ({ color, size, focused }) => {

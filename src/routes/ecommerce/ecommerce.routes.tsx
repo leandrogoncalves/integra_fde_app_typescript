@@ -7,6 +7,9 @@ import BottomTabsRoutes from "./bottomTabs.routes";
 import HistoricoBusca from "../../pages/Ecommerce/HistoricoBusca";
 import TopTabsProduct from "./topTabsProduct.routes";
 import SelecionaPerfil from "../../pages/Ecommerce/SelecionaPerfil";
+import ResultadoBusca from "../../pages/Ecommerce/ResultadoBusca";
+import Categoria from "../../pages/Ecommerce/Categoria";
+import Subcategoria from "../../pages/Ecommerce/Subcategoria";
 
 const Ecommerce = createStackNavigator();
 
@@ -38,6 +41,9 @@ const EcommerceRoutes: React.FC = () => (
         }}
       />
       <Ecommerce.Screen name="SelecionaPerfil" component={SelecionaPerfil} />
+      <Ecommerce.Screen name="Categoria" component={Categoria} />
+      <Ecommerce.Screen name="Subcategoria" component={Subcategoria} />
+      <Ecommerce.Screen name="ResultadoBusca" component={ResultadoBusca} />
     </Ecommerce.Navigator>
   </EcommerceProvider>
 );

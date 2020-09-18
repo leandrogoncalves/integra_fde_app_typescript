@@ -1,14 +1,31 @@
 import { ICategories } from "../interfaces/ICategories";
-import api from "./api";
+// import api from "./api";
 
 export const categoryService = {
   token: null,
 
-  async getCategories(): Promise<ICategories | undefined> {
+  async getCategories(familyId?: string): Promise<ICategories | undefined> {
     try {
-      const { data } = await api.get(
-        `/api/ecommerce/categorias?api_token=${this.token}`
-      );
+      const data = {
+        data: [
+          {
+            id: "123",
+            text: "teset",
+          },
+          {
+            id: "456",
+            text: "teset",
+          },
+          {
+            id: "789",
+            text: "teset",
+          },
+          {
+            id: "018",
+            text: "teset",
+          },
+        ],
+      };
 
       return new Promise<ICategories>((resolve, reject) => {
         resolve(data);
@@ -18,7 +35,7 @@ export const categoryService = {
     }
 
     return new Promise<ICategories>((resolve, reject) => {
-      resolve(undefined);
+      resolve([]);
     });
   },
 };

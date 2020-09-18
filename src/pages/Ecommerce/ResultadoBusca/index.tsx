@@ -40,13 +40,13 @@ const ResultadoBusca: React.FC = () => {
     <Container>
       {!loader ? null : <Loader />}
 
-      <TopBar title="Buscar" iconSearch drawerMenuLink />
+      <TopBar title="Resultado da Busca" iconSearch iconBack />
       <Solicitante />
 
       <ScrollView keyboardShouldPersistTaps="handled">
         {/* Resultado da busca */}
 
-        <Title>Resultado da Busca</Title>
+        <Title>8 Resultados encontrados</Title>
 
         {/* Linha de produtos */}
         {products.length === 0 ? (

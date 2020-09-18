@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import EcommerceRoutes from "./ecommerce/ecommerce.routes";
 import SolicitacaoRoutes from "./solicitacao/solicitacao.routes";
-import MudaSistema from "../pages/MudaSistema";
+import DrawerMenuMudaSistema from "./geral/drawerMenuMudaSistema.routes";
 
 const App = createStackNavigator();
 
@@ -12,7 +12,10 @@ const AppRoutes: React.FC = () => (
       headerShown: false,
     }}
   >
-    <App.Screen name="MudaSistema" component={MudaSistema} />
+    <App.Screen
+      name="DrawerMenuMudaSistema"
+      component={DrawerMenuMudaSistema}
+    />
     <App.Screen name="EcommerceRoutes" component={EcommerceRoutes} />
     <App.Screen name="SolicitacaoRoutes" component={SolicitacaoRoutes} />
   </App.Navigator>

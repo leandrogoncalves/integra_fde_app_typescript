@@ -39,7 +39,7 @@ const ProductItemMini: React.FC = ({
   };
 
   return (
-    <Product {...rest}>
+    <Product {...rest} key={id}>
       <TouchableOpacity onPress={() => handleClick()}>
         <ProductImage>
           {!images ? (

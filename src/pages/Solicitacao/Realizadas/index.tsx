@@ -35,7 +35,7 @@ const Realizadas: React.FC = () => {
 
   const handleClick = (solicitation: ISolicitation) => {
     setSolicitationDetail(solicitation);
-    navigate("homeSolicitacao");
+    navigate("DetalhesSolciitacao");
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Realizadas: React.FC = () => {
                     onPress={() => handleClick(solicitation)}
                     style={{ paddingRight: 5 }}
                   >
-                    <FontAwesome name="eye" size={25} color="#999" />
+                    <FontAwesome name="eye" size={25} color="#258e1a" />
                   </TouchableOpacity>
                 }
                 style={{

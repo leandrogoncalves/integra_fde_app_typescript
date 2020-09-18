@@ -1,8 +1,8 @@
-import styled from 'styled-components/native';
-import { Colors } from '../../../config/ColorsConfig';
-import { Fonts } from '../../../config/FontConfig';
+import styled from "styled-components/native";
+import { Colors } from "../../../config/ColorsConfig";
+import { Fonts } from "../../../config/FontConfig";
 
-export const Category = styled.View`
+export const Family = styled.View`
   width: 80px;
   height: 90px;
   margin: 10px;
@@ -10,10 +10,9 @@ export const Category = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
 `;
 
-export const CategoryIcon = styled.View`
+export const FamilyIcon = styled.View`
   align-items: center;
   justify-content: center;
   background-color: ${Colors.highlight.primary};
@@ -23,7 +22,7 @@ export const CategoryIcon = styled.View`
   margin-bottom: 5px;
 `;
 
-export const CategoryText = styled.Text`
+export const FamilyText = styled.Text`
   font-family: ${Fonts.family.default};
   font-size: 12px;
   color: ${Colors.highlight.primary};

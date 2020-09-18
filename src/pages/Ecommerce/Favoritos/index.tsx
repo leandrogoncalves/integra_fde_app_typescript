@@ -8,7 +8,7 @@ const Favoritos: React.FC = () => {
   return (
     <Container>
       <TopBar title="Favoritos" />
-      <Title>Favoritos</Title>
+      <Title>Nenhum produto adicionado</Title>
     </Container>
   );
 };

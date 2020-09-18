@@ -3,11 +3,10 @@ import { ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../../hooks/auth";
 
-import { ICategory } from "../../../interfaces/ICategories";
 import { IProduct } from "../../../interfaces/IProduct";
 
 import { productService } from "../../../services/productService";
-import { categoryService } from "../../../services/categoryService";
+import { familyService } from "../../../services/familyService";
 
 import Balance from "../../../components/Ecommerce/Balance";
 import TopBar from "../../../components/Layout/TopBar";
@@ -16,29 +15,30 @@ import { Title } from "../../../components/Typography/Title";
 import { Subtitle } from "../../../components/Typography/Subtitle";
 import { HorizontalDivider } from "../../../components/Layout/HorizontalDivider";
 import { VerticalDivider } from "../../../components/Layout/VerticalDivider";
-import ProductCategoryIcon from "../../../components/Ecommerce/ProductCategoryIcon";
+import ProductFamilyIcon from "../../../components/Ecommerce/ProductFamilyIcon";
 import ProductItemMini from "../../../components/Ecommerce/ProductItemMini";
 import Card from "../../../components/Layout/Card";
 import Loader from "../../../components/Layout/Loader";
 
 import { ProductContainer, SeeMore, SeeMoreText } from "./styles";
+import { IFamily } from "../../../interfaces/IFamily";
 
 const Home: React.FC = () => {
   const { token } = useAuth();
-  categoryService.token = token;
+  familyService.token = token;
   productService.token = token;
 
   const { navigate } = useNavigation();
   const [loader, setLoader] = useState(true);
-  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [families, setFamilies] = useState<IFamily[]>([]);
   const [productsHighlights, setProductsHighlights] = useState<IProduct[]>([]);
   const [productsMoreSolded, setProductsMoreSolded] = useState<IProduct[]>([]);
 
-  async function loadCategories() {
-    const { data } = await categoryService.getCategories();
+  async function loadFamilies() {
+    const { data } = await familyService.getFamilies();
 
     if (data) {
-      setCategories(data);
+      setFamilies(data);
     }
   }
 
@@ -60,17 +60,17 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     if (
-      categories.length === 0 ||
+      families.length === 0 ||
       productsHighlights.length === 0 ||
       productsMoreSolded.length === 0
     ) {
-      loadCategories();
+      loadFamilies();
       loadProductHighlight();
       loadProductsMoreSolded();
     } else {
       setLoader(false);
     }
-  }, [categories, productsHighlights, productsMoreSolded]);
+  }, [families, productsHighlights, productsMoreSolded]);
 
   return (
     <Container>
@@ -81,25 +81,18 @@ const Home: React.FC = () => {
       <Balance />
 
       <ScrollView keyboardShouldPersistTaps="handled">
-        {/* Categorias */}
+        {/* Familias */}
         <Card>
-          <Title>Categorias</Title>
+          <Title>Familias</Title>
 
           <HorizontalDivider />
 
           <ScrollView horizontal>
-            {categories.length === 0 ? (
+            {families.length === 0 ? (
               <Subtitle>Carregando...</Subtitle>
             ) : (
-              categories?.map((category) => (
-                <ProductCategoryIcon
-                  key={category?.id}
-                  id={category?.id}
-                  route={category?.route}
-                  iconName={category?.icon}
-                  iconType={category?.iconType}
-                  text={category?.text}
-                />
+              families?.map((family) => (
+                <ProductFamilyIcon key={family.id} family={family} />
               ))
             )}
           </ScrollView>
@@ -121,7 +114,6 @@ const Home: React.FC = () => {
                   {productList.map((product, index) => (
                     <>
                       <ProductItemMini
-                        key={product?.id || index}
                         id={product?.id}
                         name={product?.name}
                         category={product?.category}
@@ -163,7 +155,6 @@ const Home: React.FC = () => {
                   {productList.map((product, index) => (
                     <>
                       <ProductItemMini
-                        key={product?.id || index}
                         id={product?.id}
                         name={product?.name}
                         category={product?.category}

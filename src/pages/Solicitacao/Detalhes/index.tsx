@@ -10,7 +10,7 @@ import ListItem from "../../../components/Layout/ListItem";
 
 import { ListText, ListTitle } from "./styles";
 
-const Home: React.FC = () => {
+const Detalhes: React.FC = () => {
   const { solicitationDetail } = useSolicitation();
 
   const styles = {
@@ -113,4 +113,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Detalhes;

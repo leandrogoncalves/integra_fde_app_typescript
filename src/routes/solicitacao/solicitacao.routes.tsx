@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Colors } from "../../config/ColorsConfig";
 import TopTabsSolicitacao from "./topTabsSolicitacao.routes";
-import Home from "../../pages/Solicitacao/Home";
+import Detalhes from "../../pages/Solicitacao/Detalhes";
 import { SolicitationProvider } from "../../hooks/solicitation";
 
 const Solicitacao = createStackNavigator();
@@ -28,9 +28,9 @@ const SolicitacaoRoutes: React.FC = () => (
         component={TopTabsSolicitacao}
       />
       <Solicitacao.Screen
-        name="homeSolicitacao"
+        name="DetalhesSolciitacao"
         options={{ title: "Solicitação" }}
-        component={Home}
+        component={Detalhes}
       />
     </Solicitacao.Navigator>
   </SolicitationProvider>

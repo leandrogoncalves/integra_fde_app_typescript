@@ -39,8 +39,7 @@ const TopBar: React.FC = ({
           ) : (
             <TouchableOpacity
               onPress={() =>
-                drawerMenuLink && dispatch(DrawerActions.toggleDrawer())
-              }
+                drawerMenuLink && dispatch(DrawerActions.toggleDrawer())}
             >
               <Image source={logoImg} style={{ height: 40, width: 80 }} />
             </TouchableOpacity>

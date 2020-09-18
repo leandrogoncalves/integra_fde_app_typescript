@@ -19,6 +19,7 @@ const ListItem: React.FC = ({
   dense,
   margin,
   padding,
+  itemKey,
   ...rest
 }) => {
   const listStyle = !dense
@@ -28,19 +29,19 @@ const ListItem: React.FC = ({
         paddingBottom: 10,
       };
 
-  if (margin && margin.hasOwnProperty("top")) {
+  if (margin && margin?.top) {
     listStyle.marginTop = margin.top;
   }
 
-  if (margin && margin.hasOwnProperty("bottom")) {
+  if (margin && margin?.bottom) {
     listStyle.marginBottom = margin.bottom;
   }
 
-  if (padding && padding.hasOwnProperty("top")) {
+  if (padding && padding?.top) {
     listStyle.paddingTop = padding.top;
   }
 
-  if (padding && padding.hasOwnProperty("bottom")) {
+  if (padding && padding?.bottom) {
     listStyle.paddingBottom = padding.bottom;
   }
 
@@ -49,6 +50,7 @@ const ListItem: React.FC = ({
       {...rest}
       bottomDivider={divider}
       containerStyle={listStyle}
+      key={itemKey}
     >
       {!icon ? null : (
         <MaterialIcons
