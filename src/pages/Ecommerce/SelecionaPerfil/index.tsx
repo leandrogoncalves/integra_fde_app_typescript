@@ -21,8 +21,8 @@ const SelecionaPerfil: React.FC = () => {
   const { profile, setProfile, school, setSchool } = useEcommerce();
   const [profileLoading, setProfileLoading] = useState(true);
   const [schoolLoading, setSchoolLoading] = useState(true);
-  const [profiles, setProfiles] = useState<IProfile>([]);
-  const [schools, setSchools] = useState<ISchool>([]);
+  const [profiles, setProfiles] = useState<IProfile[]>([]);
+  const [schools, setSchools] = useState<ISchool[]>([]);
 
   async function loadProfiles() {
     const { data } = await profileService.getProfiles();
@@ -39,6 +39,20 @@ const SelecionaPerfil: React.FC = () => {
       setSchoolLoading(false);
     }
   }
+
+  const handleSelectProfile = (profileValue: string) => {
+    const [profileSelected] = profiles.filter(
+      (perfil) => perfil.value === profileValue
+    );
+    setProfile(profileSelected);
+  };
+
+  const handleSelectedSchool = (schoolValue: string) => {
+    const [schoolSelected] = schools.filter(
+      (escola) => escola.value === schoolValue
+    );
+    setSchool(schoolSelected);
+  };
 
   useEffect(() => {
     loadProfiles();
@@ -68,9 +82,10 @@ const SelecionaPerfil: React.FC = () => {
       <Card>
         <View style={styles.picker}>
           <Picker
-            placeholder="Perfil..."
-            selectedValue={profile}
-            onValueChange={(itemValue, itemIndex) => setProfile(itemValue)}
+            selectedValue={profile ? profile?.value : null}
+            onValueChange={(profileValue, itemIndex) =>
+              handleSelectProfile(profileValue)
+            }
           >
             {profileLoading ? (
               <Picker.Item label="Carregando..." value="" />
@@ -88,8 +103,10 @@ const SelecionaPerfil: React.FC = () => {
 
         <View style={styles.picker}>
           <Picker
-            selectedValue={school}
-            onValueChange={(itemValue, itemIndex) => setSchool(itemValue)}
+            selectedValue={school ? school?.value : null}
+            onValueChange={(schoolValue, itemIndex) =>
+              handleSelectedSchool(schoolValue)
+            }
           >
             {schoolLoading ? (
               <Picker.Item label="Carregando..." value="" />

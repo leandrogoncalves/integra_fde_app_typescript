@@ -1,10 +1,12 @@
 import React from "react";
+import { Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Avatar } from "react-native-elements";
 
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { useAuth } from "../../../../hooks/auth";
+import { useEcommerce } from "../../../../hooks/ecommerce";
 
 import {
   DrawerContainer,
@@ -13,12 +15,15 @@ import {
   UserText,
   UserName,
   UserProfile,
+  UserSector,
   DrawerSection,
   styles,
+  School,
 } from "./styles";
 
 export function CustomDrawerContent(props) {
   const { user, logout } = useAuth();
+  const { profile, school } = useEcommerce();
 
   const { navigate } = useNavigation();
 
@@ -36,9 +41,15 @@ export function CustomDrawerContent(props) {
             />
             <UserText>
               <UserName textBreakStrategy="simple">{user.name}</UserName>
-              <UserProfile>{user.department}</UserProfile>
+              <UserSector textBreakStrategy="simple">
+                {user.department}
+              </UserSector>
             </UserText>
           </UserInfoSection>
+          <UserText style={{ marginTop: 10 }}>
+            <UserProfile>{profile?.label}</UserProfile>
+            <School>{school?.label}</School>
+          </UserText>
         </DrawerContent>
 
         <DrawerSection style={styles.drawerSection}>

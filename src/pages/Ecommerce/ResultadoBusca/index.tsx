@@ -5,7 +5,7 @@ import { IProduct } from "../../../interfaces/IProduct";
 
 import { productService } from "../../../services/productService";
 
-import Balance from "../../../components/Ecommerce/Balance";
+import Solicitante from "../../../components/Ecommerce/Solicitante";
 import ProductItem from "../../../components/Ecommerce/ProductItem";
 import { Container } from "../../../components/Layout/Container";
 import Loader from "../../../components/Layout/Loader";
@@ -41,7 +41,7 @@ const Busca: React.FC = () => {
       {!loader ? null : <Loader />}
 
       <TopBar title="Buscar" iconSearch drawerMenuLink />
-      <Balance />
+      <Solicitante />
 
       <ScrollView keyboardShouldPersistTaps="handled">
         {/* Resultado da busca */}

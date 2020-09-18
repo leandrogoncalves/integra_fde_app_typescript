@@ -9,7 +9,7 @@ import { IProduct } from "../../../interfaces/IProduct";
 import { productService } from "../../../services/productService";
 import { categoryService } from "../../../services/categoryService";
 
-import Solicitante from "../../../components/Ecommerce/Solicitante";
+import Balance from "../../../components/Ecommerce/Balance";
 import TopBar from "../../../components/Layout/TopBar";
 import { Container } from "../../../components/Layout/Container";
 import { Title } from "../../../components/Typography/Title";
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
 
       <TopBar title="Início" drawerMenuLink />
 
-      <Solicitante />
+      <Balance />
 
       <ScrollView keyboardShouldPersistTaps="handled">
         {/* Categorias */}

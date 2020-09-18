@@ -12,11 +12,11 @@ export const profileService = {
           },
           {
             label: "Solicitante - Escola",
-            value: "Solicitante - Escola",
+            value: "123",
           },
           {
             label: "Solicitante - FDE",
-            value: "Solicitante - FDE",
+            value: "456",
           },
         ],
       });

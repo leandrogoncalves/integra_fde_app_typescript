@@ -37,10 +37,21 @@ export const UserName = styled.Text`
   font-family: ${Fonts.family.bold};
 `;
 
-export const UserProfile = styled.Text`
+export const UserSector = styled.Text`
   font-size: 14px;
   font-family: ${Fonts.family.default};
   line-height: 14px;
+`;
+
+export const UserProfile = styled.Text`
+  font-size: 13px;
+  font-family: ${Fonts.family.bold};
+  line-height: 14px;
+`;
+export const School = styled.Text`
+  font-size: 12px;
+  font-family: ${Fonts.family.default};
+  line-height: 16px;
 `;
 
 export const styles = StyleSheet.create({

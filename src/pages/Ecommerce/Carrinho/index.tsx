@@ -5,7 +5,7 @@ import TopBar from "../../../components/Layout/TopBar";
 import Card from "../../../components/Layout/Card";
 
 import ProductListItem from "../../../components/Ecommerce/ProductListItem";
-import Solicitante from "../../../components/Ecommerce/Solicitante";
+import Balance from "../../../components/Ecommerce/Balance";
 import { Container } from "../../../components/Layout/Container";
 import { Title } from "../../../components/Typography/Title";
 import ListItem from "../../../components/Layout/ListItem";
@@ -17,7 +17,7 @@ const Carrinho: React.FC = () => {
     <Container>
       <TopBar title="Carrinho" drawerMenuLink />
 
-      <Solicitante />
+      <Balance />
 
       <Title>Detalhes</Title>
       <Card>

@@ -1,16 +1,20 @@
 import React, { createContext, useState, useContext } from "react";
 import { IEcommerceContextData } from "../interfaces/IEcommerceContextData";
 import { IProduct } from "../interfaces/IProduct";
+import { IProfile } from "../interfaces/IProfiles";
+import { ISchool } from "../interfaces/ISchools";
 
 const EcommerceContext = createContext<IEcommerceContextData>(
   {} as IEcommerceContextData
 );
 
 const EcommerceProvider: React.FC = ({ children }) => {
-  const [profile, setProfile] = useState<string>("");
-  const [school, setSchool] = useState<string>("");
+  const [profile, setProfile] = useState<IProfile | undefined>({} as IProfile);
+  const [school, setSchool] = useState<ISchool | undefined>({} as ISchool);
   const [productDetail, setProductDetail] = useState<IProduct | undefined>();
   const [productQuantity, setProductQuantity] = useState<number>(1);
+  const [initialBalance, setInitialBalance] = useState<number>(2000);
+  const [totalBalance, setTotalBalance] = useState<number>(2000);
 
   return (
     <EcommerceContext.Provider
@@ -23,6 +27,8 @@ const EcommerceProvider: React.FC = ({ children }) => {
         setProductDetail,
         productQuantity,
         setProductQuantity,
+        initialBalance,
+        totalBalance,
       }}
     >
       {children}

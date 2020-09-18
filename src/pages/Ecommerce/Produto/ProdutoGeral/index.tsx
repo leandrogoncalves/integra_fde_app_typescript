@@ -3,7 +3,7 @@ import { ScrollView, Alert, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import Solicitante from "../../../../components/Ecommerce/Solicitante";
+import Balance from "../../../../components/Ecommerce/Balance";
 import { Container } from "../../../../components/Layout/Container";
 import Card from "../../../../components/Layout/Card";
 import ProductItem from "../../../../components/Ecommerce/ProductItem";
@@ -37,7 +37,7 @@ const ProdutoGeral: React.FC = () => {
 
   return (
     <Container>
-      <Solicitante />
+      <Balance />
 
       <ScrollView keyboardShouldPersistTaps="handled">
         <Card>

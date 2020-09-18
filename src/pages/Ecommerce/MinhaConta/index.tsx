@@ -3,16 +3,19 @@ import { Alert } from "react-native";
 import { Container } from "../../../components/Layout/Container";
 import TopBar from "../../../components/Layout/TopBar";
 import ListItem from "../../../components/Layout/ListItem";
+import { useAuth } from "../../../hooks/auth";
 
 const MinhaConta: React.FC = () => {
+  const { user } = useAuth();
+
   return (
     <Container>
       <TopBar title="Minha Conta" drawerMenuLink />
       <ListItem
         divider
         icon={{ name: "person-pin" }}
-        title="Leandro Gonçalves da Silva"
-        subtitle="DTI/GSI"
+        title={user.name}
+        subtitle={user.department}
         onPress={() => Alert.alert("Perfil")}
       />
       <ListItem
