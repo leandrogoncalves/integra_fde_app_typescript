@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
+import { Image } from "react-native-elements";
 
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";

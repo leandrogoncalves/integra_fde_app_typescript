@@ -16,6 +16,8 @@ import Card from "../../../../components/Layout/Card";
 import ProductItem from "../../../../components/Ecommerce/ProductItem";
 import ProductQuantity from "../../../../components/Ecommerce/ProductQuantity";
 
+import { ICartItem } from "../../../../interfaces/ICartItem";
+
 import {
   ProductContainer,
   AddToCart,
@@ -31,23 +33,22 @@ const ProdutoGeral: React.FC = () => {
     productDetail,
     favoriteProducts,
     setFavoriteProducts,
+    productQuantity,
+    addToCart,
   } = useEcommerce();
   const [favoriteSelected, setFavoriteSelected] = useState<boolean>(false);
   const [favoriteColor, setFavoriteColor] = useState<string>("black");
   const [favoriteIcon, setFavoriteIcon] = useState<string>("heart-o");
 
-  const handleClick = () => {
-    Alert.alert("Confirmação", "Deseja adicionar a sacola?", [
-      {
-        text: "Ok",
-        onPress: () => navigate("DrawerMenuPedidos"),
-      },
-      {
-        text: "Cancelar",
-        onPress: () => console.log("Cancel Pressed"),
-        style: "cancel",
-      },
-    ]);
+  const handleAddToCart = () => {
+    const cartItem = {
+      product: productDetail,
+      amount: productQuantity,
+      category: productDetail?.category,
+    } as ICartItem;
+
+    addToCart(cartItem);
+    navigate("DrawerMenuCarrinho");
   };
 
   const setUserFavoriteProducts = useCallback(async () => {
@@ -124,7 +125,7 @@ const ProdutoGeral: React.FC = () => {
                 </TouchableOpacity>
               </FavoriteProduct>
               <ProductQuantity />
-              <AddToCart onPress={() => handleClick()}>
+              <AddToCart onPress={() => handleAddToCart()}>
                 <MaterialCommunityIcons name="cart" size={25} color="white" />
                 <AddToCartText style={{ marginLeft: 10 }}>
                   Adicionar

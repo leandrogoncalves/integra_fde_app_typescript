@@ -4,7 +4,7 @@ import { Colors } from "../../../config/ColorsConfig";
 import { Fonts } from "../../../config/FontConfig";
 
 export const Container = styled.View`
-  width: 120px;
+  width: ${({ buttonSize }) => (buttonSize ? 90 : 120)}px;
   height: 35px;
   margin-top: 10px;
 
@@ -25,5 +25,8 @@ export const ProductQuantityInput = styled.Text`
 export const styles = StyleSheet.create({
   buttonContainer: {
     width: 40,
+  },
+  buttonContainerMini: {
+    width: 30,
   },
 });

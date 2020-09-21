@@ -1,6 +1,10 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, Alert, TouchableHighlight } from "react-native";
+import { Image } from "react-native-elements";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
 import ListItem from "../../Layout/ListItem";
+import ProductQuantity from "../ProductQuantity";
 
 import { ProductImage, ProductPrice, RemoveItem } from "./styles";
 
@@ -9,6 +13,9 @@ const ProductListItem: React.FC = ({
   name,
   category,
   price,
+  images,
+  buttonSize,
+  productId,
   ...rest
 }) => {
   const handleClick = () => {
@@ -30,18 +37,28 @@ const ProductListItem: React.FC = ({
       divider
       leftElement={(
         <ProductImage>
-          <Text style={{ color: "white" }}>Foto</Text>
+          {!images ? (
+            <Text style={{ color: "white" }}>Foto</Text>
+          ) : (
+            <Image
+              source={{ uri: images[0] }}
+              style={{ width: 70, height: 70 }}
+            />
+          )}
         </ProductImage>
       )}
       title={name}
       subtitle={category}
       rightElement={(
         <>
-          <View>
-            <ProductPrice>R$ {price}</ProductPrice>
-            <TouchableOpacity onPress={() => handleClick()}>
-              <RemoveItem>Remover</RemoveItem>
-            </TouchableOpacity>
+          <View style={{ alignItems: "flex-end" }}>
+            <View style={{ flexDirection: "row" }}>
+              <ProductPrice>R$ {price}</ProductPrice>
+              <TouchableHighlight onPress={() => handleClick()}>
+                <FontAwesome name="trash-o" size={20} color="red" />
+              </TouchableHighlight>
+            </View>
+            <ProductQuantity productId={productId} buttonSize={buttonSize} />
           </View>
         </>
       )}

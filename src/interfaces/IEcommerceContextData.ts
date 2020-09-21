@@ -1,3 +1,4 @@
+import { ICartItem } from "./ICartItem";
 import { ICategory } from "./ICategories";
 import { IFamily } from "./IFamily";
 import { IProduct } from "./IProduct";
@@ -6,15 +7,15 @@ import { ISchool } from "./ISchools";
 import { ISubcategories } from "./ISubcategories";
 
 export interface IEcommerceContextData {
-  profile: IProfile;
-  school: ISchool;
+  profile: IProfile | undefined;
+  school: ISchool | undefined;
   setProfile: any;
   setSchool: any;
-  familySelected: IFamily;
+  familySelected: IFamily | undefined;
   setFamilySelected: any;
-  categorySelected: ICategory;
+  categorySelected: ICategory | undefined;
   setCategorySelected: any;
-  subCategorySelected: ISubcategories;
+  subCategorySelected: ISubcategories | undefined;
   setSubcategorySelected: any;
   productDetail: IProduct | undefined;
   setProductDetail: any;
@@ -28,4 +29,8 @@ export interface IEcommerceContextData {
   setFavoriteProducts: any;
   searchInputValue: string;
   setSearchInputValue: any;
+  cart: ICartItem[];
+  setCart: any;
+  addToCart: any;
+  removeFromCart: any;
 }

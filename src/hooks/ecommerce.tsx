@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext } from "react";
+/* eslint-disable no-use-before-define */
+import React, { createContext, useState, useContext, useCallback } from "react";
+import { ICartItem } from "../interfaces/ICartItem";
 import { ICategory } from "../interfaces/ICategories";
 import { IEcommerceContextData } from "../interfaces/IEcommerceContextData";
 import { IFamily } from "../interfaces/IFamily";
@@ -27,6 +29,33 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const [totalBalance, setTotalBalance] = useState<number>(2000);
   const [favoriteProducts, setFavoriteProducts] = useState<IProduct[]>([]);
   const [searchInputValue, setSearchInputValue] = useState<string>("");
+  const [cart, setCart] = useState<ICartItem[]>([]);
+
+  /**
+   * Metodo para adicionar produto ao carrinho
+   */
+  const addToCart = useCallback((cartItem) => {
+    // const cartItemFound = cart.find(({ product }) => {
+    //   return cartItem.product.id === product.id;
+    // });
+
+    // if (cartItemFound) {
+    //   removeFromCart(cartItem.id);
+    // }
+
+    setCart([...cart, cartItem]);
+  }, []);
+
+  /**
+   * Metodo para remover produto do carrinho
+   */
+  const removeFromCart = useCallback((productId) => {
+    const cartFiltered = cart.filter(({ product }) => {
+      return product.id !== productId;
+    });
+
+    setCart([...cartFiltered]);
+  }, []);
 
   return (
     <EcommerceContext.Provider
@@ -53,6 +82,10 @@ const EcommerceProvider: React.FC = ({ children }) => {
         setFavoriteProducts,
         searchInputValue,
         setSearchInputValue,
+        cart,
+        setCart,
+        addToCart,
+        removeFromCart,
       }}
     >
       {children}
