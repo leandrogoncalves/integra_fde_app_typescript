@@ -26,4 +26,6 @@ export interface IEcommerceContextData {
   setTotalBalance: any;
   favoriteProducts: IProduct[];
   setFavoriteProducts: any;
+  searchInputValue: string;
+  setSearchInputValue: any;
 }

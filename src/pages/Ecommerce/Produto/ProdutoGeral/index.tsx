@@ -51,10 +51,6 @@ const ProdutoGeral: React.FC = () => {
   };
 
   const setUserFavoriteProducts = useCallback(async () => {
-    console.log("====================================");
-    console.log("favoriteProducts", favoriteProducts);
-    console.log("====================================");
-
     await AsyncStorage.setItem(
       `@Integra:${user.username}:favoriteProducts`,
       JSON.stringify(favoriteProducts)
@@ -87,8 +83,6 @@ const ProdutoGeral: React.FC = () => {
         Toast.TOP
       );
     }
-
-    setUserFavoriteProducts();
   };
 
   useEffect(() => {
@@ -101,7 +95,9 @@ const ProdutoGeral: React.FC = () => {
       setFavoriteColor("red");
       setFavoriteIcon("heart");
     }
-  }, []);
+
+    setUserFavoriteProducts();
+  }, [favoriteProducts]);
 
   return (
     <Container>

@@ -26,6 +26,7 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const [initialBalance, setInitialBalance] = useState<number>(2000);
   const [totalBalance, setTotalBalance] = useState<number>(2000);
   const [favoriteProducts, setFavoriteProducts] = useState<IProduct[]>([]);
+  const [searchInputValue, setSearchInputValue] = useState<string>("");
 
   return (
     <EcommerceContext.Provider
@@ -50,6 +51,8 @@ const EcommerceProvider: React.FC = ({ children }) => {
         setTotalBalance,
         favoriteProducts,
         setFavoriteProducts,
+        searchInputValue,
+        setSearchInputValue,
       }}
     >
       {children}

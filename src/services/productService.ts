@@ -52,11 +52,18 @@ class ProductService extends ServiceBase {
   /**
    * Obtem produtos encontrados na busca
    */
-  async getProductsFound(): Promise<IProducts> {
+  async getProducts(nome = ""): Promise<IProducts> {
     try {
-      const { data } = await api.get(
-        `/api/ecommerce/produtos/todos?api_token=${this.token}`
-      );
+      const params = [];
+      if (nome) {
+        params.push(`nome=${nome}`);
+      }
+
+      const url = `/api/ecommerce/produtos/todos?api_token=${
+        this.token
+      }&${params.join("&")}`;
+
+      const { data } = await api.get(url);
 
       return new Promise<IProducts>((resolve, reject) => {
         resolve(data);

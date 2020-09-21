@@ -6,9 +6,6 @@ class SubcategoryService extends ServiceBase {
   async getSubcategories(
     categoryId?: string
   ): Promise<ICategories | undefined> {
-    console.log("====================================");
-    console.log("categoryId", categoryId);
-    console.log("====================================");
     try {
       const { data } = await api.get(
         `/api/ecommerce/subcategorias?api_token=${this.token}&categoria_id=${categoryId}`

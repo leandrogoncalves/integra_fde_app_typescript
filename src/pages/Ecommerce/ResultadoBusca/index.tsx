@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 
 import { useAuth } from "../../../hooks/auth";
+import { useEcommerce } from "../../../hooks/ecommerce";
 import productService from "../../../services/productService";
 
 import TopBar from "../../../components/Layout/TopBar";
@@ -20,12 +21,12 @@ import { ProductContainer } from "./styles";
 const ResultadoBusca: React.FC = () => {
   const { token } = useAuth();
   productService.setToken(token);
-
+  const { searchInputValue } = useEcommerce();
   const [loader, setLoader] = useState(true);
   const [products, setProducts] = useState<IProduct[]>([]);
 
   async function loadProductsFound() {
-    const { data } = await productService.getProductsFound();
+    const { data } = await productService.getProducts(searchInputValue);
 
     if (data) {
       setProducts([...products, ...data]);
@@ -38,7 +39,7 @@ const ResultadoBusca: React.FC = () => {
   };
 
   useEffect(() => {
-    if (products.length === 0) {
+    if (products.length === 0 && !searchInputValue) {
       loadProductsFound();
     } else {
       setLoader(false);
@@ -60,14 +61,18 @@ const ResultadoBusca: React.FC = () => {
       <ScrollView keyboardShouldPersistTaps="handled">
         {/* Resultado da busca */}
 
-        <Title>{products.length} Resultados encontrados</Title>
+        <Title>
+          {products.length} Resultados encontrados
+          {searchInputValue && ` com o termo "${searchInputValue}"`}
+        </Title>
 
-        {/* Linha de produtos */}
-        {products.length === 0 ? (
+        {loader && (
           <Card>
             <Subtitle>Carregando...</Subtitle>
           </Card>
-        ) : (
+        )}
+
+        {products.length > 0 &&
           products.map((product, index) => (
             <Card key={index}>
               <ProductContainer>
@@ -81,8 +86,7 @@ const ResultadoBusca: React.FC = () => {
                 />
               </ProductContainer>
             </Card>
-          ))
-        )}
+          ))}
 
         {products.length === 0 ? null : (
           <Button title="Carregar mais" onPress={() => handleClickLoadMore()} />
