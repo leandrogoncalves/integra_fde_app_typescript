@@ -67,3 +67,14 @@ export const BoxAddToCart = styled.View`
   align-items: center;
   justify-content: space-around;
 `;
+
+export const FavoriteProduct = styled.View`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 10px;
+  top: -40px;
+
+  align-items: center;
+  justify-content: center;
+`;

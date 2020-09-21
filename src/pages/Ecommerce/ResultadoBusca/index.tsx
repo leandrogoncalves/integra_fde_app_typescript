@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, Alert } from "react-native";
+import { ScrollView } from "react-native";
 
 import { useAuth } from "../../../hooks/auth";
 import productService from "../../../services/productService";
@@ -20,6 +20,7 @@ import { ProductContainer } from "./styles";
 const ResultadoBusca: React.FC = () => {
   const { token } = useAuth();
   productService.setToken(token);
+
   const [loader, setLoader] = useState(true);
   const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -27,9 +28,14 @@ const ResultadoBusca: React.FC = () => {
     const { data } = await productService.getProductsFound();
 
     if (data) {
-      setProducts(data);
+      setProducts([...products, ...data]);
     }
   }
+
+  const handleClickLoadMore = () => {
+    setLoader(true);
+    loadProductsFound();
+  };
 
   useEffect(() => {
     if (products.length === 0) {
@@ -43,13 +49,18 @@ const ResultadoBusca: React.FC = () => {
     <Container>
       {!loader ? null : <Loader />}
 
-      <TopBar title="Resultado da Busca" iconSearch iconBack />
+      <TopBar
+        title="Resultado da Busca"
+        titleMarginLeft={-20}
+        iconSearch
+        iconBack
+      />
       <Solicitante />
 
       <ScrollView keyboardShouldPersistTaps="handled">
         {/* Resultado da busca */}
 
-        <Title>8 Resultados encontrados</Title>
+        <Title>{products.length} Resultados encontrados</Title>
 
         {/* Linha de produtos */}
         {products.length === 0 ? (
@@ -74,10 +85,7 @@ const ResultadoBusca: React.FC = () => {
         )}
 
         {products.length === 0 ? null : (
-          <Button
-            title="Carregar mais"
-            onPress={() => Alert.alert("Aviso", "Carregando")}
-          />
+          <Button title="Carregar mais" onPress={() => handleClickLoadMore()} />
         )}
       </ScrollView>
     </Container>

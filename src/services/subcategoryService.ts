@@ -14,8 +14,6 @@ class SubcategoryService extends ServiceBase {
         `/api/ecommerce/subcategorias?api_token=${this.token}&categoria_id=${categoryId}`
       );
 
-      console.log("data", data);
-
       return new Promise<ICategories>((resolve, reject) => {
         resolve(data);
       });

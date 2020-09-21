@@ -25,6 +25,7 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const [productQuantity, setProductQuantity] = useState<number>(1);
   const [initialBalance, setInitialBalance] = useState<number>(2000);
   const [totalBalance, setTotalBalance] = useState<number>(2000);
+  const [favoriteProducts, setFavoriteProducts] = useState<IProduct[]>([]);
 
   return (
     <EcommerceContext.Provider
@@ -47,6 +48,8 @@ const EcommerceProvider: React.FC = ({ children }) => {
         setInitialBalance,
         totalBalance,
         setTotalBalance,
+        favoriteProducts,
+        setFavoriteProducts,
       }}
     >
       {children}

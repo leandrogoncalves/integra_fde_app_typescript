@@ -19,6 +19,7 @@ import Loader from "../../../components/Layout/Loader";
 const Realizadas: React.FC = () => {
   const { token } = useAuth();
   solicitationService.setToken(token);
+
   const { navigate } = useNavigation();
   const { setSolicitationDetail } = useSolicitation();
   const [loader, setLoader] = useState(true);

@@ -24,4 +24,6 @@ export interface IEcommerceContextData {
   setInitialBalance: any;
   totalBalance: number;
   setTotalBalance: any;
+  favoriteProducts: IProduct[];
+  setFavoriteProducts: any;
 }
