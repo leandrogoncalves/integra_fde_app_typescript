@@ -135,7 +135,7 @@ const Home: React.FC = () => {
           )}
 
           {productsHighlights.length === 0 ? null : (
-            <SeeMore onPress={() => navigate("Busca")}>
+            <SeeMore onPress={() => navigate("ResultadoBusca")}>
               <SeeMoreText>Veja a lista completa</SeeMoreText>
             </SeeMore>
           )}
@@ -176,7 +176,7 @@ const Home: React.FC = () => {
           )}
 
           {productsMoreSolded.length === 0 ? null : (
-            <SeeMore onPress={() => navigate("Busca")}>
+            <SeeMore onPress={() => navigate("ResultadoBusca")}>
               <SeeMoreText>Veja a lista completa</SeeMoreText>
             </SeeMore>
           )}

@@ -119,6 +119,11 @@ emulator -avd Pixel_2_API_29 -netdelay none -netspeed full
 ## Add Js formater Lib
 yarn add intl react-intl
 
+## GERAR APK
+cd android && ./gradlew assembleRelease
+
+react-native run-android --variant=release
+
 ##Icons list
 https://oblador.github.io/react-native-vector-icons/
 
