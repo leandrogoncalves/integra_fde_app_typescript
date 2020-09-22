@@ -3,7 +3,7 @@ import { ServiceBase } from "./ServiceBase";
 import api from "./api";
 
 class SolicitationService extends ServiceBase {
-  async getSolicitations(): Promise<ISolicitations | undefined> {
+  async getSolicitations(): Promise<ISolicitations | []> {
     try {
       const { data } = await api.get(
         `/api/solicitacao/list?api_token=${this.token}`
@@ -14,7 +14,7 @@ class SolicitationService extends ServiceBase {
       console.error(err);
     }
 
-    return undefined;
+    return [];
   }
 }
 

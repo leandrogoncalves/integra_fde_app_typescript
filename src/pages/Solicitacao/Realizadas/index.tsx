@@ -23,15 +23,17 @@ const Realizadas: React.FC = () => {
   const { navigate } = useNavigation();
   const { setSolicitationDetail } = useSolicitation();
   const [loader, setLoader] = useState(true);
-  const [solicitations, setSolicitations] = useState<ISolicitation[]>([]);
+  const [solicitations, setSolicitations] = useState<ISolicitation[]>(
+    undefined
+  );
 
   async function loadSolicitations() {
     const { data } = await solicitationService.getSolicitations();
-
-    if (data) {
-      setSolicitations(data);
-      setLoader(false);
-    }
+    console.log("====================================");
+    console.log("data", data);
+    console.log("====================================");
+    setSolicitations(data);
+    setLoader(false);
   }
 
   const handleClick = (solicitation: ISolicitation) => {
@@ -49,8 +51,10 @@ const Realizadas: React.FC = () => {
       <ScrollView keyboardShouldPersistTaps="handled">
         <Title>Solitações realizadas</Title>
         <Card>
-          {solicitations.length === 0 ? (
-            <Subtitle>Carregando...</Subtitle>
+          {!solicitations || solicitations?.length === 0 ? (
+            <Subtitle>
+              {loader ? "Carregando..." : "Nenhum resultado encontrado"}
+            </Subtitle>
           ) : (
             solicitations.map((solicitation, index) => (
               <ListItem
