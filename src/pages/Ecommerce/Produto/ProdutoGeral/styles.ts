@@ -54,6 +54,7 @@ export const AddToCart = styled.TouchableOpacity`
 
   border-radius: 10px;
   margin-top: 8px;
+  margin-left: 25px;
 `;
 
 export const AddToCartText = styled.Text`

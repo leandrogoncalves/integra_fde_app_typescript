@@ -1,6 +1,6 @@
-import styled from 'styled-components/native';
-import { Colors } from '../../../config/ColorsConfig';
-import { Fonts } from '../../../config/FontConfig';
+import styled from "styled-components/native";
+import { Colors } from "../../../config/ColorsConfig";
+import { Fonts } from "../../../config/FontConfig";
 
 export const Subtotal = styled.Text`
   color: ${Colors.highlight.primary};
@@ -9,16 +9,16 @@ export const Subtotal = styled.Text`
 `;
 
 export const Continue = styled.TouchableOpacity`
-  width:95%;
+  width: 95%;
   height: 50px;
   background-color: ${Colors.button.primary};
 
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
 
-  border-radius:10px;
-  margin: 8px 10px 0 10px;
+  border-radius: 10px;
+  margin: 8px 10px 20px 10px;
 `;
 
 export const ContinueText = styled.Text`

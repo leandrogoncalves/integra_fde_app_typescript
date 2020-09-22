@@ -2,6 +2,9 @@ import React from "react";
 import { View, Text, Alert, TouchableHighlight } from "react-native";
 import { Image } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Toast from "react-native-simple-toast";
+
+import { useEcommerce } from "../../../hooks/ecommerce";
 
 import ListItem from "../../Layout/ListItem";
 import ProductQuantity from "../ProductQuantity";
@@ -16,13 +19,23 @@ const ProductListItem: React.FC = ({
   images,
   buttonSize,
   productId,
+  amount,
   ...rest
 }) => {
+  const { removeFromCart } = useEcommerce();
+
   const handleClick = () => {
     Alert.alert("Confirmação", "Deseja realmente remover este item", [
       {
         text: "Ok",
-        onPress: () => Alert.alert("Produto removido com sucesso"),
+        onPress: () => {
+          removeFromCart(productId);
+          Toast.showWithGravity(
+            "Produto removido do carrinho com sucesso",
+            Toast.LONG,
+            Toast.TOP
+          );
+        },
       },
       {
         text: "Cancelar",
@@ -58,7 +71,11 @@ const ProductListItem: React.FC = ({
                 <FontAwesome name="trash-o" size={20} color="red" />
               </TouchableHighlight>
             </View>
-            <ProductQuantity productId={productId} buttonSize={buttonSize} />
+            <ProductQuantity
+              amount={amount}
+              productId={productId}
+              buttonSize={buttonSize}
+            />
           </View>
         </>
       )}

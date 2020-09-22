@@ -30,64 +30,89 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const [favoriteProducts, setFavoriteProducts] = useState<IProduct[]>([]);
   const [searchInputValue, setSearchInputValue] = useState<string>("");
   const [cart, setCart] = useState<ICartItem[]>([]);
+  const [cartTotal, setCartTotal] = useState(0);
 
   /**
    * Metodo para adicionar produto ao carrinho
    */
-  const addToCart = useCallback((cartItem) => {
-    // const cartItemFound = cart.find(({ product }) => {
-    //   return cartItem.product.id === product.id;
-    // });
+  const addToCart = useCallback(
+    (cartItem) => {
+      const cartItemFound = cart.find(({ product }) => {
+        return cartItem.product.id === product.id;
+      });
 
-    // if (cartItemFound) {
-    //   removeFromCart(cartItem.id);
-    // }
+      if (cartItemFound) {
+        cartItemFound.amount += cartItem.amount;
+        removeFromCart(cartItem.id);
+      }
 
-    setCart([...cart, cartItem]);
-  }, []);
+      setCart([...cart, cartItem]);
+    },
+    [cart]
+  );
 
   /**
    * Metodo para remover produto do carrinho
    */
-  const removeFromCart = useCallback((productId) => {
-    const cartFiltered = cart.filter(({ product }) => {
-      return product.id !== productId;
-    });
+  const removeFromCart = useCallback(
+    (productId) => {
+      const cartFiltered = cart.filter(({ product }) => {
+        return product.id !== productId;
+      });
 
-    setCart([...cartFiltered]);
-  }, []);
+      setCart([...cartFiltered]);
+    },
+    [cart]
+  );
+
+  const updateCartItemAmount = useCallback(
+    (productId, newAmount) => {
+      cart.map((cartItem) => {
+        if (productId === cartItem.product.id) {
+          cartItem.amount = newAmount;
+          return cartItem;
+        }
+        return cartItem;
+      });
+      setCart([...cart]);
+    },
+    [cart]
+  );
+
+  const value = {
+    profile,
+    setProfile,
+    school,
+    setSchool,
+    familySelected,
+    setFamilySelected,
+    categorySelected,
+    setCategorySelected,
+    subcategorySelected,
+    setSubcategorySelected,
+    productDetail,
+    setProductDetail,
+    productQuantity,
+    setProductQuantity,
+    initialBalance,
+    setInitialBalance,
+    totalBalance,
+    setTotalBalance,
+    favoriteProducts,
+    setFavoriteProducts,
+    searchInputValue,
+    setSearchInputValue,
+    cart,
+    setCart,
+    cartTotal,
+    setCartTotal,
+    addToCart,
+    removeFromCart,
+    updateCartItemAmount,
+  };
 
   return (
-    <EcommerceContext.Provider
-      value={{
-        profile,
-        setProfile,
-        school,
-        setSchool,
-        familySelected,
-        setFamilySelected,
-        categorySelected,
-        setCategorySelected,
-        subcategorySelected,
-        setSubcategorySelected,
-        productDetail,
-        setProductDetail,
-        productQuantity,
-        setProductQuantity,
-        initialBalance,
-        setInitialBalance,
-        totalBalance,
-        setTotalBalance,
-        favoriteProducts,
-        setFavoriteProducts,
-        searchInputValue,
-        setSearchInputValue,
-        cart,
-        setCart,
-        addToCart,
-        removeFromCart,
-      }}
-    >
+    <EcommerceContext.Provider value={value}>
       {children}
     </EcommerceContext.Provider>
   );

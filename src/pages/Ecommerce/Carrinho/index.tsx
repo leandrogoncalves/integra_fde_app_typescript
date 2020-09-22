@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Alert, ScrollView } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
@@ -11,16 +11,16 @@ import TopBar from "../../../components/Layout/TopBar";
 import ProductListItem from "../../../components/Ecommerce/ProductListItem";
 import ListItem from "../../../components/Layout/ListItem";
 import Balance from "../../../components/Ecommerce/Balance";
-import { Container } from "../../../components/Layout/Container";
-import { Title } from "../../../components/Typography/Title";
 import { HorizontalDivider } from "../../../components/Layout/HorizontalDivider";
+import { Container } from "../../../components/Layout/Container";
+import { Subtitle } from "../../../components/Typography/Subtitle";
+import { Title } from "../../../components/Typography/Title";
 
 import { Subtotal, Continue, ContinueText } from "./styles";
 
 const Carrinho: React.FC = () => {
-  const { cart } = useEcommerce();
+  const { cart, cartTotal, setCartTotal } = useEcommerce();
   const [cartGrouped, setCartGrouped] = useState();
-  const [cartTotal, setCartTotal] = useState(0);
 
   const handleClickContinue = () => {
     if (cart.length === 0) {
@@ -43,18 +43,27 @@ const Carrinho: React.FC = () => {
     ]);
   };
 
+  const cartTotalItens = useMemo(() => {
+    return cart.reduce((total, cartItem) => {
+      return (total += cartItem.amount);
+    }, 0);
+  }, [cart]);
+
   useEffect(() => {
-    let total = 0;
     const cartItensGrouped = groupByArray(cart, "category");
     Object.keys(cartItensGrouped).map((key, index) => {
       cartItensGrouped[key].map(({ product, amount }) => {
         cartItensGrouped[key].subtotal =
           (cartItensGrouped[key].subtotal || 0) + product.price * amount;
-        total += cartItensGrouped[key].subtotal;
       });
     });
+
+    const totalValue = cart.reduce((total, cartItem) => {
+      return (total += cartItem.amount * cartItem.product.price);
+    }, 0);
+
     setCartGrouped(cartItensGrouped);
-    setCartTotal(total);
+    setCartTotal(totalValue);
   }, [cart]);
 
   return (
@@ -64,7 +73,8 @@ const Carrinho: React.FC = () => {
       <Balance />
 
       <ScrollView keyboardShouldPersistTaps="handled">
-        <Title>Detalhes</Title>
+        <Title>Quantidade de Produtos: {cart.length}</Title>
+        <Subtitle>Quantidade de Itens: {cartTotalItens}</Subtitle>
 
         {cartGrouped &&
           Object.keys(cartGrouped).map((key, index) => (
@@ -78,6 +88,7 @@ const Carrinho: React.FC = () => {
                     images={product.images}
                     price={product.price}
                     productId={product.id}
+                    amount={amount}
                     buttonSize={10}
                   />
                 ))}

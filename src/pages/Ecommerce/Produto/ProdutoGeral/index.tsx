@@ -34,6 +34,7 @@ const ProdutoGeral: React.FC = () => {
     favoriteProducts,
     setFavoriteProducts,
     productQuantity,
+    setProductQuantity,
     addToCart,
   } = useEcommerce();
   const [favoriteSelected, setFavoriteSelected] = useState<boolean>(false);
@@ -87,6 +88,8 @@ const ProdutoGeral: React.FC = () => {
   };
 
   useEffect(() => {
+    setProductQuantity(1);
+
     const productFound = favoriteProducts.find(({ id }) => {
       return id === productDetail?.id;
     });
