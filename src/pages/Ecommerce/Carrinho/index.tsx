@@ -50,6 +50,8 @@ const Carrinho: React.FC = () => {
   }, [cart]);
 
   useEffect(() => {
+    if (!cart) return;
+
     const cartItensGrouped = groupByArray(cart, "category");
     Object.keys(cartItensGrouped).map((key, index) => {
       cartItensGrouped[key].map(({ product, amount }) => {

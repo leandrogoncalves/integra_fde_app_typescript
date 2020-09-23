@@ -21,6 +21,10 @@ const Favoritos: React.FC = () => {
   const { user } = useAuth();
 
   useEffect(() => {
+    console.log("====================================");
+    console.log("favoriteProducts", favoriteProducts);
+    console.log("====================================");
+
     async function loadStorageData(): Promise<void> {
       const userFavoriteProduct = JSON.parse(
         await AsyncStorage.getItem(
@@ -28,7 +32,10 @@ const Favoritos: React.FC = () => {
         )
       );
 
-      if (userFavoriteProduct) {
+      if (userFavoriteProduct.length > 0) {
+        console.log("====================================");
+        console.log("userFavoriteProduct", userFavoriteProduct);
+        console.log("====================================");
         setFavoriteProducts(userFavoriteProduct);
       }
 

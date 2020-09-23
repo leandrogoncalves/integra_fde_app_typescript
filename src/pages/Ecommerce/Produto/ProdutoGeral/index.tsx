@@ -88,6 +88,10 @@ const ProdutoGeral: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log("====================================");
+    console.log("favoriteProducts", favoriteProducts);
+    console.log("====================================");
+
     setProductQuantity(1);
 
     const productFound = favoriteProducts.find(({ id }) => {

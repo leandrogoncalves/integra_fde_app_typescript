@@ -93,7 +93,7 @@ const BottomTabsRoutes: React.FC = () => (
       name="DrawerMenuPerfil"
       component={DrawerMenuMinhaConta}
       options={{
-        tabBarLabel: "Minha conta",
+        tabBarLabel: "Conta",
         tabBarIcon: ({ color, size, focused }) => {
           return <Ionicons name="person" size={size} color="white" />;
         },

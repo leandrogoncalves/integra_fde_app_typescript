@@ -29,9 +29,6 @@ const Realizadas: React.FC = () => {
 
   async function loadSolicitations() {
     const { data } = await solicitationService.getSolicitations();
-    console.log("====================================");
-    console.log("data", data);
-    console.log("====================================");
     setSolicitations(data);
     setLoader(false);
   }
