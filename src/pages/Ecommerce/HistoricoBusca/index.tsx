@@ -54,36 +54,40 @@ const HistoricoBusca: React.FC = () => {
         dense
         margin={{ top: 20 }}
         padding={{ bottom: 0 }}
-        leftElement={
+        leftElement={(
           <>
             <TouchableOpacity onPress={() => goBack()}>
               <MaterialIcons name="keyboard-backspace" size={24} color="gray" />
             </TouchableOpacity>
           </>
-        }
-        rightElement={
+        )}
+        centerElement={(
+          <TextInput
+            placeholder="Buscar"
+            style={{ width: "78%", fontSize: 18 }}
+            onChangeText={(text) => handleInputChange(text)}
+          />
+        )}
+        rightElement={(
           <>
-            <TouchableOpacity onPress={() => handleClick()}>
+            <TouchableOpacity
+              onPress={() => handleClick()}
+              style={{ marginRight: 20 }}
+            >
               <Ionicons name="search" size={24} color="gray" />
             </TouchableOpacity>
           </>
-        }
-        centerElement={
-          <TextInput
-            placeholder="Buscar"
-            style={{ width: "80%", fontSize: 18 }}
-            onChangeText={(text) => handleInputChange(text)}
-          />
-        }
+        )}
       />
       <ScrollView keyboardShouldPersistTaps="handled">
         {productsFound.length > 0
           ? productsFound.map((product) => (
-              <ListItem
-                divider
-                dense
+            <ListItem
+                  divider
+                  dense
                 title={product.name}
-                onPress={() => handleClickItemList(product)}
+                key={product.id}
+                  onPress={() => handleClickItemList(product)}
                 chevron
               />
             ))

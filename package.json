@@ -24,6 +24,7 @@
     "intl": "^1.2.5",
     "jetifier": "^1.6.6",
     "lottie-react-native": "^3.5.0",
+    "luxon": "^1.25.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-intl": "^5.8.1",

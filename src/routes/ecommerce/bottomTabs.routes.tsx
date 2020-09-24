@@ -90,7 +90,7 @@ const BottomTabsRoutes: React.FC = () => (
       }}
     />
     <Screen
-      name="DrawerMenuPerfil"
+      name="DrawerMenuMinhaConta"
       component={DrawerMenuMinhaConta}
       options={{
         tabBarLabel: "Conta",

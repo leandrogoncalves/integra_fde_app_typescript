@@ -5,6 +5,7 @@ import { useSolicitation } from "../../../hooks/solicitation";
 import solicitationService from "../../../services/solicitationService";
 
 import { Container } from "../../../components/Layout/Container";
+import { Subtitle } from "../../../components/Typography/Subtitle";
 import { Title } from "../../../components/Typography/Title";
 import Card from "../../../components/Layout/Card";
 import ListItem from "../../../components/Layout/ListItem";
@@ -73,9 +74,9 @@ const Detalhes: React.FC = () => {
 
         {!solicitation ? (
           <Card>
-            <Title>
+            <Subtitle>
               {loader ? "Carregando..." : "Nenhum resultado encontrado"}
-            </Title>
+            </Subtitle>
           </Card>
         ) : (
           <Card>

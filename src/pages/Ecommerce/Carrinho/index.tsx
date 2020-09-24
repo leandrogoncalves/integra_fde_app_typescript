@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Alert, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import { useEcommerce } from "../../../hooks/ecommerce";
@@ -19,7 +21,14 @@ import { Title } from "../../../components/Typography/Title";
 import { Subtotal, Continue, ContinueText } from "./styles";
 
 const Carrinho: React.FC = () => {
-  const { cart, cartTotal, setCartTotal } = useEcommerce();
+  const { navigate } = useNavigation();
+  const {
+    cart,
+    cartTotalItens,
+    cartTotal,
+    setCartTotal,
+    createOrder,
+  } = useEcommerce();
   const [cartGrouped, setCartGrouped] = useState();
 
   const handleClickContinue = () => {
@@ -34,20 +43,17 @@ const Carrinho: React.FC = () => {
     Alert.alert("Confirmação", "Deseja finalizar a compra?", [
       {
         text: "Ok",
-        onPress: () => Alert.alert("Compra finalizada com sucesso"),
+        onPress: () => {
+          createOrder();
+          navigate("CompraFinalizada");
+        },
       },
       {
-        text: "Cancelar",
+        text: "Continar comprando",
         style: "cancel",
       },
     ]);
   };
-
-  const cartTotalItens = useMemo(() => {
-    return cart.reduce((total, cartItem) => {
-      return (total += cartItem.amount);
-    }, 0);
-  }, [cart]);
 
   useEffect(() => {
     if (!cart) return;
@@ -90,6 +96,7 @@ const Carrinho: React.FC = () => {
                     images={product.images}
                     price={product.price}
                     productId={product.id}
+                    key={product.id}
                     amount={amount}
                     buttonSize={10}
                   />

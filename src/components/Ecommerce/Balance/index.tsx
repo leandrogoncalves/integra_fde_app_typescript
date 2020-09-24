@@ -4,16 +4,7 @@ import { useEcommerce } from "../../../hooks/ecommerce";
 import ListItem from "../../Layout/ListItem";
 
 const Balance: React.FC = () => {
-  const {
-    initialBalance,
-    totalBalance,
-    setTotalBalance,
-    cartTotal,
-  } = useEcommerce();
-
-  useEffect(() => {
-    setTotalBalance(initialBalance - cartTotal);
-  }, [cartTotal]);
+  const { initialBalance, totalBalance } = useEcommerce();
 
   return (
     <ListItem

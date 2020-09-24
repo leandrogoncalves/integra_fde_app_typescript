@@ -1,9 +1,20 @@
 /* eslint-disable no-use-before-define */
-import React, { createContext, useState, useContext, useCallback } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useCallback,
+  useMemo,
+} from "react";
+import { DateTime } from "luxon";
+
+import { useAuth } from "./auth";
+
 import { ICartItem } from "../interfaces/ICartItem";
 import { ICategory } from "../interfaces/ICategories";
 import { IEcommerceContextData } from "../interfaces/IEcommerceContextData";
 import { IFamily } from "../interfaces/IFamily";
+import { IOrder } from "../interfaces/IOrder";
 import { IProduct } from "../interfaces/IProduct";
 import { IProfile } from "../interfaces/IProfiles";
 import { ISchool } from "../interfaces/ISchools";
@@ -14,6 +25,7 @@ const EcommerceContext = createContext<IEcommerceContextData>(
 );
 
 const EcommerceProvider: React.FC = ({ children }) => {
+  const { user } = useAuth();
   const [profile, setProfile] = useState<IProfile | undefined>({} as IProfile);
   const [school, setSchool] = useState<ISchool | undefined>({} as ISchool);
   const [familySelected, setFamilySelected] = useState<IFamily | undefined>();
@@ -31,6 +43,8 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const [searchInputValue, setSearchInputValue] = useState<string>("");
   const [cart, setCart] = useState<ICartItem[]>([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [order, setOrder] = useState<IOrder>();
+  const [orders, setOrders] = useState<IOrder[]>([]);
 
   /**
    * Metodo para adicionar produto ao carrinho
@@ -65,6 +79,12 @@ const EcommerceProvider: React.FC = ({ children }) => {
     [cart]
   );
 
+  const cartTotalItens = useMemo(() => {
+    return cart.reduce((total, cartItem) => {
+      return (total += cartItem.amount);
+    }, 0);
+  }, [cart]);
+
   const updateCartItemAmount = useCallback(
     (productId, newAmount) => {
       cart.map((cartItem) => {
@@ -78,6 +98,25 @@ const EcommerceProvider: React.FC = ({ children }) => {
     },
     [cart]
   );
+
+  const createOrder = useCallback(() => {
+    const orderPrepared = {
+      number: Math.floor(Math.random() * (100000 - 10000) + 10000),
+      cartOrder: [...cart],
+      date: DateTime.local().toLocaleString(),
+      productAmount: cart.length,
+      itensAmount: cartTotalItens,
+      totalValue: cartTotal,
+      user,
+      school,
+    };
+
+    setOrder(orderPrepared);
+    setOrders([...orders, orderPrepared]);
+    setCart([]);
+    setCartTotal(0);
+    setInitialBalance(totalBalance);
+  }, [cart, orders, cartTotalItens, cartTotal, totalBalance, initialBalance]);
 
   const value = {
     profile,
@@ -109,6 +148,10 @@ const EcommerceProvider: React.FC = ({ children }) => {
     addToCart,
     removeFromCart,
     updateCartItemAmount,
+    cartTotalItens,
+    order,
+    orders,
+    createOrder,
   };
 
   return (

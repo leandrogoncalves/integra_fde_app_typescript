@@ -129,7 +129,7 @@ const Home: React.FC = () => {
                   ))}
                 </ProductContainer>
 
-                <HorizontalDivider />
+                <HorizontalDivider style={{ marginTop: 20 }} />
               </>
             ))
           )}
@@ -170,7 +170,7 @@ const Home: React.FC = () => {
                   ))}
                 </ProductContainer>
 
-                <HorizontalDivider />
+                <HorizontalDivider style={{ marginTop: 20 }} />
               </>
             ))
           )}

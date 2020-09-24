@@ -64,6 +64,7 @@ const Realizadas: React.FC = () => {
                 style={{
                   marginBottom: 5,
                 }}
+                chevron
                 onPress={() => handleClick(solicitation)}
               />
             ))

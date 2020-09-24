@@ -1,6 +1,7 @@
 import { ICartItem } from "./ICartItem";
 import { ICategory } from "./ICategories";
 import { IFamily } from "./IFamily";
+import { IOrder } from "./IOrder";
 import { IProduct } from "./IProduct";
 import { IProfile } from "./IProfiles";
 import { ISchool } from "./ISchools";
@@ -36,4 +37,8 @@ export interface IEcommerceContextData {
   addToCart(itens: ICartItem[]): void;
   removeFromCart(productId: number): void;
   updateCartItemAmount(productId: number, newAmount: number): void;
+  cartTotalItens: number;
+  order: IOrder;
+  orders: IOrder[];
+  createOrders(): void;
 }

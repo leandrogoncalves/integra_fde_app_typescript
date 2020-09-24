@@ -7,6 +7,9 @@ class SolicitationService extends ServiceBase {
     try {
       const url = `/api/solicitacao/list?api_token=${this.token}`;
       const { data } = await api.get(url);
+      console.log("====================================");
+      console.log("data", data);
+      console.log("====================================");
       return data;
     } catch (err) {
       console.error(err);

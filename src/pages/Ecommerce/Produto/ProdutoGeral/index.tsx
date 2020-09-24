@@ -25,6 +25,7 @@ import {
   BoxAddToCart,
   FavoriteProduct,
 } from "./styles";
+import { Title } from "../../../../components/Typography/Title";
 
 const ProdutoGeral: React.FC = () => {
   const { navigate } = useNavigation();
@@ -88,9 +89,13 @@ const ProdutoGeral: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("====================================");
-    console.log("favoriteProducts", favoriteProducts);
-    console.log("====================================");
+    if (!productDetail) {
+      Alert.alert(
+        "Produto temporariamente indisponivel!",
+        "Não foi possivel acessar o produto no momento, por favor tente novamente mais tarde"
+      );
+      navigate("DrawerMenuHome");
+    }
 
     setProductQuantity(1);
 
@@ -105,7 +110,7 @@ const ProdutoGeral: React.FC = () => {
     }
 
     setUserFavoriteProducts();
-  }, [favoriteProducts]);
+  }, [favoriteProducts, productDetail]);
 
   return (
     <Container>
@@ -113,33 +118,37 @@ const ProdutoGeral: React.FC = () => {
 
       <ScrollView keyboardShouldPersistTaps="handled">
         <Card>
-          <ProductContainer>
-            <ProductItem
-              name={productDetail?.name}
-              category={productDetail?.category}
-              shotDescription={productDetail?.shotDescription}
-              price={productDetail?.price}
-              images={productDetail?.images}
-            />
-            <BoxAddToCart>
-              <FavoriteProduct>
-                <TouchableOpacity onPress={() => handleClickFavorite()}>
-                  <FontAwesome
-                    color={favoriteColor}
-                    name={favoriteIcon}
-                    size={30}
-                  />
-                </TouchableOpacity>
-              </FavoriteProduct>
-              <ProductQuantity />
-              <AddToCart onPress={() => handleAddToCart()}>
-                <MaterialCommunityIcons name="cart" size={25} color="white" />
-                <AddToCartText style={{ marginLeft: 10 }}>
-                  Adicionar
-                </AddToCartText>
-              </AddToCart>
-            </BoxAddToCart>
-          </ProductContainer>
+          {!productDetail ? (
+            <Title>Produto não encontrado</Title>
+          ) : (
+            <ProductContainer>
+              <ProductItem
+                name={productDetail?.name}
+                category={productDetail?.category}
+                shotDescription={productDetail?.shotDescription}
+                price={productDetail?.price}
+                images={productDetail?.images}
+              />
+              <BoxAddToCart>
+                <FavoriteProduct>
+                  <TouchableOpacity onPress={() => handleClickFavorite()}>
+                    <FontAwesome
+                      color={favoriteColor}
+                      name={favoriteIcon}
+                      size={30}
+                    />
+                  </TouchableOpacity>
+                </FavoriteProduct>
+                <ProductQuantity />
+                <AddToCart onPress={() => handleAddToCart()}>
+                  <MaterialCommunityIcons name="cart" size={25} color="white" />
+                  <AddToCartText style={{ marginLeft: 10 }}>
+                    Adicionar
+                  </AddToCartText>
+                </AddToCart>
+              </BoxAddToCart>
+            </ProductContainer>
+          )}
         </Card>
       </ScrollView>
     </Container>

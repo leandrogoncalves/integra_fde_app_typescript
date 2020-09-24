@@ -47,6 +47,7 @@ const ProductListItem: React.FC = ({
 
   return (
     <ListItem
+      key={productId}
       divider
       leftElement={(
         <ProductImage>

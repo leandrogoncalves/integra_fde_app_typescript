@@ -25,14 +25,14 @@ const Favoritos: React.FC = () => {
     console.log("favoriteProducts", favoriteProducts);
     console.log("====================================");
 
-    async function loadStorageData(): Promise<void> {
+    (async () => {
       const userFavoriteProduct = JSON.parse(
         await AsyncStorage.getItem(
           `@Integra:${user?.username}:favoriteProducts`
         )
       );
 
-      if (userFavoriteProduct.length > 0) {
+      if (userFavoriteProduct && userFavoriteProduct.length > 0) {
         console.log("====================================");
         console.log("userFavoriteProduct", userFavoriteProduct);
         console.log("====================================");
@@ -40,8 +40,7 @@ const Favoritos: React.FC = () => {
       }
 
       setLoading(false);
-    }
-    loadStorageData();
+    })();
   }, []);
 
   return (
@@ -59,17 +58,17 @@ const Favoritos: React.FC = () => {
           ? null
           : favoriteProducts.map((product, index) => (
               <Card key={index}>
-                <ProductContainer>
-                      <ProductItem
-                  name={product.name}
-                  category={product.category}
-                  images={product.images}
-                  shotDescription={product.shotDescription}
-                  price={product.price}
-                  product={product}
-                />
-                    </ProductContainer>
-            </Card>
+              <ProductContainer>
+                  <ProductItem
+                    name={product.name}
+                    category={product.category}
+                    images={product.images}
+                    shotDescription={product.shotDescription}
+                    price={product.price}
+                    product={product}
+                  />
+                </ProductContainer>
+              </Card>
             ))}
       </ScrollView>
     </Container>
