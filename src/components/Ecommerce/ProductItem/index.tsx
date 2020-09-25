@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { Image } from "react-native-elements";
+import { SliderBox } from "react-native-image-slider-box";
 
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -36,11 +37,25 @@ const ProductItem: React.FC = ({ children, product, ...rest }) => {
           {!product?.images ? (
             <Text style={{ color: "white" }}>Imagem do produto</Text>
           ) : (
-            <Image
-              source={{ uri: product?.images[0] }}
-              style={{ width: 250, height: 250 }}
-              PlaceholderContent={<ActivityIndicator />}
-              placeholderStyle={{ backgroundColor: "white" }}
+            // <Image
+            //   source={{ uri: product?.images[0] }}
+            //   style={{ width: 250, height: 250 }}
+            //   PlaceholderContent={<ActivityIndicator />}
+            //   placeholderStyle={{ backgroundColor: "white" }}
+            // />
+            <SliderBox
+              images={[product?.images[0], product?.images[0]]}
+              sliderBoxHeight={200}
+              resizeMethod="resize"
+              resizeMode="cover"
+              ImageComponentStyle={{
+                borderRadius: 15,
+                width: "50%",
+                marginTop: 5,
+              }}
+              dotColor="#FFEE58"
+              inactiveDotColor="#90A4AE"
+              imageLoadingColor="#2196F3"
             />
           )}
         </ProductImage>
