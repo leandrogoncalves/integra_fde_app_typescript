@@ -15,7 +15,3 @@ export const ProductPrice = styled.Text`
   color: ${Colors.highlight.primary};
   margin-right: 10px;
 `;
-
-export const RemoveItem = styled.Text`
-  color: red;
-`;

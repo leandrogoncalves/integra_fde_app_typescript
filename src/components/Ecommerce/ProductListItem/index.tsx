@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, Alert, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  TouchableHighlight,
+  ActivityIndicator,
+} from "react-native";
 import { Image } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Toast from "react-native-simple-toast";
@@ -9,7 +15,7 @@ import { useEcommerce } from "../../../hooks/ecommerce";
 import ListItem from "../../Layout/ListItem";
 import ProductQuantity from "../ProductQuantity";
 
-import { ProductImage, ProductPrice, RemoveItem } from "./styles";
+import { ProductImage, ProductPrice } from "./styles";
 
 const ProductListItem: React.FC = ({
   children,
@@ -57,6 +63,8 @@ const ProductListItem: React.FC = ({
             <Image
               source={{ uri: images[0] }}
               style={{ width: 70, height: 70 }}
+              PlaceholderContent={<ActivityIndicator />}
+              placeholderStyle={{ backgroundColor: "white" }}
             />
           )}
         </ProductImage>

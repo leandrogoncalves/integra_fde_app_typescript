@@ -11,6 +11,7 @@ const ProductQuantity: React.FC = ({
   ...rest
 }) => {
   const {
+    cart,
     productQuantity,
     setProductQuantity,
     updateCartItemAmount,
@@ -46,7 +47,7 @@ const ProductQuantity: React.FC = ({
   useEffect(() => {
     setProductAmount(amount || 0);
     setId(productId);
-  }, []);
+  }, [amount, cart]);
 
   return (
     <Container buttonSize={buttonSize}>

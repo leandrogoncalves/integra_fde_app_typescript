@@ -122,13 +122,7 @@ const ProdutoGeral: React.FC = () => {
             <Title>Produto não encontrado</Title>
           ) : (
             <ProductContainer>
-              <ProductItem
-                name={productDetail?.name}
-                category={productDetail?.category}
-                shotDescription={productDetail?.shotDescription}
-                price={productDetail?.price}
-                images={productDetail?.images}
-              />
+              <ProductItem product={productDetail} />
               <BoxAddToCart>
                 <FavoriteProduct>
                   <TouchableOpacity onPress={() => handleClickFavorite()}>

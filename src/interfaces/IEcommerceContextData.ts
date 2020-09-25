@@ -40,5 +40,5 @@ export interface IEcommerceContextData {
   cartTotalItens: number;
   order: IOrder;
   orders: IOrder[];
-  createOrders(): void;
+  createOrder(): void;
 }

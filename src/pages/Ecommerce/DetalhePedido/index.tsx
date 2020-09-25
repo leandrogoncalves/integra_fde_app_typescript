@@ -35,74 +35,74 @@ const DetalhePedido: React.FC = ({ route }) => {
           <ListItem
             dense
             divider
-            leftElement={
+            leftElement={(
               <View style={labelStyles}>
                 <ListTitle>Número:</ListTitle>
               </View>
-            }
-            centerElement={(
+            )}
+            centerElement={
               <View style={textStyles}>
                 <ListText>{order.number}</ListText>
               </View>
-            )}
+            }
             style={styles}
           />
           <ListItem
             dense
             divider
-            leftElement={
+            leftElement={(
               <View style={labelStyles}>
                 <ListTitle>Data:</ListTitle>
               </View>
-            }
-            centerElement={(
+            )}
+            centerElement={
               <View style={textStyles}>
                 <ListText>{order.date}</ListText>
               </View>
-            )}
+            }
             style={styles}
           />
           <ListItem
             dense
             divider
-            leftElement={
+            leftElement={(
               <View style={labelStyles}>
                 <ListTitle>Solicitante:</ListTitle>
               </View>
-            }
-            centerElement={(
+            )}
+            centerElement={
               <View style={textStyles}>
                 <ListText>{order.user.name}</ListText>
               </View>
-            )}
+            }
             style={styles}
           />
           <ListItem
             dense
-            leftElement={
+            leftElement={(
               <View style={labelStyles}>
                 <ListTitle>Escola:</ListTitle>
               </View>
-            }
-            centerElement={(
-              <View style={textStyles}>
-                <ListText>{order?.school.name}</ListText>
-              </View>
             )}
+            centerElement={
+              <View style={textStyles}>
+                <ListText>{order?.school.label}</ListText>
+              </View>
+            }
             style={styles}
           />
           <ListItem
             dense
-            leftElement={
+            leftElement={(
               <View style={labelStyles}>
                 <ListTitle>Status:</ListTitle>
               </View>
-            }
-            centerElement={(
+            )}
+            centerElement={
               <View style={textStyles}>
                 <ListText>Em processamento</ListText>
               </View>
-            )}
+            }
             style={styles}
           />
         </Card>
@@ -113,21 +113,21 @@ const DetalhePedido: React.FC = ({ route }) => {
           <ListItem
             dense
             divider
-            leftElement={(
+            leftElement={
               <View style={labelStyles}>
                 <ListTitle>Nome</ListTitle>
               </View>
-            )}
-            centerElement={
+            }
+            centerElement={(
               <View style={{ width: 40 }}>
                 <ListTitle>Qtd:</ListTitle>
               </View>
-            }
-            rightElement={
+            )}
+            rightElement={(
               <View>
                 <ListTitle>Valor Unt:</ListTitle>
               </View>
-            }
+            )}
             style={styles}
           />
 
@@ -137,21 +137,21 @@ const DetalhePedido: React.FC = ({ route }) => {
                 key={index}
                 dense
                 divider
-                leftElement={
+                leftElement={(
                   <View style={{ width: 180 }}>
                     <ListText>{cartItem?.product?.name} </ListText>
                   </View>
-                }
-                centerElement={
+                )}
+                centerElement={(
                   <View style={{ width: 40 }}>
                     <ListText>{cartItem?.amount}</ListText>
                   </View>
-                }
-                rightElement={
+                )}
+                rightElement={(
                   <View>
                     <ListText>{currency(cartItem?.product?.price)}</ListText>
                   </View>
-                }
+                )}
                 style={styles}
               />
             ))}

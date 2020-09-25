@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable no-use-before-define */
 import React, {
   createContext,
@@ -6,6 +7,8 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
+import { Alert } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 import { DateTime } from "luxon";
 
 import { useAuth } from "./auth";
@@ -50,14 +53,15 @@ const EcommerceProvider: React.FC = ({ children }) => {
    * Metodo para adicionar produto ao carrinho
    */
   const addToCart = useCallback(
-    (cartItem) => {
+    (cartItem: ICartItem) => {
       const cartItemFound = cart.find(({ product }) => {
         return cartItem.product.id === product.id;
       });
 
       if (cartItemFound) {
         cartItemFound.amount += cartItem.amount;
-        removeFromCart(cartItem.id);
+        setCart([...cart]);
+        return;
       }
 
       setCart([...cart, cartItem]);
@@ -69,9 +73,9 @@ const EcommerceProvider: React.FC = ({ children }) => {
    * Metodo para remover produto do carrinho
    */
   const removeFromCart = useCallback(
-    (productId) => {
+    (productId: string) => {
       const cartFiltered = cart.filter(({ product }) => {
-        return product.id !== productId;
+        return parseInt(product.id) !== parseInt(productId);
       });
 
       setCart([...cartFiltered]);
@@ -80,9 +84,12 @@ const EcommerceProvider: React.FC = ({ children }) => {
   );
 
   const cartTotalItens = useMemo(() => {
-    return cart.reduce((total, cartItem) => {
-      return (total += cartItem.amount);
-    }, 0);
+    if (cart && cart.length > 0) {
+      return cart.reduce((total, cartItem) => {
+        return (total += cartItem.amount);
+      }, 0);
+    }
+    return 0;
   }, [cart]);
 
   const updateCartItemAmount = useCallback(
@@ -99,7 +106,33 @@ const EcommerceProvider: React.FC = ({ children }) => {
     [cart]
   );
 
+  const saveOrdersLocal = useCallback(
+    async (orderToSave) => {
+      let localOrdersfound = [];
+      const localOrders = await AsyncStorage.getItem(
+        `@Integra:${user?.username}:orders`
+      );
+      localOrdersfound = JSON.parse(localOrders);
+      if (localOrders && localOrders.length > 0) {
+        setOrders(localOrders);
+      }
+      AsyncStorage.setItem(
+        `@Integra:${user.username}:orders`,
+        JSON.stringify([...localOrdersfound, orderToSave])
+      );
+    },
+    [orders]
+  );
+
   const createOrder = useCallback(() => {
+    if (cartTotal > totalBalance) {
+      Alert.alert(
+        "Atenção",
+        "Seu saldo não é suficiente para concluir a compra"
+      );
+      return;
+    }
+
     const orderPrepared = {
       number: Math.floor(Math.random() * (100000 - 10000) + 10000),
       cartOrder: [...cart],
@@ -112,7 +145,7 @@ const EcommerceProvider: React.FC = ({ children }) => {
     };
 
     setOrder(orderPrepared);
-    setOrders([...orders, orderPrepared]);
+    saveOrdersLocal(orderPrepared);
     setCart([]);
     setCartTotal(0);
     setInitialBalance(totalBalance);

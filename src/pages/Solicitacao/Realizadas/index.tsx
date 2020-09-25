@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-indent-props */
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, ScrollView } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Text, View, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { useAuth } from "../../../hooks/auth";
@@ -9,12 +8,12 @@ import { useSolicitation } from "../../../hooks/solicitation";
 import { ISolicitation } from "../../../interfaces/ISolicitations";
 import solicitationService from "../../../services/solicitationService";
 
+import ListItem from "../../../components/Layout/ListItem";
+import Loader from "../../../components/Layout/Loader";
 import Card from "../../../components/Layout/Card";
 import { Container } from "../../../components/Layout/Container";
-import ListItem from "../../../components/Layout/ListItem";
-import { Title } from "../../../components/Typography/Title";
 import { Subtitle } from "../../../components/Typography/Subtitle";
-import Loader from "../../../components/Layout/Loader";
+import { Title } from "../../../components/Typography/Title";
 
 const Realizadas: React.FC = () => {
   const { token } = useAuth();
@@ -59,8 +58,15 @@ const Realizadas: React.FC = () => {
                 divider
                 dense
                 icon={{ name: "event" }}
-                title={`${solicitation.slonumero} - ${solicitation.tipo_objeto} `}
-                subtitle={`${solicitation.assunto} - ${solicitation.data_formatada}`}
+                centerElement={(
+                  <View style={{ flexDirection: "column", width: 290 }}>
+                    <Text style={{ fontSize: 16 }}>
+                      {`${solicitation.slonumero} - ${solicitation.data_formatada} `}
+                    </Text>
+                    <Text>{`${solicitation.tipo_objeto} - ${solicitation.assunto}`}</Text>
+                    <Text>{`Status: ${solicitation.estadoDocumetno}`}</Text>
+                  </View>
+                )}
                 style={{
                   marginBottom: 5,
                 }}

@@ -115,15 +115,7 @@ const Home: React.FC = () => {
                 <ProductContainer key={index}>
                   {productList.map((product, index) => (
                     <>
-                      <ProductItemMini
-                        id={product?.id}
-                        name={product?.name}
-                        category={product?.category}
-                        images={product?.images}
-                        shotDescription={product?.shotDescription}
-                        price={product?.price}
-                        product={product}
-                      />
+                      <ProductItemMini product={product} />
                       {index % 2 !== 0 ? null : <VerticalDivider />}
                     </>
                   ))}
@@ -156,15 +148,7 @@ const Home: React.FC = () => {
                 <ProductContainer key={index}>
                   {productList.map((product, index) => (
                     <>
-                      <ProductItemMini
-                        id={product?.id}
-                        name={product?.name}
-                        category={product?.category}
-                        images={product?.images}
-                        shotDescription={product?.shotDescription}
-                        price={product?.price}
-                        product={product}
-                      />
+                      <ProductItemMini product={product} />
                       {index % 2 !== 0 ? null : <VerticalDivider />}
                     </>
                   ))}

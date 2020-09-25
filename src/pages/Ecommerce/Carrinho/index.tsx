@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -7,12 +7,14 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useEcommerce } from "../../../hooks/ecommerce";
 import groupByArray from "../../../utils/groupByArray";
 import currency from "../../../utils/formatNumber";
+import { Colors } from "../../../config/ColorsConfig";
 
 import Card from "../../../components/Layout/Card";
 import TopBar from "../../../components/Layout/TopBar";
 import ProductListItem from "../../../components/Ecommerce/ProductListItem";
 import ListItem from "../../../components/Layout/ListItem";
 import Balance from "../../../components/Ecommerce/Balance";
+import Loader from "../../../components/Layout/Loader";
 import { HorizontalDivider } from "../../../components/Layout/HorizontalDivider";
 import { Container } from "../../../components/Layout/Container";
 import { Subtitle } from "../../../components/Typography/Subtitle";
@@ -28,10 +30,18 @@ const Carrinho: React.FC = () => {
     cartTotal,
     setCartTotal,
     createOrder,
+    totalBalance,
+    setTotalBalance,
   } = useEcommerce();
   const [cartGrouped, setCartGrouped] = useState();
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [textButton, setTextButton] = useState("Finalizar compra");
 
   const handleClickContinue = () => {
+    if (buttonDisabled) {
+      return;
+    }
+
     if (cart.length === 0) {
       Alert.alert(
         "Atenção!",
@@ -40,10 +50,13 @@ const Carrinho: React.FC = () => {
       return;
     }
 
+    setTextButton("Aguarde, Processando...");
+    setButtonDisabled(true);
+
     Alert.alert("Confirmação", "Deseja finalizar a compra?", [
       {
         text: "Ok",
-        onPress: () => {
+        onPress: async () => {
           createOrder();
           navigate("CompraFinalizada");
         },
@@ -58,6 +71,9 @@ const Carrinho: React.FC = () => {
   useEffect(() => {
     if (!cart) return;
 
+    setTextButton("Finalizar compra");
+    setButtonDisabled(false);
+
     const cartItensGrouped = groupByArray(cart, "category");
     Object.keys(cartItensGrouped).map((key, index) => {
       cartItensGrouped[key].map(({ product, amount }) => {
@@ -71,6 +87,7 @@ const Carrinho: React.FC = () => {
     }, 0);
 
     setCartGrouped(cartItensGrouped);
+    setTotalBalance(totalBalance - totalValue);
     setCartTotal(totalValue);
   }, [cart]);
 
@@ -117,10 +134,22 @@ const Carrinho: React.FC = () => {
           />
         </Card>
 
-        <Continue onPress={() => handleClickContinue()}>
-          <MaterialIcons name="navigate-next" size={25} color="white" />
-          <ContinueText style={{ marginLeft: 10 }}>
-            Finalizar compra
+        <Continue
+          disabled={buttonDisabled}
+          onPress={() => (buttonDisabled ? null : handleClickContinue())}
+          style={{
+            backgroundColor: buttonDisabled ? "#BAFFF1" : Colors.button.primary,
+          }}
+        >
+          <MaterialIcons
+            name="navigate-next"
+            size={25}
+            color={buttonDisabled ? "#ccc" : "white"}
+          />
+          <ContinueText
+            style={{ marginLeft: 10, color: buttonDisabled ? "#ccc" : "#fff" }}
+          >
+            {textButton}
           </ContinueText>
         </Continue>
       </ScrollView>

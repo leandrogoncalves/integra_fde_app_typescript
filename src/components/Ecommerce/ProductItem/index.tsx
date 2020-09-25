@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { Image } from "react-native-elements";
 
 import { useNavigation } from "@react-navigation/native";
@@ -18,18 +18,9 @@ import {
   ProductShortDescription,
   ProductPrice,
 } from "./styles";
+import { IProduct } from "../../../interfaces/IProduct";
 
-const ProductItem: React.FC = ({
-  children,
-  route,
-  name,
-  category,
-  images,
-  shotDescription,
-  price,
-  product,
-  ...rest
-}) => {
+const ProductItem: React.FC = ({ children, product, ...rest }) => {
   const { navigate } = useNavigation();
   const { setProductDetail } = useEcommerce();
 
@@ -42,32 +33,36 @@ const ProductItem: React.FC = ({
     <Product>
       <TouchableOpacity onPress={() => handleClick()}>
         <ProductImage>
-          {!images ? (
+          {!product?.images ? (
             <Text style={{ color: "white" }}>Imagem do produto</Text>
           ) : (
             <Image
-              source={{ uri: images[0] }}
+              source={{ uri: product?.images[0] }}
               style={{ width: 250, height: 250 }}
+              PlaceholderContent={<ActivityIndicator />}
+              placeholderStyle={{ backgroundColor: "white" }}
             />
           )}
         </ProductImage>
         <ProductText>
           <ProductName>
             <Ionicons name="bookmark" size={15} />
-            {name}
+            {product?.name}
           </ProductName>
           <ProductCategory>
             <FontAwesome name="circle" size={15} style={{ marginRight: 10 }} />
-            {category}
+            {product?.category}
           </ProductCategory>
-          <ProductShortDescription>{shotDescription}</ProductShortDescription>
+          <ProductShortDescription>
+            {product?.shotDescription}
+          </ProductShortDescription>
           <ProductPrice>
             <MaterialCommunityIcons
               name="tag"
               size={18}
               style={{ marginRight: 10 }}
             />
-            {currency(price)}
+            {currency(product?.price)}
           </ProductPrice>
         </ProductText>
       </TouchableOpacity>

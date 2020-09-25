@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BackHandler, View, Alert, ScrollView } from "react-native";
 import { DateTime } from "luxon";
 
@@ -7,13 +7,14 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import currency from "../../../utils/formatNumber";
-import { useAuth } from "../../../hooks/auth";
 import { useEcommerce } from "../../../hooks/ecommerce";
 
 import { Container } from "../../../components/Layout/Container";
 import { Title } from "../../../components/Typography/Title";
 import TopBar from "../../../components/Layout/TopBar";
 import Card from "../../../components/Layout/Card";
+import Loader from "../../../components/Layout/Loader";
+import Balance from "../../../components/Ecommerce/Balance";
 import ListItem from "../../../components/Layout/ListItem";
 
 import { ListTitle, ListText, GoToOrder, GoToOrderText } from "./styles";
@@ -42,15 +43,13 @@ const CompraFinalizada: React.FC = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("====================================");
-    console.log("ORDER V1", order);
-    console.log("====================================");
     Alert.alert("Atenção!", "Sua compra foi finalizada com sucesso");
   }, []);
 
   return (
     <Container>
       <TopBar title="Compra Finalizada" drawerMenuLink />
+      <Balance />
       <ScrollView keyboardShouldPersistTaps="handled">
         <Title>Detalhes do pedido</Title>
 
@@ -110,7 +109,7 @@ const CompraFinalizada: React.FC = ({ navigation }) => {
             }
             centerElement={(
               <View style={textStyles}>
-                <ListText>{order?.school.name}</ListText>
+                <ListText>{order?.school.label}</ListText>
               </View>
             )}
             style={styles}
