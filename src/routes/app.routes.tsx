@@ -1,7 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+
 import EcommerceRoutes from "./ecommerce/ecommerce.routes";
 import SolicitacaoRoutes from "./solicitacao/solicitacao.routes";
+import ObrasRoutes from "./obras/obras.routes";
+
 import DrawerMenuMudaSistema from "./geral/drawerMenuMudaSistema.routes";
 
 const App = createStackNavigator();
@@ -18,6 +21,7 @@ const AppRoutes: React.FC = () => (
     />
     <App.Screen name="EcommerceRoutes" component={EcommerceRoutes} />
     <App.Screen name="SolicitacaoRoutes" component={SolicitacaoRoutes} />
+    <App.Screen name="ObrasRoutes" component={ObrasRoutes} />
   </App.Navigator>
 );
 

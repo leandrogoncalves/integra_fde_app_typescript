@@ -31,7 +31,6 @@ export const TextSystem = styled.Text`
 
 export const styles = StyleSheet.create({
   card: {
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: "column",
   },
 });

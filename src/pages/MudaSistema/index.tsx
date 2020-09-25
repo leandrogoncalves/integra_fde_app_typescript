@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { View } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 
 import Feather from "react-native-vector-icons/Feather";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import { useNavigation } from "@react-navigation/native";
@@ -45,17 +47,44 @@ const MudaSistema: React.FC = () => {
       <TopBar title="Muda Sistema" drawerMenuLink />
       <Title>Selecione o sistema desejado:</Title>
       <Card style={styles.card}>
-        <ButtomSystem onPress={() => navigate("SolicitacaoRoutes")}>
-          <FontAwesome5 name="hands-helping" size={35} color="green" />
-          <TextSystem>Solicitação</TextSystem>
-        </ButtomSystem>
-        <ButtomSystem
-          onPress={() =>
-            navigate("EcommerceRoutes", { screen: "SelecionaPerfil" })}
+        <View
+          style={{
+            flexDirection: "row",
+            width: "100%",
+            justifyContent: "space-around",
+          }}
         >
-          <Feather name="shopping-cart" size={35} color="red" />
-          <TextSystem>E-commerce</TextSystem>
-        </ButtomSystem>
+          <ButtomSystem onPress={() => navigate("SolicitacaoRoutes")}>
+            <FontAwesome5 name="hands-helping" size={35} color="green" />
+            <TextSystem>Solicitação</TextSystem>
+          </ButtomSystem>
+          <ButtomSystem
+            onPress={() =>
+              navigate("EcommerceRoutes", { screen: "SelecionaPerfil" })
+            }
+          >
+            <Feather name="shopping-cart" size={35} color="red" />
+            <TextSystem>E-commerce</TextSystem>
+          </ButtomSystem>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            width: "100%",
+            justifyContent: "flex-start",
+            paddingLeft: "7%",
+          }}
+        >
+          <ButtomSystem
+            style={{}}
+            onPress={() =>
+              navigate("ObrasRoutes", { screen: "RelatorioObras" })
+            }
+          >
+            <Ionicons name="build-outline" size={35} color="black" />
+            <TextSystem>Obras</TextSystem>
+          </ButtomSystem>
+        </View>
       </Card>
     </Container>
   );
