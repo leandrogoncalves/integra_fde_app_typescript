@@ -24,11 +24,11 @@ const styles = {
 };
 
 const labelStyles = {
-  width: 170,
+  width: 140,
 };
 
 const textStyles = {
-  width: 170,
+  width: 160,
 };
 
 function backButtonHandler() {}

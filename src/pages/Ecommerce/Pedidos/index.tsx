@@ -28,16 +28,15 @@ const Pedidos: React.FC = () => {
   const [orders, setOrders] = useState<IOrder[]>([]);
 
   useEffect(() => {
-    console.log("orders", orders);
-    console.log("loader", loader);
-
     (async () => {
       let localOrders = await AsyncStorage.getItem(
         `@Integra:${user?.username}:orders`
       );
-      localOrders = JSON.parse(localOrders);
-      if (localOrders && localOrders.length > 0) {
-        setOrders(localOrders);
+      if (localOrders) {
+        localOrders = JSON.parse(localOrders);
+        if (localOrders.length > 0) {
+          setOrders(localOrders);
+        }
       }
     })();
     setTimeout(() => setLoader(false), 1000);
@@ -66,12 +65,12 @@ const Pedidos: React.FC = () => {
                 icon={{ name: "move-to-inbox" }}
                 title={`Pedido Nº ${order.number}`}
                 subtitle={`data: ${order.date}`}
-                rightElement={(
+                rightElement={
                   <View>
                     <ListTitle>Valor Total:</ListTitle>
                     <ListText>R$ {currency(order.totalValue)}</ListText>
                   </View>
-                )}
+                }
                 chevron
                 style={styles}
                 onPress={() => navigate("DetalhePedido", { order })}

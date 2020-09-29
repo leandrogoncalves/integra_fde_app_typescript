@@ -109,16 +109,26 @@ const EcommerceProvider: React.FC = ({ children }) => {
   const saveOrdersLocal = useCallback(
     async (orderToSave) => {
       let localOrdersfound = [];
+      let newLocalOrderToSave = [];
       const localOrders = await AsyncStorage.getItem(
         `@Integra:${user?.username}:orders`
       );
+
       localOrdersfound = JSON.parse(localOrders);
-      if (localOrders && localOrders.length > 0) {
-        setOrders(localOrders);
+
+      if (localOrdersfound && localOrdersfound.length > 0) {
+        setOrders(localOrdersfound);
       }
+
+      if (localOrdersfound && Array.isArray(localOrdersfound)) {
+        newLocalOrderToSave = [...localOrdersfound, orderToSave];
+      } else {
+        newLocalOrderToSave = [orderToSave];
+      }
+
       AsyncStorage.setItem(
-        `@Integra:${user.username}:orders`,
-        JSON.stringify([...localOrdersfound, orderToSave])
+        `@Integra:${user?.username}:orders`,
+        JSON.stringify(newLocalOrderToSave)
       );
     },
     [orders]
