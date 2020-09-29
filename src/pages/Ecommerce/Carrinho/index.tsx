@@ -65,7 +65,7 @@ const Carrinho: React.FC = () => {
         text: "Continar comprando",
         style: "cancel",
         onPress: async () => {
-          setTextButton("Finalizar compra");
+          setTextButton("Finalizar compras");
           setButtonDisabled(false);
         },
       },
