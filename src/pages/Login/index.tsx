@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import "../../config/ReactotronConfig";
 import {
   Image,
   View,
@@ -59,6 +60,9 @@ const Login: React.FC = () => {
         senha: data.senha,
       });
     } catch (err) {
+      // console.log("====================================");
+      // console.log("err", err);
+      // console.log("====================================");
       setLoader(false);
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);

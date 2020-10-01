@@ -48,6 +48,12 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { access_token, user } = response;
 
+    if (!access_token || !user) {
+      // console.log("====================================");
+      // console.log('"Falha na autenticação"');
+      // console.log("====================================");
+      throw new Error("Falha na autenticação");
+    }
     await AsyncStorage.multiSet([
       ["@Integra:token", access_token],
       ["@Integra:user", JSON.stringify(user)],

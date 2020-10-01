@@ -27,7 +27,7 @@ const Detalhes: React.FC = () => {
   };
 
   const textStyles = {
-    width: 210,
+    width: 190,
   };
 
   const entidadeSolicitante = useMemo(() => {

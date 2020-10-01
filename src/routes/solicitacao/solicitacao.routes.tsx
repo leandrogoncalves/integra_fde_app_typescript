@@ -4,6 +4,7 @@ import { Colors } from "../../config/ColorsConfig";
 import TopTabsSolicitacao from "./topTabsSolicitacao.routes";
 import Detalhes from "../../pages/Solicitacao/Detalhes";
 import { SolicitationProvider } from "../../hooks/solicitation";
+import FiltroSolicitacao from "../../pages/Solicitacao/FiltroSolicitacao";
 
 const Solicitacao = createStackNavigator();
 
@@ -31,6 +32,11 @@ const SolicitacaoRoutes: React.FC = () => (
         name="DetalhesSolciitacao"
         options={{ title: "Solicitação" }}
         component={Detalhes}
+      />
+      <Solicitacao.Screen
+        name="FiltroSolicitacao"
+        options={{ title: "Filtro" }}
+        component={FiltroSolicitacao}
       />
     </Solicitacao.Navigator>
   </SolicitationProvider>
