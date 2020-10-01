@@ -5,6 +5,10 @@ import TopTabsSolicitacao from "./topTabsSolicitacao.routes";
 import Detalhes from "../../pages/Solicitacao/Detalhes";
 import { SolicitationProvider } from "../../hooks/solicitation";
 import FiltroSolicitacao from "../../pages/Solicitacao/FiltroSolicitacao";
+import FiltroPorNumero from "../../pages/Solicitacao/Filtros/FiltroPorNumero";
+import FiltroPorAssunto from "../../pages/Solicitacao/Filtros/FiltroPorAssunto";
+import FiltroPorSituacao from "../../pages/Solicitacao/Filtros/FiltroPorSituacao";
+import FiltroPorTipo from "../../pages/Solicitacao/Filtros/FiltroPorTipo";
 
 const Solicitacao = createStackNavigator();
 
@@ -37,6 +41,26 @@ const SolicitacaoRoutes: React.FC = () => (
         name="FiltroSolicitacao"
         options={{ title: "Filtro" }}
         component={FiltroSolicitacao}
+      />
+      <Solicitacao.Screen
+        name="FiltroPorNumero"
+        options={{ title: "Número da solicitação" }}
+        component={FiltroPorNumero}
+      />
+      <Solicitacao.Screen
+        name="FiltroPorSituacao"
+        options={{ title: "Situação" }}
+        component={FiltroPorSituacao}
+      />
+      <Solicitacao.Screen
+        name="FiltroPorAssunto"
+        options={{ title: "Assunto" }}
+        component={FiltroPorAssunto}
+      />
+      <Solicitacao.Screen
+        name="FiltroPorTipo"
+        options={{ title: "Assunto" }}
+        component={FiltroPorTipo}
       />
     </Solicitacao.Navigator>
   </SolicitationProvider>

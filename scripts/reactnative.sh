@@ -139,3 +139,7 @@ https://docs.nativebase.io/Components.html#Spinner
 https://github.com/archriss/react-native-snap-carousel
 
 https://medium.com/@KPS250/creating-image-slider-with-flatlist-in-react-native-1815d3793d99
+
+https://react-native.rocketseat.dev/
+
+https://medium.com/@pedroaugusto466/configurando-ambiente-de-desenvolvimento-para-react-native-4049709654ed

@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Alert, View } from "react-native";
+
+import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-elements";
+import { useSolicitation } from "../../../hooks/solicitation";
+
 import { Container } from "../../../components/Layout/Container";
 import { Title } from "../../../components/Typography/Title";
 import Card from "../../../components/Layout/Card";
 import ListItem from "../../../components/Layout/ListItem";
 
 const FiltroSolicitacao: React.FC = () => {
+  const { navigate } = useNavigation();
+  const {
+    numeroSolicitacao,
+    setNumeroSolicitacao,
+    situacao,
+    setSituacao,
+    assunto,
+    setAssunto,
+  } = useSolicitation();
+
   return (
     <>
       <Container>
@@ -16,22 +30,25 @@ const FiltroSolicitacao: React.FC = () => {
             dense
             divider
             title="Numero da Solicitacao"
+            subtitle={numeroSolicitacao}
             chevron
-            onPress={() => Alert.alert("Numero da Solicitacao")}
+            onPress={() => navigate("FiltroPorNumero")}
           />
           <ListItem
             dense
             divider
             title="Situação"
+            subtitle={situacao?.label}
             chevron
-            onPress={() => Alert.alert("Situação")}
+            onPress={() => navigate("FiltroPorSituacao")}
           />
           <ListItem
             dense
             divider
             title="Assunto"
+            subtitle={assunto?.label}
             chevron
-            onPress={() => Alert.alert("Assunto")}
+            onPress={() => navigate("FiltroPorAssunto")}
           />
           <ListItem
             dense
@@ -54,7 +71,11 @@ const FiltroSolicitacao: React.FC = () => {
           raised
           type="outline"
           title="Limpar"
-          onPress={() => Alert.alert("Limpar")}
+          onPress={() => {
+            setAssunto("");
+            setSituacao("");
+            setNumeroSolicitacao("");
+          }}
         />
         <Button
           containerStyle={styles.button}
@@ -70,7 +91,7 @@ const FiltroSolicitacao: React.FC = () => {
 const styles = StyleSheet.create({
   checkBox: { backgroundColor: "white", borderColor: "white" },
   bottom: {
-    flex: 0.13,
+    flex: 0.2,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",

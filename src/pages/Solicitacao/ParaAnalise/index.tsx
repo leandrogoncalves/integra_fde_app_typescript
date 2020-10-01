@@ -45,9 +45,6 @@ const ParaAnalise: React.FC = () => {
   }
 
   const orderSolicitationBy = (column: string) => {
-    console.log("====================================");
-    console.log("order by", column);
-    console.log("====================================");
 
     const solicitationsSorted = [...solicitations].sort((a, b) =>{
       const situationA = a.[column].toUpperCase();
