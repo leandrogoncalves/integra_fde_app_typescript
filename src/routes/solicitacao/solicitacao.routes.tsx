@@ -9,6 +9,7 @@ import FiltroPorNumero from "../../pages/Solicitacao/Filtros/FiltroPorNumero";
 import FiltroPorAssunto from "../../pages/Solicitacao/Filtros/FiltroPorAssunto";
 import FiltroPorSituacao from "../../pages/Solicitacao/Filtros/FiltroPorSituacao";
 import FiltroPorTipo from "../../pages/Solicitacao/Filtros/FiltroPorTipo";
+import FiltroPorPeriodo from "../../pages/Solicitacao/Filtros/FiltroPorPeriodo";
 
 const Solicitacao = createStackNavigator();
 
@@ -59,8 +60,13 @@ const SolicitacaoRoutes: React.FC = () => (
       />
       <Solicitacao.Screen
         name="FiltroPorTipo"
-        options={{ title: "Assunto" }}
+        options={{ title: "Tipo" }}
         component={FiltroPorTipo}
+      />
+      <Solicitacao.Screen
+        name="FiltroPorPeriodo"
+        options={{ title: "Período" }}
+        component={FiltroPorPeriodo}
       />
     </Solicitacao.Navigator>
   </SolicitationProvider>

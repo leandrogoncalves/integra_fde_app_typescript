@@ -1,26 +1,25 @@
-import { IFamilies } from "../interfaces/IFamily";
 import { ServiceBase } from "./ServiceBase";
 import api from "./api";
 
-import { ISituations } from "../interfaces/ISituation";
+import { IType } from "../interfaces/IType";
 
-class SituationService extends ServiceBase {
-  async getSituations(): Promise<ISituations | undefined> {
+class TypeService extends ServiceBase {
+  async getTypes(): Promise<IType[] | undefined> {
     try {
       const url = `/api/solicitacao/obter-tipo?api_token=${this.token}`;
       const { data } = await api.get(url);
 
-      return new Promise<ISituations>((resolve, reject) => {
+      return new Promise<IType[]>((resolve, reject) => {
         resolve(data);
       });
     } catch (err) {
       console.error(err);
     }
 
-    return new Promise<ISituations>((resolve, reject) => {
+    return new Promise<IType[]>((resolve, reject) => {
       resolve(undefined);
     });
   }
 }
 
-export default new SituationService();
+export default new TypeService();

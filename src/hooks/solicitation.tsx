@@ -1,8 +1,14 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useCallback } from "react";
+
+import solicitationService from "../services/solicitationService";
+
 import { ISolicitationContextData } from "../interfaces/ISolicitationContextData";
 import { ISolicitation } from "../interfaces/ISolicitations";
 import { ISituation } from "../interfaces/ISituation";
 import { ISubject } from "../interfaces/ISubject";
+import { IType } from "../interfaces/IType";
+import { IPeriod } from "../interfaces/IPeriod";
+import { ISolicitationFilter } from "../interfaces/ISolicitationFilter";
 
 const SolicitationContext = createContext<ISolicitationContextData>(
   {} as ISolicitationContextData
@@ -15,6 +21,30 @@ const SolicitationProvider: React.FC = ({ children }) => {
   const [numeroSolicitacao, setNumeroSolicitacao] = useState();
   const [situacao, setSituacao] = useState<ISituation>();
   const [assunto, setAssunto] = useState<ISubject>();
+  const [tipo, setTipo] = useState<IType>();
+  const [periodo, setPeriodo] = useState<IPeriod>();
+  const [loader, setLoader] = useState(true);
+
+  const [solicitations, setSolicitations] = useState<ISolicitation[]>();
+  const loadSolicitations = useCallback(async () => {
+    const { data } = await solicitationService.getMySolicitations({
+      numeroSolicitacao,
+      situacao,
+      assunto,
+      periodo,
+      tipo,
+    } as ISolicitationFilter);
+    setSolicitations(data);
+    setLoader(false);
+  }, [
+    solicitations,
+    loader,
+    numeroSolicitacao,
+    situacao,
+    assunto,
+    periodo,
+    tipo,
+  ]);
 
   return (
     <SolicitationContext.Provider
@@ -27,6 +57,15 @@ const SolicitationProvider: React.FC = ({ children }) => {
         setSituacao,
         assunto,
         setAssunto,
+        tipo,
+        setTipo,
+        periodo,
+        setPeriodo,
+        loader,
+        setLoader,
+        solicitations,
+        setSolicitations,
+        loadSolicitations,
       }}
     >
       {children}

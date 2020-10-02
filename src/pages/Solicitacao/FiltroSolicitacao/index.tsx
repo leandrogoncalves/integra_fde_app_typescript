@@ -3,6 +3,7 @@ import { StyleSheet, Alert, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-elements";
+import formatDate from "../../../utils/formatDate";
 import { useSolicitation } from "../../../hooks/solicitation";
 
 import { Container } from "../../../components/Layout/Container";
@@ -11,7 +12,9 @@ import Card from "../../../components/Layout/Card";
 import ListItem from "../../../components/Layout/ListItem";
 
 const FiltroSolicitacao: React.FC = () => {
-  const { navigate } = useNavigation();
+  const { navigate, goBack } = useNavigation();
+  const [textPeriodo, setTextPeriodo] = useState("");
+
   const {
     numeroSolicitacao,
     setNumeroSolicitacao,
@@ -19,7 +22,28 @@ const FiltroSolicitacao: React.FC = () => {
     setSituacao,
     assunto,
     setAssunto,
+    tipo,
+    setTipo,
+    periodo,
+    setPeriodo,
+    loadSolicitations,
+    setLoader,
   } = useSolicitation();
+
+  useEffect(() => {
+    let text = "";
+    if (periodo?.de) {
+      const de = formatDate(periodo.de);
+      text = `de ${de}`;
+    }
+
+    if (periodo?.ate) {
+      const ate = formatDate(periodo.ate);
+      text = `${text} até ${ate}`;
+    }
+
+    setTextPeriodo(text);
+  }, [periodo]);
 
   return (
     <>
@@ -54,14 +78,16 @@ const FiltroSolicitacao: React.FC = () => {
             dense
             divider
             title="Tipo"
+            subtitle={tipo?.label}
             chevron
-            onPress={() => Alert.alert("Tipo")}
+            onPress={() => navigate("FiltroPorTipo")}
           />
           <ListItem
             dense
             title="Periodo"
+            subtitle={textPeriodo}
             chevron
-            onPress={() => Alert.alert("Periodo")}
+            onPress={() => navigate("FiltroPorPeriodo")}
           />
         </Card>
       </Container>
@@ -72,16 +98,23 @@ const FiltroSolicitacao: React.FC = () => {
           type="outline"
           title="Limpar"
           onPress={() => {
+            setTipo("");
+            setPeriodo(null);
             setAssunto("");
             setSituacao("");
             setNumeroSolicitacao("");
+            loadSolicitations();
           }}
         />
         <Button
           containerStyle={styles.button}
           raised
           title="Aplicar"
-          onPress={() => Alert.alert("Aplicar")}
+          onPress={() => {
+            loadSolicitations();
+            setLoader(true);
+            goBack();
+          }}
         />
       </View>
     </>

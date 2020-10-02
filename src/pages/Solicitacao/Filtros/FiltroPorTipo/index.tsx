@@ -6,7 +6,7 @@ import { CheckBox } from "react-native-elements";
 
 import { useSolicitation } from "../../../../hooks/solicitation";
 import { useAuth } from "../../../../hooks/auth";
-import SubjectService from "../../../../services/subjectService";
+import typeService from "../../../../services/typeService";
 
 import { Container } from "../../../../components/Layout/Container";
 import { Title } from "../../../../components/Typography/Title";
@@ -17,16 +17,16 @@ import Loader from "../../../../components/Layout/Loader";
 
 const FiltroPorTipo: React.FC = () => {
   const { token } = useAuth();
-  SubjectService.setToken(token);
+  typeService.setToken(token);
   const [loader, setLoader] = useState(true);
   const { goBack } = useNavigation();
-  const { assunto, setAssunto } = useSolicitation();
-  const [subjects, setSubjects] = useState([]);
+  const { tipo, setTipo } = useSolicitation();
+  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const { data } = await SubjectService.getSubjects();
-      setSubjects(data);
+      const { data } = await typeService.getTypes();
+      setTypes(data);
       setLoader(false);
     })();
   }, []);
@@ -34,28 +34,28 @@ const FiltroPorTipo: React.FC = () => {
   return (
     <Container>
       {loader && <Loader />}
-      {subjects.length > 0 && <Title>Selecione um assunto</Title>}
+      {types.length > 0 && <Title>Selecione um assunto</Title>}
 
       <Card>
-        {subjects.length === 0 && (
+        {types.length === 0 && (
           <Title>
             {loader ? "Carregando..." : "Nenhuma assunto encontrada"}
           </Title>
         )}
 
         <ScrollView keyboardShouldPersistTaps="handled">
-          {subjects.length > 0 &&
-            subjects.map((subject) => (
+          {types.length > 0 &&
+            types.map((type) => (
               <CheckBox
                 left
-                key={subject?.key}
-                title={subject?.label}
+                key={type?.value}
+                title={type?.label}
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={subject?.value === assunto?.value}
+                checked={type?.value === tipo?.value}
                 containerStyle={styles.checkBox}
                 onPress={() => {
-                  setAssunto(subject);
+                  setTipo(type);
                   goBack();
                 }}
               />

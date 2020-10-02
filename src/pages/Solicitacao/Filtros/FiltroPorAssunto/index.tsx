@@ -48,7 +48,7 @@ const FiltroPorAssunto: React.FC = () => {
             subjects.map((subject) => (
               <CheckBox
                 left
-                key={subject?.key}
+                key={subject?.value}
                 title={subject?.label}
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"

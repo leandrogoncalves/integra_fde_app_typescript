@@ -28,9 +28,7 @@ const Realizadas: React.FC = () => {
   solicitationService.setToken(token);
 
   const { navigate } = useNavigation();
-  const { setSolicitationDetail } = useSolicitation();
-  const [loader, setLoader] = useState(true);
-  const [solicitations, setSolicitations] = useState<ISolicitation[]>();
+  const { loader, solicitations, loadSolicitations, setSolicitationDetail, setSolicitations } = useSolicitation();
   const [orderByNumber, setOrderByNumber] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [orderByDate, setOrderByDate] = useState(false);
@@ -38,11 +36,6 @@ const Realizadas: React.FC = () => {
   const [orderByType, setOrderByType] = useState(false);
   const [orderBySubject, setOrderBySubject] = useState(false);
 
-  async function loadSolicitations() {
-    const { data } = await solicitationService.getMySolicitations();
-    setSolicitations(data);
-    setLoader(false);
-  }
 
   const handleClick = (solicitation: ISolicitation) => {
     setSolicitationDetail(solicitation);
