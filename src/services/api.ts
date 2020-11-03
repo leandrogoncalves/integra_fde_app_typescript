@@ -5,8 +5,8 @@ const api = axios.create({
   //   rejectUnauthorized: false,
   // }),
   baseURL: "http://d-integra.fde.sp.gov.br",
-  responseType: "json",
-  withCredentials: false,
+  // responseType: "json",
+  // withCredentials: false,
 });
 
 export default api;

@@ -12,9 +12,9 @@ const authService = {
     const formData = new FormData();
     formData.append("usuario", usuario);
     formData.append("senha", senha);
-    // console.log("====================================");
-    // console.log("formData", formData);
-    // console.log("====================================");
+    console.log("====================================");
+    console.log("formData", formData);
+    console.log("====================================");
 
     await api
       .post("/api/login", formData, {
@@ -24,20 +24,20 @@ const authService = {
         },
       })
       .then((response) => {
-        // console.log("====================================");
-        // console.log("response.data", response.data);
-        // console.log("response", response);
-        // console.log("====================================");
+        console.log("====================================");
+        console.log("response.data", response.data);
+        console.log("response", response);
+        console.log("====================================");
         output = {
           ...response.data,
           status: true,
         };
       })
       .catch((error) => {
-        // console.log("====================================");
-        // console.log("error.response", error?.response);
-        // console.log("error", error);
-        // console.log("====================================");
+        console.log("====================================");
+        console.log("error.response", error?.response);
+        console.log("error", error);
+        console.log("====================================");
 
         if (error?.response) {
           const statusCode = error.response.status;
@@ -69,9 +69,9 @@ const authService = {
         // output.message = error.response.data.message;
       });
 
-    // console.log("====================================");
-    // console.log("output", output);
-    // console.log("====================================");
+    console.log("====================================");
+    console.log("output", output);
+    console.log("====================================");
 
     return output;
   },
