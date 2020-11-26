@@ -12,7 +12,7 @@ export const schoolService = {
           },
           {
             label: "ABILIO RAPOSO FERRAZ JUNIOR",
-            value: "4337",
+            value: "710",
           },
           {
             label: "ADA CARIANI AVALONE PROFA",

@@ -10,19 +10,23 @@ const authService = {
     };
 
     const formData = new FormData();
-    formData.append("usuario", usuario);
-    formData.append("senha", senha);
-    console.log("====================================");
-    console.log("formData", formData);
-    console.log("====================================");
+    // formData.append("usuario", usuario);
+    // formData.append("senha", senha);
+    // console.log("====================================");
+    // console.log("formData", formData);
+    // console.log("====================================");
 
     await api
-      .post("/api/login", formData, {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Accept: "application/json",
-        },
-      })
+      .post(
+        "/api/login",
+        { usuario, senha },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      )
       .then((response) => {
         console.log("====================================");
         console.log("response.data", response.data);

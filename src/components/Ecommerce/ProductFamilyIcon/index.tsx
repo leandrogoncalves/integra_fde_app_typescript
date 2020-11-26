@@ -6,6 +6,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Foundation from "react-native-vector-icons/Foundation";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { useEcommerce } from "../../../hooks/ecommerce";
 
 import { Family, FamilyIcon, FamilyText } from "./styles";
@@ -33,6 +34,10 @@ const ProductFamilyIcon: React.FC = ({ children, family, ...rest }) => {
 
     case "MaterialIcons":
       icon = <MaterialIcons name={family.icon} color="white" size={30} />;
+      break;
+
+    case "FontAwesome5":
+      icon = <FontAwesome5 name={family.icon} color="white" size={30} />;
       break;
 
     default:

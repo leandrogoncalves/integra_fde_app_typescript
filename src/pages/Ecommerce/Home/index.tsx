@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import { useAuth } from "../../../hooks/auth";
+import { useEcommerce } from "../../../hooks/ecommerce";
 
 import { IProduct } from "../../../interfaces/IProduct";
 
@@ -30,6 +32,7 @@ const Home: React.FC = () => {
   familyService.setToken(token);
   productService.setToken(token);
 
+  const { school } = useEcommerce();
   const { navigate } = useNavigation();
   const [loader, setLoader] = useState(true);
   const [families, setFamilies] = useState<IFamily[]>([]);
@@ -37,7 +40,7 @@ const Home: React.FC = () => {
   const [productsMoreSolded, setProductsMoreSolded] = useState<IProduct[]>([]);
 
   async function loadFamilies() {
-    const { data } = await familyService.getFamilies();
+    const { data } = await familyService.getFamilies(school.value);
 
     if (data) {
       setFamilies(data);
@@ -111,8 +114,8 @@ const Home: React.FC = () => {
             <Subtitle>Carregando...</Subtitle>
           ) : (
             productsHighlights?.map(({ productList }, index) => (
-              <>
-                <ProductContainer key={index}>
+              <React.Fragment key={index}>
+                <ProductContainer>
                   {productList.map((product, index) => (
                     <>
                       <ProductItemMini product={product} />
@@ -122,7 +125,7 @@ const Home: React.FC = () => {
                 </ProductContainer>
 
                 <HorizontalDivider style={{ marginTop: 20 }} />
-              </>
+              </React.Fragment>
             ))
           )}
 
@@ -144,8 +147,8 @@ const Home: React.FC = () => {
             <Subtitle>Carregando...</Subtitle>
           ) : (
             productsMoreSolded?.map(({ productList }, index) => (
-              <>
-                <ProductContainer key={index}>
+              <React.Fragment key={index}>
+                <ProductContainer>
                   {productList.map((product, index) => (
                     <>
                       <ProductItemMini product={product} />
@@ -155,7 +158,7 @@ const Home: React.FC = () => {
                 </ProductContainer>
 
                 <HorizontalDivider style={{ marginTop: 20 }} />
-              </>
+              </React.Fragment>
             ))
           )}
 

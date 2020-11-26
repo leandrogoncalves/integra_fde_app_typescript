@@ -29,13 +29,13 @@ const Familia: React.FC = () => {
   familyService.setToken(token);
   const [loader, setLoader] = useState(true);
   const [families, setFamilies] = useState<IFamily[]>([]);
-  const { setFamilySelected } = useEcommerce();
+  const { setFamilySelected, school } = useEcommerce();
   const iconSize = 20;
 
   const { navigate } = useNavigation();
 
   async function loadFamilies() {
-    const { data } = await familyService.getFamilies();
+    const { data } = await familyService.getFamilies(school.value);
 
     if (data) {
       setFamilies(data);

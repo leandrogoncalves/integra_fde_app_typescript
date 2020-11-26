@@ -30,7 +30,8 @@ const Categoria: React.FC = () => {
   const { navigate } = useNavigation();
 
   async function loadCategories() {
-    const { data } = await categoryService.getCategories(familySelected.id);
+    // const { data } = await categoryService.getCategories(familySelected.id);
+    const data = familySelected?.group;
 
     if (data) {
       setCategories(data);
@@ -39,7 +40,8 @@ const Categoria: React.FC = () => {
 
   const handleClickCategoy = (category: ICategory) => {
     setCategorySelected(category);
-    navigate("Subcategoria");
+    // navigate("Subcategoria");
+    navigate("ResultadoBusca");
   };
 
   useEffect(() => {
