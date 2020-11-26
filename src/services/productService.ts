@@ -59,7 +59,7 @@ class ProductService extends ServiceBase {
         params.push(`nome=${nome}`);
       }
 
-      const url = `/api/ecommerce/produtos/todos?api_token=${
+      const url = `/api/ecommerce/produtos/todos-moch?api_token=${
         this.token
       }&${params.join("&")}`;
 
@@ -69,7 +69,7 @@ class ProductService extends ServiceBase {
         resolve(data);
       });
     } catch (err) {
-      console.error(err);
+      console.error("erro produtos", err);
     }
 
     return new Promise<IProducts>((resolve, reject) => {

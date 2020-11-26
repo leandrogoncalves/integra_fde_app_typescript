@@ -20,6 +20,10 @@ class FamilyService extends ServiceBase {
         },
       })
       .then((response) => {
+        console.log("====================================");
+        console.log("response.data", response.data);
+        console.log("response", response);
+        console.log("====================================");
         data = response.data;
         output = {
           status: true,
@@ -27,6 +31,10 @@ class FamilyService extends ServiceBase {
         };
       })
       .catch((error) => {
+        console.log("====================================");
+        console.log("error.response", error?.response);
+        console.log("error", error);
+        console.log("====================================");
         if (error?.response) {
           const statusCode = error.response.status;
           switch (statusCode) {
@@ -56,6 +64,10 @@ class FamilyService extends ServiceBase {
 
         // output.message = error.response.data.message;
       });
+
+    console.log("====================================");
+    console.log("output", output);
+    console.log("====================================");
 
     return new Promise<IFamilies>((resolve, reject) => {
       resolve(data);
